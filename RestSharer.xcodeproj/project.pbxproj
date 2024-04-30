@@ -52,9 +52,19 @@
 		3C770FC82BE014B6003FE3BB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C770FC72BE014B6003FE3BB /* User.swift */; };
 		3C770FCA2BE07B07003FE3BB /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C770FC92BE07B07003FE3BB /* LaunchView.swift */; };
 		3C770FCC2BE07BAF003FE3BB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C770FCB2BE07BAF003FE3BB /* LoginView.swift */; };
+		4F91193F96A518C6E37685EA /* Pods_RestSharer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E56FD2B6EB68B4211BF649D /* Pods_RestSharer.framework */; };
+		CCB315CD2BEE016300039745 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB315CC2BEE016300039745 /* MainTabView.swift */; };
+		CCB315CF2BEE01A500039745 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB315CE2BEE01A500039745 /* Color+.swift */; };
+		CCB315D12BEE01E600039745 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB315D02BEE01E600039745 /* UserStore.swift */; };
+		CCB315D72BEE13C500039745 /* MainHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB315D62BEE13C500039745 /* MainHomeView.swift */; };
+		CCB315D92BEE13DD00039745 /* FeedMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB315D82BEE13DD00039745 /* FeedMainView.swift */; };
+		CCB315DD2BEE167E00039745 /* FeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB315DC2BEE167E00039745 /* FeedStore.swift */; };
+		CCB315DF2BEE16BA00039745 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB315DE2BEE16BA00039745 /* Feed.swift */; };
+		CCB315E12BEE178600039745 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB315E02BEE178600039745 /* Modifiers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01A1B258A5917BAB17B79E60 /* Pods-RestSharer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestSharer.release.xcconfig"; path = "Target Support Files/Pods-RestSharer/Pods-RestSharer.release.xcconfig"; sourceTree = "<group>"; };
 		3C770F552BDFD83B003FE3BB /* RestSharer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestSharer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C770F582BDFD83B003FE3BB /* RestSharerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestSharerApp.swift; sourceTree = "<group>"; };
 		3C770F5A2BDFD83B003FE3BB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -76,6 +86,16 @@
 		3C770FC72BE014B6003FE3BB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3C770FC92BE07B07003FE3BB /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		3C770FCB2BE07BAF003FE3BB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7E56FD2B6EB68B4211BF649D /* Pods_RestSharer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RestSharer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCB315CC2BEE016300039745 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		CCB315CE2BEE01A500039745 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		CCB315D02BEE01E600039745 /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
+		CCB315D62BEE13C500039745 /* MainHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHomeView.swift; sourceTree = "<group>"; };
+		CCB315D82BEE13DD00039745 /* FeedMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMainView.swift; sourceTree = "<group>"; };
+		CCB315DC2BEE167E00039745 /* FeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStore.swift; sourceTree = "<group>"; };
+		CCB315DE2BEE16BA00039745 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		CCB315E02BEE178600039745 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		D8FF70A6CA610972FB49E5B9 /* Pods-RestSharer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestSharer.debug.xcconfig"; path = "Target Support Files/Pods-RestSharer/Pods-RestSharer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +129,7 @@
 				3C770FC12BE01292003FE3BB /* FirebaseStorage in Frameworks */,
 				3C770F9D2BE01292003FE3BB /* FirebaseAuthCombine-Community in Frameworks */,
 				3C770FC32BE01292003FE3BB /* FirebaseStorageCombine-Community in Frameworks */,
+				4F91193F96A518C6E37685EA /* Pods_RestSharer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +142,7 @@
 				3C770F572BDFD83B003FE3BB /* RestSharer */,
 				3C770F562BDFD83B003FE3BB /* Products */,
 				3C770F972BE01212003FE3BB /* Frameworks */,
+				966FC5CB0C5ABC8ADBA2C169 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				3C770F8B2BE01016003FE3BB /* GoogleService-Info.plist */,
+				CCB315E02BEE178600039745 /* Modifiers.swift */,
 				3C770F672BDFDA31003FE3BB /* Resource */,
 				3C770FC42BE0144D003FE3BB /* Path.swift */,
 			);
@@ -193,6 +216,8 @@
 				3C770FC92BE07B07003FE3BB /* LaunchView.swift */,
 				3C770FCB2BE07BAF003FE3BB /* LoginView.swift */,
 				3C770F5A2BDFD83B003FE3BB /* ContentView.swift */,
+				CCB315CC2BEE016300039745 /* MainTabView.swift */,
+				CCB315D32BEE135900039745 /* Home */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -203,6 +228,7 @@
 				3C770F7A2BDFDCF3003FE3BB /* Font+.swift */,
 				3C770F7C2BDFDD2D003FE3BB /* CGFloat+.swift */,
 				3C770F8D2BE01077003FE3BB /* Bundle+.swift */,
+				CCB315CE2BEE01A500039745 /* Color+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -211,6 +237,8 @@
 			isa = PBXGroup;
 			children = (
 				3C770F902BE010D8003FE3BB /* AuthStore.swift */,
+				CCB315D02BEE01E600039745 /* UserStore.swift */,
+				CCB315DC2BEE167E00039745 /* FeedStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -218,6 +246,7 @@
 		3C770F972BE01212003FE3BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E56FD2B6EB68B4211BF649D /* Pods_RestSharer.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -226,8 +255,43 @@
 			isa = PBXGroup;
 			children = (
 				3C770FC72BE014B6003FE3BB /* User.swift */,
+				CCB315DE2BEE16BA00039745 /* Feed.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		966FC5CB0C5ABC8ADBA2C169 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D8FF70A6CA610972FB49E5B9 /* Pods-RestSharer.debug.xcconfig */,
+				01A1B258A5917BAB17B79E60 /* Pods-RestSharer.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		CCB315D32BEE135900039745 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CCB315D52BEE139800039745 /* Map */,
+				CCB315D42BEE139000039745 /* Feed */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		CCB315D42BEE139000039745 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				CCB315D62BEE13C500039745 /* MainHomeView.swift */,
+				CCB315D82BEE13DD00039745 /* FeedMainView.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		CCB315D52BEE139800039745 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,9 +301,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C770F632BDFD83D003FE3BB /* Build configuration list for PBXNativeTarget "RestSharer" */;
 			buildPhases = (
+				6DDBFF63509CE3CD2FCF3A35 /* [CP] Check Pods Manifest.lock */,
 				3C770F512BDFD83B003FE3BB /* Sources */,
 				3C770F522BDFD83B003FE3BB /* Frameworks */,
 				3C770F532BDFD83B003FE3BB /* Resources */,
+				A3A270D2C58E4803C5F5C919 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -334,21 +400,71 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6DDBFF63509CE3CD2FCF3A35 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RestSharer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A3A270D2C58E4803C5F5C919 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RestSharer/Pods-RestSharer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RestSharer/Pods-RestSharer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RestSharer/Pods-RestSharer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3C770F512BDFD83B003FE3BB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3C770F7D2BDFDD2D003FE3BB /* CGFloat+.swift in Sources */,
+				CCB315CF2BEE01A500039745 /* Color+.swift in Sources */,
 				3C770FC52BE0144D003FE3BB /* Path.swift in Sources */,
+				CCB315D92BEE13DD00039745 /* FeedMainView.swift in Sources */,
 				3C770F912BE010D8003FE3BB /* AuthStore.swift in Sources */,
 				3C770F7B2BDFDCF3003FE3BB /* Font+.swift in Sources */,
 				3C770FC82BE014B6003FE3BB /* User.swift in Sources */,
+				CCB315CD2BEE016300039745 /* MainTabView.swift in Sources */,
+				CCB315DF2BEE16BA00039745 /* Feed.swift in Sources */,
 				3C770F5B2BDFD83B003FE3BB /* ContentView.swift in Sources */,
 				3C770F592BDFD83B003FE3BB /* RestSharerApp.swift in Sources */,
 				3C770FCA2BE07B07003FE3BB /* LaunchView.swift in Sources */,
+				CCB315DD2BEE167E00039745 /* FeedStore.swift in Sources */,
+				CCB315D72BEE13C500039745 /* MainHomeView.swift in Sources */,
 				3C770FCC2BE07BAF003FE3BB /* LoginView.swift in Sources */,
 				3C770F8E2BE01077003FE3BB /* Bundle+.swift in Sources */,
+				CCB315E12BEE178600039745 /* Modifiers.swift in Sources */,
+				CCB315D12BEE01E600039745 /* UserStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,7 +523,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -464,7 +580,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -476,13 +592,14 @@
 		};
 		3C770F642BDFD83D003FE3BB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8FF70A6CA610972FB49E5B9 /* Pods-RestSharer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RestSharer/Preview Content\"";
-				DEVELOPMENT_TEAM = MAZQ6JDBT4;
+				DEVELOPMENT_TEAM = Z4TN39ZQUZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RestSharer/Info.plist;
@@ -509,13 +626,14 @@
 		};
 		3C770F652BDFD83D003FE3BB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01A1B258A5917BAB17B79E60 /* Pods-RestSharer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RestSharer/Preview Content\"";
-				DEVELOPMENT_TEAM = MAZQ6JDBT4;
+				DEVELOPMENT_TEAM = Z4TN39ZQUZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RestSharer/Info.plist;
