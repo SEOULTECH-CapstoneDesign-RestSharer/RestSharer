@@ -7,11 +7,32 @@
 
 import SwiftUI
 
+import Firebase
+import FirebaseAuth
+import FirebaseCore
+import GoogleSignIn
+
 @main
 struct RestSharerApp: App {
+    
+    init() {
+        let providerFactory = AppCheckDebugProviderFactory()
+        AppCheck.setAppCheckProviderFactory(providerFactory)
+        
+        FirebaseApp.configure()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LaunchView()
+                .environmentObject(AuthStore())
         }
+    }
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    /// 구글 로그인 인증 프로세스가 끝날 때 애플리케이션이 수신하는 URL
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance.handle(url)
     }
 }
