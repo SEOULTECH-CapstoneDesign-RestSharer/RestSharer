@@ -8,19 +8,47 @@
 import Foundation
 import Firebase
 
-struct Feed: Identifiable, Hashable {
+struct MyFeed: Identifiable, Codable, Hashable {
     
-    let id: String = UUID().uuidString
-    
-    var writer: User
+    var id: String = UUID().uuidString
+
+    var writerNickname: String
+    var writerName: String
+    var writerProfileImage: String
     var images: [String]
     var contents: String
     var createdAt: Double = Date().timeIntervalSince1970
-//    var visitedShop: Shop
-    var category: [Category]
+    var title: String
+    var category: [String]
+    var address: String
+    var roadAddress: String
+    var mapx: String
+    var mapy: String
+    
+    var createdDate: String {
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.minute, .hour, .day, .weekOfYear, .month, .year], from: Date(timeIntervalSince1970: createdAt), to: currentDate)
+        
+        if let year = components.year, year > 0 {
+            return "\(year)년 전"
+        } else if let month = components.month, month > 0 {
+            return "\(month)개월 전"
+        } else if let week = components.weekOfYear, week > 0 {
+            return "\(week)주 전"
+        } else if let day = components.day, day > 0 {
+            return "\(day)일 전"
+        } else if let hour = components.hour, hour > 0 {
+            return "\(hour)시간 전"
+        } else if let minute = components.minute, minute > 0 {
+            return "\(minute)분 전"
+        } else {
+            return "방금 전"
+        }
+    }
 }
 
-enum Category: Int, CaseIterable, Hashable {
+enum MyCategory: Int, CaseIterable, Hashable, Codable {
     case koreanFood
     case westernFood
     case japaneseFood
@@ -29,56 +57,64 @@ enum Category: Int, CaseIterable, Hashable {
     case pub
     case brunch
     case cafe
-
+    
     var categoryName: String {
         switch self {
-        case .koreanFood : return "한식"
-        case .westernFood : return "양식"
-        case .japaneseFood : return "일식"
-        case .chinessFood : return "중식"
-        case .dessert : return "디저트"
-        case .pub : return "술집"
-        case .brunch : return "브런치"
-        case .cafe : return "카페"
+        case .koreanFood: return "한식"
+        case .westernFood: return "양식"
+        case .japaneseFood: return "일식"
+        case .chinessFood: return "중식"
+        case .dessert: return "디저트"
+        case .pub: return "술집"
+        case .brunch: return "브런치"
+        case .cafe: return "카페"
         }
     }
 }
-extension Feed {
+extension MyFeed {
     init?(documentData: [String: Any]) {
         guard
-           
-            let visitedShopData = documentData["visitedShop"] as? [String: Any],
-//            let visitedShop = Shop(documentData: visitedShopData),
-            
-            let writerData = documentData["writer"] as? [String: Any],
-            let writer = User(document: writerData), // User 초기화 메서드도 구현해야함.
-            let contents = documentData["contents"] as? String,
+            let writerNickname = documentData["writerNickname"] as? String,
+            let writerName = documentData["writerName"] as? String,
+            let writerProfileImage = documentData["writerProfileImage"] as? String,
             let images = documentData["images"] as? [String],
-            let createdAt = documentData["createdAt"] as? Timestamp, // Firestore의 Timestamp를 사용
-            let categoryData = documentData["category"] as? [String]
+            let contents = documentData["contents"] as? String,
+            let title = documentData["title"] as? String,
+            let category = documentData["category"] as? [String],
+            let address = documentData["address"] as? String,
+            let roadAddress = documentData["roadAddress"] as? String,
+            let mapx = documentData["mapx"] as? String,
+            let mapy = documentData["mapy"] as? String
+  
         else {
-            print("Failed to initialize Feed with feeddata: \(documentData)")
             return nil
         }
-        // 여기서 나머지 프로퍼티들을 초기화
-//        self.visitedShop = visitedShop
-        self.writer = writer
-        self.contents = contents
         
+        self.writerNickname = writerNickname
+        self.writerName = writerName
+        self.writerProfileImage = writerProfileImage
         self.images = images
-        //self.createdAt = createdAt.dateValue() // Firestore Timestamp를 Swift Date로 변환
-        self.createdAt = createdAt.dateValue().timeIntervalSince1970
-        //self.category = categoryData.compactMap { Category(rawValue: $0) }
-        //compactMap 를 사용해 String ->Int -> Category 타입으로 변환하였다
-        self.category = categoryData.compactMap { categoryName in
-            if let intValue = Int(categoryName) {
-                return Category(rawValue: intValue)
-            } else {
-                // String을 Int로 변환하는 데 실패했습니다.
-                print("Failed to :String을 Int로 변환하는 데 실패했습니다.")
-                return nil
-            }
-        }
-
+        self.contents = contents
+        self.title = title
+        self.category = category
+        self.address = address
+        self.roadAddress = roadAddress
+        self.mapx = mapx
+        self.mapy = mapy
+        
+    }
+    
+    init() {
+        self.writerNickname = ""
+        self.writerName = ""
+        self.writerProfileImage = ""
+        self.images = []
+        self.contents = ""
+        self.title = ""
+        self.category = []
+        self.address = ""
+        self.roadAddress = ""
+        self.mapx = ""
+        self.mapy = ""
     }
 }

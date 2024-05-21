@@ -17,7 +17,7 @@ struct LaunchView: View {
     var body: some View {
         if isActive {
             if authStore.currentUser != nil {
-                ContentView()
+                MainTabView()
              } else {
                  LoginView()
              }

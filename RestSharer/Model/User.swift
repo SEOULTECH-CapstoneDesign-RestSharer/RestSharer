@@ -15,11 +15,11 @@ struct User: Hashable {
     let id: String = UUID().uuidString
     let email: String
     var name: String
-    var nickname: String
-    var phoneNumber: String
-    var profileImageURL: String
-    var follower: [String]
-    var following: [String]
+//    var nickname: String
+//    var phoneNumber: String
+//    var profileImageURL: String
+//    var follower: [String]
+//    var following: [String]
 //    var myFeed: [MyFeed]
 //    var savedFeed: [Feed]
 //    var bookmark: [Shop]
@@ -29,12 +29,12 @@ struct User: Hashable {
     init?(document: [String: Any]) {
            guard
                let name = document["name"] as? String,
-               let email = document["email"] as? String,
-               let nickname = document["nickname"] as? String,
-               let phoneNumber = document["phoneNumber"] as? String,
-               let profileImageURL = document["profileImageURL"] as? String,
-               let follower = document["follower"] as? [String],
-               let following = document["following"] as? [String] //,
+               let email = document["email"] as? String
+//               let nickname = document["nickname"] as? String,
+//               let phoneNumber = document["phoneNumber"] as? String,
+//               let profileImageURL = document["profileImageURL"] as? String,
+//               let follower = document["follower"] as? [String],
+//               let following = document["following"] as? [String] //,
 //               let myFeed = document["myFeed"] as? [MyFeed],
 //               let savedFeed = document["savedFeed"] as? [Feed],
 //               let bookmark = document["bookmark"] as? [Shop],
@@ -47,11 +47,11 @@ struct User: Hashable {
       
         self.email = email
         self.name = name
-        self.nickname = nickname
-        self.phoneNumber = phoneNumber
-        self.profileImageURL = profileImageURL
-        self.follower = follower
-        self.following = following
+//        self.nickname = nickname
+//        self.phoneNumber = phoneNumber
+//        self.profileImageURL = profileImageURL
+//        self.follower = follower
+//        self.following = following
 //        self.myFeed = myFeed
 //        self.savedFeed = savedFeed
 //        self.bookmark = bookmark
@@ -62,11 +62,11 @@ struct User: Hashable {
     init() {
         self.email = ""
         self.name = ""
-        self.nickname = ""
-        self.phoneNumber = ""
-        self.profileImageURL = ""
-        self.follower = []
-        self.following = []
+//        self.nickname = ""
+//        self.phoneNumber = ""
+//        self.profileImageURL = ""
+//        self.follower = []
+//        self.following = []
 //        self.myFeed = []
 //        self.savedFeed = []
 //        self.bookmark = []
@@ -76,12 +76,12 @@ struct User: Hashable {
     
     func toDictionary() -> [String: Any] {
            return ["email": email,
-                   "name": name,
-                   "nickname": nickname,
-                   "phoneNumber": phoneNumber,
-                   "profileImageURL": profileImageURL,
-                   "follower": follower,
-                   "following": following //,
+                   "name": name
+//                   "nickname": nickname,
+//                   "phoneNumber": phoneNumber,
+//                   "profileImageURL": profileImageURL,
+//                   "follower": follower,
+//                   "following": following //,
 //                   "myFeed": myFeed,
 //                   "savedFeed": savedFeed,
 //                   "bookmark": bookmark,

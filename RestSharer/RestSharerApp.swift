@@ -15,6 +15,8 @@ import GoogleSignIn
 @main
 struct RestSharerApp: App {
     
+    @StateObject private var feedStore = FeedStore()
+    
     init() {
         let providerFactory = AppCheckDebugProviderFactory()
         AppCheck.setAppCheckProviderFactory(providerFactory)
@@ -26,6 +28,7 @@ struct RestSharerApp: App {
         WindowGroup {
             LaunchView()
                 .environmentObject(AuthStore())
+                .environmentObject(feedStore)
         }
     }
 }

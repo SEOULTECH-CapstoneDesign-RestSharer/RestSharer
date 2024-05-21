@@ -62,7 +62,7 @@ class AuthStore: ObservableObject {
             let email = googleUser.profile?.email ?? ""
             let name = googleUser.profile?.name ?? ""
             
-            let userData = User(email: email, name: name)
+            let userData = User()
             
             if let error = error {
                 print(error.localizedDescription)

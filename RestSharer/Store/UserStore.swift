@@ -15,12 +15,12 @@ final class UserStore: ObservableObject {
             .document(user.email)
 //            .setData(user.toDictionary())
             .setData(["email" : user.email,
-                      "name" : user.name,
-                      "nickname" : user.nickname,
-                      "phoneNumber" : user.phoneNumber,
-                      "profileImageURL" : user.profileImageURL,
-                      "follower" : user.follower,
-                      "following" : user.following//,
+                      "name" : user.name
+//                      "nickname" : user.nickname,
+//                      "phoneNumber" : user.phoneNumber,
+//                      "profileImageURL" : user.profileImageURL,
+//                      "follower" : user.follower,
+//                      "following" : user.following//,
 //                      "myFeed" : user.myFeed,
 //                      "savedFeed" : user.savedFeed,
 //                      "bookmark" : user.bookmark,
@@ -37,12 +37,12 @@ final class UserStore: ObservableObject {
         Firestore.firestore().collection("User")
             .document(user.email)
             .updateData(["email" : user.email,
-                      "name" : user.name,
-                      "nickname" : user.nickname,
-                      "phoneNumber" : user.phoneNumber,
-                      "profileImageURL" : user.profileImageURL,
-                      "follower" : user.follower,
-                      "following" : user.following//,
+                      "name" : user.name
+//                      "nickname" : user.nickname,
+//                      "phoneNumber" : user.phoneNumber,
+//                      "profileImageURL" : user.profileImageURL,
+//                      "follower" : user.follower,
+//                      "following" : user.following//,
 //                      "myFeed" : user.myFeed,
 //                      "savedFeed" : user.savedFeed,
 //                      "bookmark" : user.bookmark,
