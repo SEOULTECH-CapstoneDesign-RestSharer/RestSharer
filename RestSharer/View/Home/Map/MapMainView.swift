@@ -1,6 +1,6 @@
 //
 //  MapMainView.swift
-//  Private
+//  RestSharer
 //
 //  Created by 변상우 on 5/10/24.
 //
@@ -52,10 +52,10 @@ struct MapMainView: View {
             print("feedStore.feedList: \(feedStore.feedList)")
         }
         
-//        .sheet(isPresented: $coordinator.showMarkerDetailView) {
-//            MapFeedSheetView(feed: feedStore.feedList.filter { $0.id == coordinator.currentFeedId }[0])
-//                .presentationDetents([.height(.screenHeight * 0.55)])
-//        }
+        .sheet(isPresented: $coordinator.showMarkerDetailView) {
+            MapFeedSheetView(feed: feedStore.feedList.filter { $0.id == coordinator.currentFeedId }[0])
+                .presentationDetents([.height(.screenHeight * 0.5)])
+        }
         
 //        .popup(isPresented: $authStore.welcomeToast) {
 //            ToastMessageView(message: "Private에 오신걸 환영합니다!")

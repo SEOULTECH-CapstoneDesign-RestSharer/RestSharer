@@ -37,7 +37,7 @@ final class Coordinator: NSObject, ObservableObject,NMFMapViewCameraDelegate, NM
     
     let view = NMFNaverMapView(frame: .zero)
     
-//    var locationSearchStore = LocationSearchStore.shared
+    var locationSearchStore = LocationSearchStore.shared
     var feedList: [MyFeed] = []
     var myFeedList: [MyFeed] = []
     var markers: [NMFMarker] = []
@@ -159,6 +159,9 @@ final class Coordinator: NSObject, ObservableObject,NMFMapViewCameraDelegate, NM
     //MARK: 마커 생성
     func makeMarkers() {
         
+        print("makeMarkers")
+        print("feedList: \(feedList)")
+        
         removeAllMarkers()
         
         var tempMarkers: [NMFMarker] = []
@@ -167,7 +170,11 @@ final class Coordinator: NSObject, ObservableObject,NMFMapViewCameraDelegate, NM
             let marker = NMFMarker()
 //            let lat = locationSearchStore.formatCoordinates(feedMarker.mapy, 2) ?? ""
 //            let lng = locationSearchStore.formatCoordinates(feedMarker.mapx, 3) ?? ""
-//            coord = NMGLatLng(lat: Double(lat) ?? 0, lng: Double(lng) ?? 0)
+            
+            let lat = feedMarker.mapy
+            let lng = feedMarker.mapx
+            
+            coord = NMGLatLng(lat: Double(lat) ?? 0, lng: Double(lng) ?? 0)
             
             marker.position = NMGLatLng(lat: coord.lat, lng: coord.lng )
             marker.captionRequestedWidth = 100 // 마커 캡션 너비 지정

@@ -1,22 +1,22 @@
-////
-////  MapFeedSheetView.swift
-////  Private
-////
-////  Created by 변상우 on 5/10/24.
-////
-//import SwiftUI
 //
-//struct MapFeedSheetView: View {
-//    
-//    @EnvironmentObject private var userStore: UserStore
-//    
-//    @State private var isChangePlaceColor: Bool = false
-//    
-//    let feed: MyFeed
-//    
-//    var body: some View {
-//        ScrollView {
-//            HStack {
+//  MapFeedSheetView.swift
+//  Private
+//
+//  Created by 변상우 on 5/10/24.
+//
+import SwiftUI
+
+struct MapFeedSheetView: View {
+    
+    @EnvironmentObject private var userStore: UserStore
+    
+    @State private var isChangePlaceColor: Bool = false
+    
+    let feed: MyFeed
+    
+    var body: some View {
+        ScrollView {
+            HStack {
 //                Button {
 //                    if (userStore.user.bookmark.contains("\(feed.id)")) {
 //                        userStore.deletePlace(feed)
@@ -41,36 +41,36 @@
 //                        .foregroundColor(userStore.user.bookmark.contains("\(feed.images[0].suffix(32))") ? .privateColor : .primary)
 //                }
 //                .padding(.leading, 15)
-//                
-//                VStack(alignment: .leading, spacing: 5) {
-//                    Text("\(feed.title)")
-//                        .font(.pretendardMedium16)
-//                        .foregroundColor(.primary)
-//                    Text("\(feed.roadAddress)")
-//                        .font(.pretendardRegular12)
-//                        .foregroundColor(.primary)
-//                }
-//                .padding(.leading, 15)
-//                Spacer()
+                
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("\(feed.title)")
+                        .font(.pretendardMedium16)
+                        .foregroundColor(.primary)
+                    Text("\(feed.roadAddress)")
+                        .font(.pretendardRegular12)
+                        .foregroundColor(.primary)
+                }
+                .padding(.leading, 15)
+                Spacer()
+            }
+            .padding(.horizontal, 20)
+            .frame(width: UIScreen.main.bounds.width * 0.9, height: 80)
+            .background(Color.darkGraySubColor)
+            
+//            ForEach(feed) { feed in
+                MapFeedCellView(feed: feed)
 //            }
-//            .padding(.horizontal, 20)
-//            .frame(width: UIScreen.main.bounds.width * 0.9, height: 80)
-//            .background(Color.darkGraySubColor)
-//            
-////            ForEach(feed) { feed in
-//                MapFeedCellView(feed: feed)
-////            }
-//        }
-//        .padding(.top, 20)
-//        
-//        .onAppear {
-//            print("MapFeedSheetView \(feed)")
-//        }
+        }
+        .padding(.top, 20)
+        
+        .onAppear {
+            print("MapFeedSheetView \(feed)")
+        }
+    }
+}
+
+//struct MapFeedSheetView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MapFeedSheetView()
 //    }
 //}
-//
-////struct MapFeedSheetView_Previews: PreviewProvider {
-////    static var previews: some View {
-////        MapFeedSheetView()
-////    }
-////}

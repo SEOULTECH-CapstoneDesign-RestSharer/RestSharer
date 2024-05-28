@@ -15,7 +15,15 @@ import GoogleSignIn
 @main
 struct RestSharerApp: App {
     
+    @StateObject private var userStore = UserStore()
     @StateObject private var feedStore = FeedStore()
+//    @StateObject private var reservationStore = ReservationStore()
+//    @StateObject private var shopStore = ShopStore()
+//    @StateObject private var holidayManager = HolidayManager()
+//    @StateObject private var followStore = FollowStore()
+//    @StateObject private var chatRoomStore = ChatRoomStore()
+//    @StateObject private var searchStore = SearchStore()
+//    @StateObject private var calendarData = CalendarData()
     
     init() {
         let providerFactory = AppCheckDebugProviderFactory()
@@ -28,7 +36,15 @@ struct RestSharerApp: App {
         WindowGroup {
             LaunchView()
                 .environmentObject(AuthStore())
+                .environmentObject(userStore)
                 .environmentObject(feedStore)
+//                .environmentObject(chatRoomStore)
+//                .environmentObject(searchStore)
+//                .environmentObject(reservationStore)
+//                .environmentObject(shopStore)
+//                .environmentObject(holidayManager)
+//                .environmentObject(followStore)
+//                .environmentObject(calendarData)
         }
     }
 }

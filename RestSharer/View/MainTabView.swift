@@ -31,7 +31,7 @@ struct MainTabView: View {
     @State private var rootSection5: Bool = false
     
     @State private var showLocation: Bool = false
-//    @State private var searchResult: SearchResult = SearchResult(title: "", category: "", address: "", roadAddress: "", mapx: "", mapy: "")
+    @State private var searchResult: SearchResult = SearchResult(title: "", category: "", address: "", roadAddress: "", mapx: "", mapy: "")
     var selectionBinding: Binding<Int> { Binding (
         get: {
             self.selection
@@ -78,9 +78,9 @@ struct MainTabView: View {
                     //                    }
                     .padding(.bottom, 5)
                     .tag(2)
-                    //                    UploadView(root: $rootSection3, selection: $selection, isImagePickerPresented: .constant(true), showLocation: $showLocation, searchResult: $searchResult).tabItem {
-                    //                        Label("작성", systemImage: "plus")
-                    //                    }
+                    UploadView(root: $rootSection3, selection: $selection, isImagePickerPresented: .constant(true), showLocation: $showLocation, searchResult: $searchResult).tabItem {
+                        Label("작성", systemImage: "plus")
+                    }
                     .padding(.bottom, 5)
                     .tag(3)
                     //                    ShopListView(root: $rootSection4, selection: $selection).tabItem {
