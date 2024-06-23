@@ -114,6 +114,7 @@
 		CCB315DD2BEE167E00039745 /* FeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB315DC2BEE167E00039745 /* FeedStore.swift */; };
 		CCB315DF2BEE16BA00039745 /* MyFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB315DE2BEE16BA00039745 /* MyFeed.swift */; };
 		CCB315E12BEE178600039745 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB315E02BEE178600039745 /* Modifiers.swift */; };
+		CCCB09342C282CAA006BAE56 /* ToastMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB09332C282CAA006BAE56 /* ToastMessageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -199,6 +200,7 @@
 		CCB315DC2BEE167E00039745 /* FeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStore.swift; sourceTree = "<group>"; };
 		CCB315DE2BEE16BA00039745 /* MyFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeed.swift; sourceTree = "<group>"; };
 		CCB315E02BEE178600039745 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		CCCB09332C282CAA006BAE56 /* ToastMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastMessageView.swift; sourceTree = "<group>"; };
 		D8FF70A6CA610972FB49E5B9 /* Pods-RestSharer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestSharer.debug.xcconfig"; path = "Target Support Files/Pods-RestSharer/Pods-RestSharer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -382,6 +384,7 @@
 				CCB315E02BEE178600039745 /* Modifiers.swift */,
 				3CB45CEE2C05846A00029934 /* TextMaster.swift */,
 				3CB45CF62C05875C00029934 /* SearchBarTextField.swift */,
+				CCCB09332C282CAA006BAE56 /* ToastMessageView.swift */,
 				3C770F672BDFDA31003FE3BB /* Resource */,
 				3C770FC42BE0144D003FE3BB /* Path.swift */,
 			);
@@ -676,6 +679,7 @@
 				3C017A6B2C281E98000CB620 /* MyFollowingView.swift in Sources */,
 				3C770F7D2BDFDD2D003FE3BB /* CGFloat+.swift in Sources */,
 				3CB45CF72C05875C00029934 /* SearchBarTextField.swift in Sources */,
+				CCCB09342C282CAA006BAE56 /* ToastMessageView.swift in Sources */,
 				3C5346432BFC73600097511B /* MapMainView.swift in Sources */,
 				CCB315CF2BEE01A500039745 /* Color+.swift in Sources */,
 				3C017A6F2C281E98000CB620 /* ShopInfoCardView.swift in Sources */,
