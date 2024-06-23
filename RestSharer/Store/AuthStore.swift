@@ -28,6 +28,8 @@ class AuthStore: ObservableObject {
     @Published var welcomeToast: Bool = false
     @Published var loginPlatform: LoginPlatform = .google
     
+    let userStore: UserStore = UserStore()
+    
     init() {
         currentUser = Auth.auth().currentUser
     }
@@ -62,7 +64,19 @@ class AuthStore: ObservableObject {
             let email = googleUser.profile?.email ?? ""
             let name = googleUser.profile?.name ?? ""
             
-            let userData = User()
+            let userData: [String: Any] = ["email" : email,
+                                           "name" : name,
+                                           "nickname" : "",
+                                           "phoneNumber" : "",
+                                           "profileImageURL" : "",
+                                           "follower" : [],
+                                           "following" : [],
+                                           "myFeed" : [],
+                                           "savedFeed" : [],
+                                           "bookmark" : [],
+                                           "chattingRoom" : [],
+                                           "myReservation" : []
+            ]
             
             if let error = error {
                 print(error.localizedDescription)
@@ -84,10 +98,12 @@ class AuthStore: ObservableObject {
                             if let error = error {
                                 print(error.localizedDescription)
                             } else {
-                                self.currentUser = result?.user
-                                self.welcomeToast = true
-                                self.createUser(user: userData)
-                                self.loginPlatform = .google
+                                if let user = User(document: userData) {
+                                    self.currentUser = result?.user
+                                    self.welcomeToast = true
+                                    self.userStore.createUser(user: user)
+                                    self.loginPlatform = .google
+                                }
                             }
                         }
                     }
@@ -120,13 +136,5 @@ class AuthStore: ObservableObject {
         } catch {
             print(error.localizedDescription)
         }
-    }
-    
-    func createUser(user: User) {
-        userCollection
-            .document(user.email)
-            .setData(["email" : user.email,
-                      "name" : user.name]
-            )
     }
 }

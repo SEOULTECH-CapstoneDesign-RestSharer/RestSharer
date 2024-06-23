@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseCore
 import GoogleSignIn
+import NMapsMap
 
 @main
 struct RestSharerApp: App {
@@ -50,6 +51,12 @@ struct RestSharerApp: App {
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        // Naver 지도 API 서비스 사용하기 위함
+        NMFAuthManager.shared().clientId = Bundle.main.infoDictionary?["NMFClientId"] as? String ?? "NMF Client ID is nil"
+        return true
+    }
+    
     /// 구글 로그인 인증 프로세스가 끝날 때 애플리케이션이 수신하는 URL
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         return GIDSignIn.sharedInstance.handle(url)

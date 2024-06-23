@@ -15,7 +15,6 @@ import FirebaseFirestoreSwift
 
 struct PostNaverMap: UIViewRepresentable {
     
-    @EnvironmentObject var userDataStore: UserStore
     @Binding var currentFeedId: String
     @Binding var showMarkerDetailView: Bool
     @Binding var showMyMarkerDetailView: Bool

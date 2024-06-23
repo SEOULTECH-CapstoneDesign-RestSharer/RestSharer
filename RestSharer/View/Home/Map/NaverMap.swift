@@ -168,11 +168,8 @@ final class Coordinator: NSObject, ObservableObject,NMFMapViewCameraDelegate, NM
         
         for feedMarker in feedList {
             let marker = NMFMarker()
-//            let lat = locationSearchStore.formatCoordinates(feedMarker.mapy, 2) ?? ""
-//            let lng = locationSearchStore.formatCoordinates(feedMarker.mapx, 3) ?? ""
-            
-            let lat = feedMarker.mapy
-            let lng = feedMarker.mapx
+            let lat = locationSearchStore.formatCoordinates(feedMarker.mapy, 2) ?? ""
+            let lng = locationSearchStore.formatCoordinates(feedMarker.mapx, 3) ?? ""
             
             coord = NMGLatLng(lat: Double(lat) ?? 0, lng: Double(lng) ?? 0)
             

@@ -368,6 +368,9 @@ struct PostView: View {
                 dismissButton: .default(Text("확인"))
             )
         }
+        .onAppear {
+            print("userStore.user.email :\(userStore.user.email)")
+        }
     } // body
     
     //MARK: 파베함수

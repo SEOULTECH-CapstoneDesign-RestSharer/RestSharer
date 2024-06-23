@@ -10,6 +10,7 @@ import SwiftUI
 struct LaunchView: View {
     
     @EnvironmentObject var authStore: AuthStore
+    @EnvironmentObject var userStore: UserStore
     
     @State private var isActive = false
     @State private var isloading = true
@@ -28,30 +29,23 @@ struct LaunchView: View {
                 }
                 .edgesIgnoringSafeArea(.all)
                 .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                        withAnimation {
-                            self.isActive = true
-                            self.isloading.toggle()
+                    if let email = authStore.currentUser?.email {
+                        userStore.fetchCurrentUser(userEmail: email)
+                        
+                        userStore.fetchMyInfo(userEmail: email, completion: { result in
+                            if result {
+                                self.isActive = true
+                                self.isloading.toggle()
+                            }
+                        })
+                    } else {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            withAnimation {
+                                self.isActive = true
+                                self.isloading.toggle()
+                            }
                         }
                     }
-                    
-//                    if let email = authStore.currentUser?.email {
-//                        userStore.fetchCurrentUser(userEmail: email)
-//                        
-//                        userStore.fetchMyInfo(userEmail: email, completion: { result in
-//                            if result {
-//                                self.isActive = true
-//                                self.isloading.toggle()
-//                            }
-//                        })
-//                    } else {
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-//                            withAnimation {
-//                                self.isActive = true
-//                                self.isloading.toggle()
-//                            }
-//                        }
-//                    }
                 }
             }
         }
