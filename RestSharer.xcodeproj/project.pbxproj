@@ -101,6 +101,20 @@
 		CCB315DD2BEE167E00039745 /* FeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB315DC2BEE167E00039745 /* FeedStore.swift */; };
 		CCB315DF2BEE16BA00039745 /* MyFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB315DE2BEE16BA00039745 /* MyFeed.swift */; };
 		CCB315E12BEE178600039745 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB315E02BEE178600039745 /* Modifiers.swift */; };
+		CCCB09122C2829A9006BAE56 /* ToastMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB09112C2829A8006BAE56 /* ToastMessageView.swift */; };
+		CCCB09262C2829B6006BAE56 /* MyFollowerFollowingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB09132C2829B6006BAE56 /* MyFollowerFollowingView.swift */; };
+		CCCB09272C2829B6006BAE56 /* MyFollowerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB09142C2829B6006BAE56 /* MyFollowerView.swift */; };
+		CCCB09282C2829B6006BAE56 /* MyFollowingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB09152C2829B6006BAE56 /* MyFollowingView.swift */; };
+		CCCB09292C2829B6006BAE56 /* MyHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB09172C2829B6006BAE56 /* MyHistoryView.swift */; };
+		CCCB092A2C2829B6006BAE56 /* MySavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB09192C2829B6006BAE56 /* MySavedView.swift */; };
+		CCCB092B2C2829B6006BAE56 /* MySavedPlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB091B2C2829B6006BAE56 /* MySavedPlaceView.swift */; };
+		CCCB092C2C2829B6006BAE56 /* ShopInfoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB091C2C2829B6006BAE56 /* ShopInfoCardView.swift */; };
+		CCCB092D2C2829B6006BAE56 /* UserImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB091E2C2829B6006BAE56 /* UserImagePickerView.swift */; };
+		CCCB092E2C2829B6006BAE56 /* UserInfoModifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB091F2C2829B6006BAE56 /* UserInfoModifyView.swift */; };
+		CCCB092F2C2829B6006BAE56 /* MyPageFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB09212C2829B6006BAE56 /* MyPageFeedView.swift */; };
+		CCCB09302C2829B6006BAE56 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB09222C2829B6006BAE56 /* MyPageView.swift */; };
+		CCCB09312C2829B6006BAE56 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB09232C2829B6006BAE56 /* SettingView.swift */; };
+		CCCB09322C2829B6006BAE56 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCB09242C2829B6006BAE56 /* UserInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -173,6 +187,20 @@
 		CCB315DC2BEE167E00039745 /* FeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStore.swift; sourceTree = "<group>"; };
 		CCB315DE2BEE16BA00039745 /* MyFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeed.swift; sourceTree = "<group>"; };
 		CCB315E02BEE178600039745 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		CCCB09112C2829A8006BAE56 /* ToastMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastMessageView.swift; sourceTree = "<group>"; };
+		CCCB09132C2829B6006BAE56 /* MyFollowerFollowingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFollowerFollowingView.swift; sourceTree = "<group>"; };
+		CCCB09142C2829B6006BAE56 /* MyFollowerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFollowerView.swift; sourceTree = "<group>"; };
+		CCCB09152C2829B6006BAE56 /* MyFollowingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFollowingView.swift; sourceTree = "<group>"; };
+		CCCB09172C2829B6006BAE56 /* MyHistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyHistoryView.swift; sourceTree = "<group>"; };
+		CCCB09192C2829B6006BAE56 /* MySavedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySavedView.swift; sourceTree = "<group>"; };
+		CCCB091B2C2829B6006BAE56 /* MySavedPlaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySavedPlaceView.swift; sourceTree = "<group>"; };
+		CCCB091C2C2829B6006BAE56 /* ShopInfoCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopInfoCardView.swift; sourceTree = "<group>"; };
+		CCCB091E2C2829B6006BAE56 /* UserImagePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserImagePickerView.swift; sourceTree = "<group>"; };
+		CCCB091F2C2829B6006BAE56 /* UserInfoModifyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoModifyView.swift; sourceTree = "<group>"; };
+		CCCB09212C2829B6006BAE56 /* MyPageFeedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageFeedView.swift; sourceTree = "<group>"; };
+		CCCB09222C2829B6006BAE56 /* MyPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		CCCB09232C2829B6006BAE56 /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		CCCB09242C2829B6006BAE56 /* UserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		D8FF70A6CA610972FB49E5B9 /* Pods-RestSharer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestSharer.debug.xcconfig"; path = "Target Support Files/Pods-RestSharer/Pods-RestSharer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -296,6 +324,7 @@
 				CCB315E02BEE178600039745 /* Modifiers.swift */,
 				3CB45CEE2C05846A00029934 /* TextMaster.swift */,
 				3CB45CF62C05875C00029934 /* SearchBarTextField.swift */,
+				CCCB09112C2829A8006BAE56 /* ToastMessageView.swift */,
 				3C770F672BDFDA31003FE3BB /* Resource */,
 				3C770FC42BE0144D003FE3BB /* Path.swift */,
 			);
@@ -333,6 +362,7 @@
 				CCB315D32BEE135900039745 /* Home */,
 				3C017A342C280A39000CB620 /* Search */,
 				3CB45CD52C057E2800029934 /* Post */,
+				CCCB09252C2829B6006BAE56 /* MyPage */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -426,6 +456,66 @@
 				CCB315D82BEE13DD00039745 /* FeedMainView.swift */,
 			);
 			path = Feed;
+			sourceTree = "<group>";
+		};
+		CCCB09162C2829B6006BAE56 /* Follow */ = {
+			isa = PBXGroup;
+			children = (
+				CCCB09132C2829B6006BAE56 /* MyFollowerFollowingView.swift */,
+				CCCB09142C2829B6006BAE56 /* MyFollowerView.swift */,
+				CCCB09152C2829B6006BAE56 /* MyFollowingView.swift */,
+			);
+			path = Follow;
+			sourceTree = "<group>";
+		};
+		CCCB09182C2829B6006BAE56 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				CCCB09172C2829B6006BAE56 /* MyHistoryView.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		CCCB091A2C2829B6006BAE56 /* SavedFeed */ = {
+			isa = PBXGroup;
+			children = (
+				CCCB09192C2829B6006BAE56 /* MySavedView.swift */,
+			);
+			path = SavedFeed;
+			sourceTree = "<group>";
+		};
+		CCCB091D2C2829B6006BAE56 /* SavedPlace */ = {
+			isa = PBXGroup;
+			children = (
+				CCCB091B2C2829B6006BAE56 /* MySavedPlaceView.swift */,
+				CCCB091C2C2829B6006BAE56 /* ShopInfoCardView.swift */,
+			);
+			path = SavedPlace;
+			sourceTree = "<group>";
+		};
+		CCCB09202C2829B6006BAE56 /* UserModify */ = {
+			isa = PBXGroup;
+			children = (
+				CCCB091E2C2829B6006BAE56 /* UserImagePickerView.swift */,
+				CCCB091F2C2829B6006BAE56 /* UserInfoModifyView.swift */,
+			);
+			path = UserModify;
+			sourceTree = "<group>";
+		};
+		CCCB09252C2829B6006BAE56 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				CCCB09162C2829B6006BAE56 /* Follow */,
+				CCCB09182C2829B6006BAE56 /* History */,
+				CCCB091A2C2829B6006BAE56 /* SavedFeed */,
+				CCCB091D2C2829B6006BAE56 /* SavedPlace */,
+				CCCB09202C2829B6006BAE56 /* UserModify */,
+				CCCB09212C2829B6006BAE56 /* MyPageFeedView.swift */,
+				CCCB09222C2829B6006BAE56 /* MyPageView.swift */,
+				CCCB09232C2829B6006BAE56 /* SettingView.swift */,
+				CCCB09242C2829B6006BAE56 /* UserInfoView.swift */,
+			);
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -594,6 +684,8 @@
 				3C770FC52BE0144D003FE3BB /* Path.swift in Sources */,
 				3C5346422BFC73600097511B /* NaverMap.swift in Sources */,
 				3CB45CE22C057E4B00029934 /* PictureView.swift in Sources */,
+				CCCB09302C2829B6006BAE56 /* MyPageView.swift in Sources */,
+				CCCB092D2C2829B6006BAE56 /* UserImagePickerView.swift in Sources */,
 				CCB315D92BEE13DD00039745 /* FeedMainView.swift in Sources */,
 				3CB45CDE2C057E4B00029934 /* LocationView.swift in Sources */,
 				3C770F912BE010D8003FE3BB /* AuthStore.swift in Sources */,
@@ -605,11 +697,15 @@
 				3C53463E2BFC73600097511B /* MapFeedSheetView.swift in Sources */,
 				3C017A3C2C280AC8000CB620 /* UserListView.swift in Sources */,
 				CCB315CD2BEE016300039745 /* MainTabView.swift in Sources */,
+				CCCB092A2C2829B6006BAE56 /* MySavedView.swift in Sources */,
 				3CB45CEF2C05846A00029934 /* TextMaster.swift in Sources */,
 				CCB315DF2BEE16BA00039745 /* MyFeed.swift in Sources */,
 				3C5346532BFC84D10097511B /* Search.swift in Sources */,
 				3C770F5B2BDFD83B003FE3BB /* ContentView.swift in Sources */,
+				CCCB09312C2829B6006BAE56 /* SettingView.swift in Sources */,
 				3C017A4A2C280D52000CB620 /* FollowButton.swift in Sources */,
+				CCCB09322C2829B6006BAE56 /* UserInfoView.swift in Sources */,
+				CCCB092E2C2829B6006BAE56 /* UserInfoModifyView.swift in Sources */,
 				3C770F592BDFD83B003FE3BB /* RestSharerApp.swift in Sources */,
 				3C53463D2BFC73600097511B /* MapFeedCellView.swift in Sources */,
 				3CB45CF52C0585AC00029934 /* ChatRoom.swift in Sources */,
@@ -620,14 +716,19 @@
 				3C017A4F2C280DC4000CB620 /* OtherSavedPlaceView.swift in Sources */,
 				3C770FCA2BE07B07003FE3BB /* LaunchView.swift in Sources */,
 				CCB315DD2BEE167E00039745 /* FeedStore.swift in Sources */,
+				CCCB09292C2829B6006BAE56 /* MyHistoryView.swift in Sources */,
 				3C53464A2BFC760C0097511B /* FeedCellView.swift in Sources */,
 				3CB45CF12C05856F00029934 /* User.swift in Sources */,
 				3C017A4E2C280DC4000CB620 /* OtherSavedView.swift in Sources */,
 				3CB45CED2C05842500029934 /* View+.swift in Sources */,
+				CCCB092F2C2829B6006BAE56 /* MyPageFeedView.swift in Sources */,
 				3C5346402BFC73600097511B /* MapSearchView.swift in Sources */,
+				CCCB09262C2829B6006BAE56 /* MyFollowerFollowingView.swift in Sources */,
 				CCB315D72BEE13C500039745 /* MainHomeView.swift in Sources */,
+				CCCB092C2C2829B6006BAE56 /* ShopInfoCardView.swift in Sources */,
 				3C017A3E2C280AD4000CB620 /* SearchUserCellView.swift in Sources */,
 				3C017A462C280CEF000CB620 /* OtherProfileView.swift in Sources */,
+				CCCB09272C2829B6006BAE56 /* MyFollowerView.swift in Sources */,
 				3C017A482C280D27000CB620 /* OtherInfoView.swift in Sources */,
 				3C770FCC2BE07BAF003FE3BB /* LoginView.swift in Sources */,
 				3CB45CE52C0580F000029934 /* PostStore.swift in Sources */,
@@ -636,11 +737,14 @@
 				3C770F8E2BE01077003FE3BB /* Bundle+.swift in Sources */,
 				3C53463F2BFC73600097511B /* LocationDetailMap.swift in Sources */,
 				3C017A382C280A8F000CB620 /* SearchBarView.swift in Sources */,
+				CCCB09122C2829A9006BAE56 /* ToastMessageView.swift in Sources */,
 				3CB45CDD2C057E4B00029934 /* LocationSearchView.swift in Sources */,
 				CCB315E12BEE178600039745 /* Modifiers.swift in Sources */,
 				CCB315D12BEE01E600039745 /* UserStore.swift in Sources */,
 				3C017A442C280CD1000CB620 /* LazyView.swift in Sources */,
+				CCCB09282C2829B6006BAE56 /* MyFollowingView.swift in Sources */,
 				3C017A402C280AFE000CB620 /* SearchStore.swift in Sources */,
+				CCCB092B2C2829B6006BAE56 /* MySavedPlaceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct ToastMessageView: View {
+    var message: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("\(message)")
+            .font(.pretendardMedium16)
+            .foregroundColor(.white)
+            .frame(width: .screenWidth * 0.8, height: 50)
+            .background(Color.darkGrayColor)
+            .cornerRadius(30)
     }
-}
-
-#Preview {
-    ToastMessageView()
 }
