@@ -73,9 +73,9 @@ struct MainTabView: View {
                     }
                     .padding(.bottom, 5)
                     .tag(1)
-                    //                    SearchView(root: $rootSection2, selection: $selection).tabItem {
-                    //                        Label("검색", systemImage: "magnifyingglass")
-                    //                    }
+                    SearchView(root: $rootSection2, selection: $selection).tabItem {
+                        Label("검색", systemImage: "magnifyingglass")
+                    }
                     .padding(.bottom, 5)
                     .tag(2)
                     UploadView(root: $rootSection3, selection: $selection, isImagePickerPresented: .constant(true), showLocation: $showLocation, searchResult: $searchResult).tabItem {
