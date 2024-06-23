@@ -95,45 +95,47 @@ final class UserStore: ObservableObject {
                 print("user: \(user)")
             }
         }
-//        userCollection.document(userEmail).collection("MyFeed").addSnapshotListener { querySnapshot, error in
-//            if let error = error {
-//                print("Error fetching user: \(error.localizedDescription)")
-//            }
-//            self.myFeedList = querySnapshot?.documents.compactMap { (queryDocumentSnapshot) -> MyFeed? in
-//                let documetID = queryDocumentSnapshot.documentID
-//                let data = queryDocumentSnapshot.data()
-//                var feed = MyFeed(documentData: data)
-//                feed?.createdAt = data["createdAt"] as? Double ?? 0.0
-//                feed?.id = documetID
-//                return feed
-//            } .sorted(by: { Date(timeIntervalSince1970: $0.createdAt) > Date(timeIntervalSince1970: $1.createdAt) }) ?? []
-//        }
-//        userCollection.document(userEmail).collection("SavedFeed").addSnapshotListener { querySnapshot, error in
-//            if let error = error {
-//                print("Error fetching user: \(error.localizedDescription)")
-//            }
-//            self.mySavedFeedList = querySnapshot?.documents.compactMap { (queryDocumentSnapshot) -> MyFeed? in
-//                let documetID = queryDocumentSnapshot.documentID
-//                let data = queryDocumentSnapshot.data()
-//                var feed = MyFeed(documentData: data)
-//                feed?.id = documetID
-//                feed?.createdAt = data["createdAt"] as? Double ?? 0.0
-//                return feed
-//            }.sorted(by: { Date(timeIntervalSince1970: $0.createdAt) > Date(timeIntervalSince1970: $1.createdAt) }) ?? []
-//        }
-//        userCollection.document(userEmail).collection("SavedPlace").addSnapshotListener { querySnapshot, error in
-//            if let error = error {
-//                print("Error fetching user: \(error.localizedDescription)")
-//            }
-//            self.mySavedPlaceList = querySnapshot?.documents.compactMap { (queryDocumentSnapshot) -> MyFeed? in
-//                let documetID = queryDocumentSnapshot.documentID
-//                let data = queryDocumentSnapshot.data()
-//                var feed = MyFeed(documentData: data)
-//                feed?.id = documetID
-//                feed?.createdAt = data["createdAt"] as? Double ?? 0.0
-//                return feed
-//            } .sorted(by: { Date(timeIntervalSince1970: $0.createdAt) > Date(timeIntervalSince1970: $1.createdAt) }) ?? []
-//        }
+        
+        //----
+        userCollection.document(userEmail).collection("MyFeed").addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                print("Error fetching user: \(error.localizedDescription)")
+            }
+            self.myFeedList = querySnapshot?.documents.compactMap { (queryDocumentSnapshot) -> MyFeed? in
+                let documetID = queryDocumentSnapshot.documentID
+                let data = queryDocumentSnapshot.data()
+                var feed = MyFeed(documentData: data)
+                feed?.createdAt = data["createdAt"] as? Double ?? 0.0
+                feed?.id = documetID
+                return feed
+            } .sorted(by: { Date(timeIntervalSince1970: $0.createdAt) > Date(timeIntervalSince1970: $1.createdAt) }) ?? []
+        }
+        userCollection.document(userEmail).collection("SavedFeed").addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                print("Error fetching user: \(error.localizedDescription)")
+            }
+            self.mySavedFeedList = querySnapshot?.documents.compactMap { (queryDocumentSnapshot) -> MyFeed? in
+                let documetID = queryDocumentSnapshot.documentID
+                let data = queryDocumentSnapshot.data()
+                var feed = MyFeed(documentData: data)
+                feed?.id = documetID
+                feed?.createdAt = data["createdAt"] as? Double ?? 0.0
+                return feed
+            }.sorted(by: { Date(timeIntervalSince1970: $0.createdAt) > Date(timeIntervalSince1970: $1.createdAt) }) ?? []
+        }
+        userCollection.document(userEmail).collection("SavedPlace").addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                print("Error fetching user: \(error.localizedDescription)")
+            }
+            self.mySavedPlaceList = querySnapshot?.documents.compactMap { (queryDocumentSnapshot) -> MyFeed? in
+                let documetID = queryDocumentSnapshot.documentID
+                let data = queryDocumentSnapshot.data()
+                var feed = MyFeed(documentData: data)
+                feed?.id = documetID
+                feed?.createdAt = data["createdAt"] as? Double ?? 0.0
+                return feed
+            } .sorted(by: { Date(timeIntervalSince1970: $0.createdAt) > Date(timeIntervalSince1970: $1.createdAt) }) ?? []
+        }
     }
     
     func fetchotherUser(userEmail:String, completion: @escaping (Bool) -> Void) {
