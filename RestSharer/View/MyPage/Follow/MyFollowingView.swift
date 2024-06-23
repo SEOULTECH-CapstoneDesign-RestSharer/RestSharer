@@ -22,7 +22,7 @@ struct MyFollowingView: View {
             ForEach(followingUserList, id:\.self) { following in
                 HStack {
                     NavigationLink() {
-//                        OtherProfileView(user:following)
+                        OtherProfileView(user:following)
                     } label: {
                         if following.profileImageURL.isEmpty {
                             ZStack {
@@ -48,7 +48,7 @@ struct MyFollowingView: View {
                     }
                     Spacer()
                     Button {
-                        followStore.unfollow(userId: following.name, myName: user.nickname, userEmail: user.email)
+                        followStore.unfollow(userId: following.name, myNickName: user.nickname, userEmail: user.email)
                         followingUserList.removeAll { $0 == following }
                     } label: {
                         Text("언팔로우")

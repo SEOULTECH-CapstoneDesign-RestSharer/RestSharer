@@ -88,9 +88,9 @@ struct MainTabView: View {
                     //                    }
                     .padding(.bottom, 5)
                     .tag(4)
-                    //                    MyPageView(root: $rootSection5, selection: $selection).tabItem {
-                    //                        Label("마이페이지", systemImage: "person.fill")
-                    //                    }
+                    MyPageView(root: $rootSection5, selection: $selection).tabItem {
+                        Label("마이페이지", systemImage: "person.fill")
+                    }
                     .padding(.bottom, 5)
                     .tag(5)
                 }
