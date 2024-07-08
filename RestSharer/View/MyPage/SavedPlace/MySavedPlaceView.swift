@@ -16,7 +16,7 @@ struct MySavedPlaceView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             if userStore.mySavedPlaceList.isEmpty {
-                Text("저장한 북마크가 없습니다.")
+                Text("저장한 장소가 없습니다.")
                     .font(.pretendardMedium20)
                     .foregroundStyle(.primary)
                     .padding(.top, .screenHeight * 0.2 + 37.2)

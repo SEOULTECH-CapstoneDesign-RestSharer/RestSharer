@@ -32,7 +32,7 @@ struct PostView: View {
     @Binding var searchResult: SearchResult
     
     @State private var text: String = "" /// 텍스트마스터 내용
-    @State private var textPlaceHolder: String = "나만의 Private한 장소에 대해 적어주세요!" /// 텍스트마스터 placeholder
+    @State private var textPlaceHolder: String = "게시글을 적어주세요!" /// 텍스트마스터 placeholder
     @State private var lat: String = ""
     @State private var lng: String = ""
     @State private var newMarkerlat: String = ""
@@ -94,10 +94,10 @@ struct PostView: View {
                         }
                         
                         VStack(alignment: .leading, spacing: 5) {
-                            Text("변상우")
-                            Text("@turtle_e.woo")
-//                            Text(userStore.user.name)
-//                            Text("@\(userStore.user.nickname)")
+//                            Text("변상우")
+//                            Text("@turtle_e.woo")
+                            Text(userStore.user.name)
+                            Text("@\(userStore.user.nickname)")
                         }
                     }
                     .padding(.vertical, 10)

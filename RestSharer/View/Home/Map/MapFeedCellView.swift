@@ -1,6 +1,6 @@
 //
 //  MapFeedCellView.swift
-//  Private
+//  RestSharer
 //
 //  Created by 변상우 on 5/10/24.
 //
@@ -25,7 +25,7 @@ struct MapFeedCellView: View {
     @State private var isShowingMessageTextField: Bool = false
     @State private var messageToSend: String = ""
     @State private var message: String = ""
-//    @State private var searchResult: SearchResult = SearchResult(title: "", category: "", address: "", roadAddress: "", mapx: "", mapy: "")
+    @State private var searchResult: SearchResult = SearchResult(title: "", category: "", address: "", roadAddress: "", mapx: "", mapy: "")
     
     var feed: MyFeed
     
@@ -77,53 +77,53 @@ struct MapFeedCellView: View {
                         .foregroundColor(.primary)
                     
                     Spacer()
-//                    if feed.writerNickname != userStore.user.nickname {
-//                        HStack {
-//                            Spacer()
-//                            Button {
-//                                if(userStore.user.myFeed.contains("\(feed.id)")) {
-//                                    userStore.deleteSavedFeed(feed)
-//                                    userStore.user.myFeed.removeAll { $0 == "\(feed.id)" }
-//                                    userStore.updateUser(user: userStore.user)
-//                                    userStore.clickSavedCancelFeedToast = true
-//                                } else {
-//                                    userStore.saveFeed(feed) //장소 저장 로직(사용가능)
-//                                    userStore.user.myFeed.append("\(feed.id)")
-//                                    userStore.updateUser(user: userStore.user)
-//                                    userStore.clickSavedFeedToast = true
-//                                }
-//                            } label: {
-//                                if colorScheme == ColorScheme.dark {
-//                                    Image(userStore.user.myFeed.contains("\(feed.id)") ? "bookmark_fill" : "bookmark_dark")
-//                                        .resizable()
-//                                        .scaledToFit()
-//                                        .frame(width: 20)
-//                                        .padding(.trailing, 5)
-//                                } else {
-//                                    Image(userStore.user.myFeed.contains( "\(feed.id)" ) ? "bookmark_fill" : "bookmark_light")
-//                                        .resizable()
-//                                        .scaledToFit()
-//                                        .frame(width: 20)
-//                                        .padding(.trailing, 5)
-//                                }
-//                            }
-//                            
-//                            Button {
-//                                withAnimation {
-//                                    isShowingMessageTextField.toggle()
-//                                }
-//                            } label: {
-//                                Image(systemName: isShowingMessageTextField ? "paperplane.fill" : "paperplane")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(width: 20)
-//                                    .foregroundColor(isShowingMessageTextField ? .privateColor : .white)
-//                            }
-//                        }
-//                        .font(.pretendardMedium24)
-//                        .foregroundColor(.primary)
-//                        .padding(.trailing, 10)
-//                    }
+                    if feed.writerNickname != userStore.user.nickname {
+                        HStack {
+                            Spacer()
+                            Button {
+                                if(userStore.user.myFeed.contains("\(feed.id)")) {
+                                    userStore.deleteSavedFeed(feed)
+                                    userStore.user.myFeed.removeAll { $0 == "\(feed.id)" }
+                                    userStore.updateUser(user: userStore.user)
+                                    userStore.clickSavedCancelFeedToast = true
+                                } else {
+                                    userStore.saveFeed(feed) //장소 저장 로직(사용가능)
+                                    userStore.user.myFeed.append("\(feed.id)")
+                                    userStore.updateUser(user: userStore.user)
+                                    userStore.clickSavedFeedToast = true
+                                }
+                            } label: {
+                                if colorScheme == ColorScheme.dark {
+                                    Image(userStore.user.myFeed.contains("\(feed.id)") ? "bookmark_fill" : "bookmark_dark")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 20)
+                                        .padding(.trailing, 5)
+                                } else {
+                                    Image(userStore.user.myFeed.contains( "\(feed.id)" ) ? "bookmark_fill" : "bookmark_light")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 20)
+                                        .padding(.trailing, 5)
+                                }
+                            }
+                            
+                            Button {
+                                withAnimation {
+                                    isShowingMessageTextField.toggle()
+                                }
+                            } label: {
+                                Image(systemName: isShowingMessageTextField ? "paperplane.fill" : "paperplane")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 20)
+                                    .foregroundColor(isShowingMessageTextField ? .privateColor : .white)
+                            }
+                        }
+                        .font(.pretendardMedium24)
+                        .foregroundColor(.primary)
+                        .padding(.trailing, 10)
+                    }
                 }
                 Spacer()
             }
