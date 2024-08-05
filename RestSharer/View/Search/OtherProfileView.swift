@@ -58,63 +58,71 @@ struct OtherProfileView: View {
             }
             HStack {
                 Button {
+
                     viewNumber = 0
                 }label: {
                     HStack {
+                        Spacer()
                         viewNumber == 0 ? Image( systemName: "location.fill") : Image (systemName: "location")
                         Text("피드")
+                        Spacer()
                     }
                     .font(.pretendardRegular12)
                     .foregroundColor(viewNumber == 0 ? .privateColor : .primary)
-                    .frame(width: .screenWidth*0.3)
+//                    .frame(width: .screenWidth*0.3)
                     .padding(.bottom, 15)
+                    .padding([.trailing,.leading], 0)
                     .modifier(YellowBottomBorder(showBorder: viewNumber == 0))
                 }
-                Spacer()
-                Button {
-                    viewNumber = 1
-                }label: {
-                    HStack {
-                        if viewNumber == 1 {
-                            Image("bookmark_fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 15)
-                        } else {
-                            if colorScheme == ColorScheme.dark {
-                                Image ("bookmark_dark")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 15)
-                            } else {
-                                Image ("bookmark_light")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 15)
-                            }
-                        }
-                        Text("저장한 피드")
-                    }
-                    .font(.pretendardRegular12)
-                    .foregroundColor(viewNumber == 1 ? .privateColor : .primary)
-                    .frame(width: .screenWidth*0.3)
-                    .padding(.bottom, 15)
-                    .modifier(YellowBottomBorder(showBorder: viewNumber == 1))
-                }
-                Spacer()
+//                Spacer()
+//                Button {
+//                    viewNumber = 1
+//                }label: {
+//                    HStack {
+//                        if viewNumber == 1 {
+//                            Image("bookmark_fill")
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(width: 15)
+//                        } else {
+//                            if colorScheme == ColorScheme.dark {
+//                                Image ("bookmark_dark")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .frame(width: 15)
+//                            } else {
+//                                Image ("bookmark_light")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .frame(width: 15)
+//                            }
+//                        }
+//                        Text("저장한 피드")
+//                    }
+//                    .font(.pretendardRegular12)
+//                    .foregroundColor(viewNumber == 1 ? .privateColor : .primary)
+//                    .frame(width: .screenWidth*0.3)
+//                    .padding(.bottom, 15)
+//                    .modifier(YellowBottomBorder(showBorder: viewNumber == 1))
+//                }
+//                Spacer()
                 Button {
                     viewNumber = 2
                 }label: {
                     HStack {
+                        Spacer()
                         viewNumber == 2 ? Image(systemName: "pin.fill") : Image (systemName: "pin")
                         Text("저장한 장소")
+                        Spacer()
                     }
                     .font(.pretendardRegular12)
                     .foregroundColor(viewNumber == 2 ? .privateColor : .primary)
-                    .frame(width: .screenWidth*0.3)
+//                    .frame(width: .screenWidth*0.3)
                     .padding(.bottom, 15)
+                    .padding([.trailing,.leading], 0)
                     .modifier(YellowBottomBorder(showBorder: viewNumber == 2))
                 }
+                Spacer()
             }
             .padding(.top, 20)
             Divider()
