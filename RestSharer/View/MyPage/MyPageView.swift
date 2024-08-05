@@ -104,39 +104,39 @@ struct MyPageView: View {
                     .modifier(YellowBottomBorder(showBorder: viewNumber == 0))
                 }
                 
-                Button {
-                    viewNumber = 1
-                }label: {
-                    HStack {
-                        Spacer()
-                        if viewNumber == 1 {
-                            Image("bookmark_fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 15)
-                        } else {
-                            if colorScheme == ColorScheme.dark {
-                                Image ("bookmark_dark")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 15)
-                            } else {
-                                Image ("bookmark_light")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 15)
-                            }
-                        }
-                        Text("저장한 피드")
-                        Spacer()
-                    }
-                    .font(.pretendardRegular12)
-                    .foregroundColor(viewNumber == 1 ? .privateColor : .primary)
-                    .padding([.trailing,.leading], 0)
-                    .padding(.bottom, 15)
-                    .modifier(YellowBottomBorder(showBorder: viewNumber == 1))
-                }
-                
+//                Button {
+//                    viewNumber = 1
+//                }label: {
+//                    HStack {
+//                        Spacer()
+//                        if viewNumber == 1 {
+//                            Image("bookmark_fill")
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(width: 15)
+//                        } else {
+//                            if colorScheme == ColorScheme.dark {
+//                                Image ("bookmark_dark")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .frame(width: 15)
+//                            } else {
+//                                Image ("bookmark_light")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .frame(width: 15)
+//                            }
+//                        }
+//                        Text("저장한 피드")
+//                        Spacer()
+//                    }
+//                    .font(.pretendardRegular12)
+//                    .foregroundColor(viewNumber == 1 ? .privateColor : .primary)
+//                    .padding([.trailing,.leading], 0)
+//                    .padding(.bottom, 15)
+//                    .modifier(YellowBottomBorder(showBorder: viewNumber == 1))
+//                }
+//                
                 Button {
                     viewNumber = 2
                 }label: {

@@ -8,6 +8,7 @@
 import SwiftUI
 import Kingfisher
 import FirebaseStorage
+import FirebaseFirestore
 import PopupView
 
 struct UserInfoModifyView: View {
@@ -25,6 +26,8 @@ struct UserInfoModifyView: View {
     @Binding var isModify: Bool
     
     var storage = Storage.storage()
+    var firestore = Firestore.firestore()
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -173,7 +176,8 @@ struct UserInfoModifyView: View {
                 } else {
                     Button {
                         if mypageNickname != "" {
-                            userStore.user.nickname = mypageNickname
+                            //userStore.user.nickname = mypageNickname
+                            updateNicknameInFirestore()
                         }
                         if selectedImage != nil {
                             uploadimage(img: selectedImage!)
@@ -202,6 +206,49 @@ struct UserInfoModifyView: View {
                 .animation(.spring())
                 .closeOnTapOutside(true)
                 .backgroundColor(.clear)
+        }
+    }
+    func updateNicknameInFirestore(){
+        guard let userEmail = authStore.currentUser?.email else {return}
+        let newNickname = mypageNickname
+        let batch = firestore.batch()
+        
+        let userRef = firestore.collection("User").document(userEmail)
+        userRef.getDocument{(document, error) in
+            if let error = error{
+                print("Error fetching user document: \(error)")
+                return
+            }
+            guard let document = document, document.exists else{
+                print("No user document found for email: \(userEmail)")
+                return
+            }
+            batch.updateData(["writerNickname": newNickname], forDocument:userRef)
+            
+            let myFeedCollection = userRef.collection("MyFeed")
+            myFeedCollection.getDocuments{(snapshot, error) in
+                if let error = error{
+                    print("Error fetching MyFeed documents: \(error)")
+                    return
+                }
+                guard let snapshot = snapshot else{
+                    print("No MyFeed doc found for user email: \(userEmail)")
+                    return
+                }
+                for document in snapshot.documents{
+                    batch.updateData(["writerNickname": newNickname], forDocument: document.reference)
+                }
+                batch.commit{ error in
+                    if let error = error{
+                        print("닉네임 업데이트 에러: \(error)")
+                    }
+                    else{
+                        print("성곡적으로 닉네임이 업데이트 되었습니다.")
+                        userStore.user.nickname = newNickname
+                        userStore.updateUser(user: userStore.user)
+                    }
+                }
+            }
         }
     }
     func uploadimage(img: UIImage) {
