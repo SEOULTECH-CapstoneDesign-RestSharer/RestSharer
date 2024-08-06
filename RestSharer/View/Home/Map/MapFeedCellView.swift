@@ -23,6 +23,7 @@ struct MapFeedCellView: View {
     @State private var isActionSheetPresented = false
     @State private var isFeedUpdateViewPresented: Bool = false
     @State private var isShowingMessageTextField: Bool = false
+    @State private var isChangePlaceColor: Bool = false
     @State private var messageToSend: String = ""
     @State private var message: String = ""
     @State private var searchResult: SearchResult = SearchResult(title: "", category: "", address: "", roadAddress: "", mapx: "", mapy: "")
@@ -80,6 +81,29 @@ struct MapFeedCellView: View {
                     if feed.writerNickname != userStore.user.nickname {
                         HStack {
                             Spacer()
+                            Button {
+                                if (userStore.user.bookmark.contains("\(feed.id)")) {
+                                    userStore.deletePlace(feed)
+                                    userStore.user.bookmark.removeAll { $0 == "\(feed.id)" }
+                                    userStore.updateUser(user: userStore.user)
+                                    userStore.clickSavedCancelPlaceToast = true
+                                    isChangePlaceColor.toggle()
+                                } else {
+                                    userStore.savePlace(feed) //장소 저장 로직(사용가능)
+                                    userStore.user.bookmark.append("\(feed.id)")
+                                    userStore.updateUser(user: userStore.user)
+                                    userStore.clickSavedPlaceToast = true
+                                    isChangePlaceColor.toggle()
+                                }
+                            } label: {
+                                Image(systemName: userStore.user.bookmark.contains("\(feed.id)") ? "pin.fill": "pin")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 15)
+                                    .padding(.horizontal, 10)
+                                    .foregroundColor(isChangePlaceColor ? .privateColor : .white)
+                                    .foregroundColor(userStore.user.bookmark.contains("\(feed.id)") ? .privateColor : .primary)
+                            }
                             Button {
                                 if(userStore.user.myFeed.contains("\(feed.id)")) {
                                     userStore.deleteSavedFeed(feed)
