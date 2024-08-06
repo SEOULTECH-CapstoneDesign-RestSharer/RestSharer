@@ -210,10 +210,11 @@ struct UserInfoModifyView: View {
     }
     func updateNicknameInFirestore(){
         guard let userEmail = authStore.currentUser?.email else {return}
+        
         let newNickname = mypageNickname
-        let batch = firestore.batch()
         
         let userRef = firestore.collection("User").document(userEmail)
+        
         userRef.getDocument{(document, error) in
             if let error = error{
                 print("Error fetching user document: \(error)")
@@ -223,7 +224,13 @@ struct UserInfoModifyView: View {
                 print("No user document found for email: \(userEmail)")
                 return
             }
-            batch.updateData(["writerNickname": newNickname], forDocument:userRef)
+            guard let userName = document.data()?["name"] as? String else{
+                print("User name not found in user document")
+                return
+            }
+            
+            let userBatch = firestore.batch()
+            userBatch.updateData(["writerNickname": newNickname], forDocument: userRef)
             
             let myFeedCollection = userRef.collection("MyFeed")
             myFeedCollection.getDocuments{(snapshot, error) in
@@ -236,9 +243,9 @@ struct UserInfoModifyView: View {
                     return
                 }
                 for document in snapshot.documents{
-                    batch.updateData(["writerNickname": newNickname], forDocument: document.reference)
+                    userBatch.updateData(["writerNickname": newNickname], forDocument: document.reference)
                 }
-                batch.commit{ error in
+                userBatch.commit{ error in
                     if let error = error{
                         print("닉네임 업데이트 에러: \(error)")
                     }
@@ -246,6 +253,33 @@ struct UserInfoModifyView: View {
                         print("성곡적으로 닉네임이 업데이트 되었습니다.")
                         userStore.user.nickname = newNickname
                         userStore.updateUser(user: userStore.user)
+                        
+                        let feedQuery = firestore.collection("Feed").whereField("writerName", isEqualTo: userName)
+                        feedQuery.getDocuments{(snapshot, error) in
+                            if let error = error{
+                                print("Error fetching Feed doc: \(error)")
+                                return
+                            }
+                            guard let snapshot = snapshot else{
+                                print("No feed doc found for user name: \(userName)")
+                                return
+                            }
+                            let feedBatch = firestore.batch()
+                            
+                            for document in snapshot.documents{
+                                feedBatch.updateData(["writerNickname": newNickname], forDocument: document.reference)
+                            }
+                            feedBatch.commit{ error in
+                                if let error = error{
+                                    print("닉네임 업데이트 에러: \(error)")
+                                }
+                                else{
+                                    print("성곡적으로 닉네임이 업데이트 되었습니다.")
+                                    userStore.user.nickname = newNickname
+                                    userStore.updateUser(user: userStore.user)
+                                }
+                            }
+                        }
                     }
                 }
             }
