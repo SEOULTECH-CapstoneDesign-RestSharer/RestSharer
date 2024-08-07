@@ -302,8 +302,84 @@ struct UserInfoModifyView: View {
                     print("이미지 URL 가져오기 실패: \(error.localizedDescription)")
                 }
                 if let imageUrl = url {
-                    userStore.user.profileImageURL = imageUrl.absoluteString
+                    let newProfileImageURL = imageUrl.absoluteString
+                    userStore.user.profileImageURL = newProfileImageURL
                     userStore.updateUser(user: userStore.user)
+                    
+                    updateImageInFirestore(newProfileImageURL: newProfileImageURL)
+                }
+            }
+        }
+    }
+    func updateImageInFirestore(newProfileImageURL: String) {
+        guard let userEmail = authStore.currentUser?.email else { return }
+        
+        let userRef = firestore.collection("User").document(userEmail)
+        
+        userRef.getDocument { (document, error) in
+            if let error = error {
+                print("Error fetching user document: \(error)")
+                return
+            }
+            guard let document = document, document.exists else {
+                print("No user document found for email: \(userEmail)")
+                return
+            }
+            guard let userName = document.data()?["name"] as? String else {
+                print("User name not found in user document")
+                return
+            }
+            
+            let userBatch = firestore.batch()
+            userBatch.updateData(["profileImageURL": newProfileImageURL], forDocument: userRef)
+            
+            let myFeedCollection = userRef.collection("MyFeed")
+            myFeedCollection.getDocuments { (snapshot, error) in
+                if let error = error {
+                    print("Error fetching MyFeed documents: \(error)")
+                    return
+                }
+                guard let snapshot = snapshot else {
+                    print("No MyFeed doc found for user email: \(userEmail)")
+                    return
+                }
+                for document in snapshot.documents {
+                    userBatch.updateData(["writerProfileImage": newProfileImageURL], forDocument: document.reference)
+                }
+                userBatch.commit { error in
+                    if let error = error {
+                        print("프로필 사진 업데이트 에러: \(error)")
+                    } else {
+                        print("성공적으로 프로필 사진이 업데이트 되었습니다.")
+                        userStore.user.profileImageURL = newProfileImageURL
+                        userStore.updateUser(user: userStore.user)
+                        
+                        let feedQuery = firestore.collection("Feed").whereField("writerName", isEqualTo: userName)
+                        feedQuery.getDocuments { (snapshot, error) in
+                            if let error = error {
+                                print("Error fetching Feed documents: \(error)")
+                                return
+                            }
+                            guard let snapshot = snapshot else {
+                                print("No feed documents found for user name: \(userName)")
+                                return
+                            }
+                            let feedBatch = firestore.batch()
+                            
+                            for document in snapshot.documents {
+                                feedBatch.updateData(["writerProfileImage": newProfileImageURL], forDocument: document.reference)
+                            }
+                            feedBatch.commit { error in
+                                if let error = error {
+                                    print("프로필 사진 업데이트 에러: \(error)")
+                                } else {
+                                    print("성공적으로 프로필 사진이 업데이트 되었습니다.")
+                                    userStore.user.profileImageURL = newProfileImageURL
+                                    userStore.updateUser(user: userStore.user)
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
