@@ -54,7 +54,7 @@ struct OtherInfoView: View {
                     }
                     .padding(.trailing,19.0 )
                     NavigationLink {
-//                        MyFollowerFollowingView(user: user, followerList: followerList, followingList: followingList, viewNumber: 0)
+                        MyFollowerFollowingView(user: user, followerList: followerList, followingList: followingList, viewNumber: 0)
                     } label: {
                         VStack {
                             Text("\(followerList.count)")
@@ -68,7 +68,7 @@ struct OtherInfoView: View {
                         .padding(.trailing,19.0)
                     }
                     NavigationLink {
-//                        MyFollowerFollowingView(user: user, followerList: followerList, followingList: followingList,viewNumber: 1)
+                        MyFollowerFollowingView(user: user, followerList: followerList, followingList: followingList,viewNumber: 1)
                     } label: {
                         VStack {
                             Text("\(followingList.count)")

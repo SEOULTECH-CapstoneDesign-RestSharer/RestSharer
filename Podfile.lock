@@ -2,19 +2,27 @@ PODS:
   - NMapsGeometry (1.0.2)
   - NMapsMap (3.18.1):
     - NMapsGeometry
+  - SendBirdSDK (3.0.238)
+  - SendBirdUIKit (2.1.12):
+    - SendBirdSDK (~> 3.0.226)
 
 DEPENDENCIES:
   - NMapsMap
+  - SendBirdUIKit
 
 SPEC REPOS:
   trunk:
     - NMapsGeometry
     - NMapsMap
+    - SendBirdSDK
+    - SendBirdUIKit
 
 SPEC CHECKSUMS:
   NMapsGeometry: 4e02554fa9880ef02ed96b075dc84355d6352479
   NMapsMap: e879088eeee2d1e3b97f0a609076e1824dce2cad
+  SendBirdSDK: 4b1f346ed2f76c5f53baa199d0fcfe2eb686f608
+  SendBirdUIKit: 205f04a70ea28833289fcde54da68f87705e7e02
 
-PODFILE CHECKSUM: e2b334564f150e08032d76a171e982ee2f859dab
+PODFILE CHECKSUM: 2c9d23c062a26f85d70cf8b7ad659b0e875a86e0
 
 COCOAPODS: 1.15.2

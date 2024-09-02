@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 import Kingfisher
 
 struct MyFollowerView: View {
+    @EnvironmentObject var followStore: FollowStore
     @State private var followerUserList: [User] = []
     
     let user: User
@@ -21,7 +22,7 @@ struct MyFollowerView: View {
             ForEach(followerUserList, id: \.self) { follower in
                 HStack {
                     NavigationLink() {
-//                        OtherProfileView(user:follower)
+                        OtherProfileView(user:follower)
                     } label: {
                         if follower.profileImageURL.isEmpty {
                             ZStack {
@@ -69,8 +70,9 @@ struct MyFollowerView: View {
             }
         }
         .refreshable {
-            followerUserList = []
-            searchFollowerUser(searchName: user.follower)
+            followStore.fetchFollowerFollowingList(user.email)
+//            followerUserList = []
+//            searchFollowerUser(searchName: user.follower)
         }
     }
     
@@ -78,7 +80,7 @@ struct MyFollowerView: View {
         
         for index in searchName {
             let query = userCollection
-                .whereField("name",isEqualTo: index)
+                .whereField("nickname",isEqualTo: index)
                 .limit(to: 10)
             query.getDocuments { (querySnapshot,error) in
                 if let error = error {
