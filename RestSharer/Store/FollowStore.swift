@@ -30,8 +30,8 @@ final class FollowStore: ObservableObject {
         return userCollection.document((Auth.auth().currentUser?.email)!).collection("following").document(userNickname)
     }
     
-    static func followersID(myNickname: String) -> DocumentReference {
-        return userCollection.document((Auth.auth().currentUser?.email)!).collection("follower").document(myNickname)
+    static func followersID(userEmail: String, myNickname: String) -> DocumentReference {
+        return userCollection.document(userEmail).collection("follower").document(myNickname)
     }
     
     func followState(userNickname: String) {
@@ -61,66 +61,103 @@ final class FollowStore: ObservableObject {
     // 팔로우 상태를 체크한 후 팔로우/언팔로우하는 함수
     func manageFollow(userNickname: String, myNickname: String, userEmail: String, myEmail: String) {
         if !followCheck {
-            follow(userNickname: userNickname, myNickname: myNickname, userEmail: userEmail, myEmail: myEmail)
-            updateFollowCount(userEmail: userEmail)
-        } else {
-            unfollow(userNickname: userNickname, myNickname: myNickname, userEmail: userEmail) {
-                print("\(myNickname) successfully unfollowed \(userNickname)")
+            follow(userNickname: userNickname, myNickname: myNickname, userEmail: userEmail, myEmail: myEmail) {
+                DispatchQueue.main.async{
+                    self.followCheck = true
+                    self.updateFollowCount(userEmail: userEmail) // 팔로우 후 업데이트
+                }
             }
-            updateFollowCount(userEmail: userEmail)
+        } else {
+            unfollow(userNickname: userNickname, myNickname: myNickname, userEmail: myEmail, myEmail: userEmail) {
+                DispatchQueue.main.async{
+                    print("\(myNickname) successfully unfollowed \(userNickname)")
+                    self.followCheck = false
+                    self.updateFollowCount(userEmail: myEmail) // 언팔로우 후 업데이트
+                }
+            }
         }
     }
 
+
     
     // 팔로우
-    func follow(userNickname: String, myNickname: String, userEmail: String, myEmail: String) {
+    func follow(userNickname: String, myNickname: String, userEmail: String, myEmail: String, completion: @escaping () -> Void) {
         FollowStore.followingID(userNickname: userNickname).setData(["following": FieldValue.arrayUnion([userNickname])]) { (err) in
             if err == nil {
                 self.followingList.append(userNickname)
+                completion()
             }
         }
         
-        FollowStore.followersID(myNickname: myNickname).setData(["follower": FieldValue.arrayUnion([myNickname])]) { (err) in
+        FollowStore.followersID(userEmail: userEmail, myNickname: myNickname).setData(["follower": FieldValue.arrayUnion([myNickname])]) { (err) in
             if err == nil {
                 self.followerList.append(myNickname)
+                print("\(self.followerList)")
             }
         }
     }
     
     // 언팔로우
-    func unfollow(userNickname: String, myNickname: String, userEmail: String, completion: @escaping () -> Void) {
-        FollowStore.followingID(userNickname: userNickname).getDocument { (document, err) in
-            if let doc = document, doc.exists {
-                doc.reference.delete()
-                if let index = self.followingList.firstIndex(of: userNickname) {
-                    self.followingList.remove(at: index)
-                }
-            }
-            completion() // 언팔로우 처리 후 클로저 실행
-        }
+    func unfollow(userNickname: String, myNickname: String, userEmail: String, myEmail: String, completion: @escaping () -> Void) {
+        print("Attempting to unfollow \(userNickname) from \(myNickname)'s perspective.")
+        print("userEmail: \(userEmail), myEmail: \(myEmail)")
+        print("userNickname: \(userNickname), myNickname: \(myNickname)")
         
-        FollowStore.followersID(myNickname: myNickname).getDocument { (document, err) in
+        FollowStore.followingID(userNickname: userNickname).getDocument { (document, err) in
+            if let error = err {
+                print("Error getting following document: \(error.localizedDescription)")
+                completion() // 에러 발생 시에도 클로저 호출
+                return
+            }
+            
             if let doc = document, doc.exists {
-                // Firestore에서 문서 전체를 삭제하는 대신 특정 필드만 수정해서 제거할 수도 있음
-                doc.reference.updateData([
-                    "follower": FieldValue.arrayRemove([myNickname])  // 팔로워 목록에서 내 닉네임 삭제
-                ]) { error in
+                print("Following document exists for \(userNickname). Proceeding to delete.")
+                doc.reference.delete { error in
                     if let error = error {
-                        print("Failed to remove follower from the list: \(error.localizedDescription)")
+                        print("Error deleting following: \(error.localizedDescription)")
                         return
                     }
-                    // 팔로워 리스트에서 내 닉네임 삭제 후 로컬 리스트에서도 제거
-                    if let index = self.followerList.firstIndex(of: myNickname) {
-                        self.followerList.remove(at: index)
+                    print("\(userNickname) successfully removed from \(myNickname)'s following list.")
+                    
+                    if let index = self.followingList.firstIndex(of: userNickname) {
+                        self.followingList.remove(at: index)
+                        print("\(userNickname) removed from local following list.")
                     }
-                    print("\(myNickname) was successfully removed from \(userEmail)'s followers list.")
                 }
             } else {
-                print("Document does not exist.")
+                print("Following document does not exist for \(userNickname).")
             }
-            completion() // 언팔로우 처리 후 클로저 실행
         }
-    }
+        
+        FollowStore.followersID(userEmail: userEmail, myNickname: myNickname).getDocument { (document, err) in
+                if let error = err {
+                    print("Error getting follower document: \(error.localizedDescription)")
+                    completion() // 에러 발생 시에도 클로저 호출
+                    return
+                }
+
+                if let doc = document, doc.exists {
+                    print("Follower document exists for \(userEmail). Proceeding to delete.")
+                    doc.reference.delete { error in
+                        if let error = error {
+                            print("Error deleting follower: \(error.localizedDescription)")
+                            return
+                        }
+                        print("\(myNickname) successfully removed from \(userEmail)'s followers list.")
+                        
+                        if let index = self.followerList.firstIndex(of: myNickname) {
+                            self.followerList.remove(at: index)
+                            print("\(myNickname) removed from local follower list.")
+                        }
+                        print("\(self.followerList)")
+                        completion() // 여기서 completion 호출
+                    }
+                } else {
+                    print("Follower document does not exist for \(userEmail).")
+                    completion() // 문서가 없을 경우에도 completion 호출
+                }
+            }
+        }
     
     func fetchFollowerFollowingList(_ myEmail: String) {
         userCollection.document(myEmail)

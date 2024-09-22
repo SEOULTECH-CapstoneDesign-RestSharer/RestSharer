@@ -70,7 +70,9 @@ struct User: Identifiable, Hashable, Equatable {
         self.chattingRoom = []
         self.myReservation = []
     }
-    
+    func hash(into hasher: inout Hasher){
+        hasher.combine(nickname)
+    }
     static func == (lhs: User, rhs: User) -> Bool {
         return lhs.nickname == rhs.nickname
     }

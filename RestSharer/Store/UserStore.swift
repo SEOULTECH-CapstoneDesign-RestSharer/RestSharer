@@ -31,12 +31,16 @@ final class UserStore: ObservableObject {
     @Published var clickIsSavedNickName: Bool = false
     
     func fetchMyInfo(userEmail: String, completion: @escaping (Bool) -> Void) {
+        print("Fetching info for userEmail: \(userEmail)")
         userCollection.document(userEmail).getDocument { snapshot, error in
             if let error = error {
                 print("Error fetching user: \(error.localizedDescription)")
             } else if let userData = snapshot?.data(), let user = User(document: userData) {
+                print("User data fetched successfully: \(user.email)")
                 self.user = user
                 completion(true)
+            } else{
+                print("No user data found for \(userEmail)")
             }
         }
     }

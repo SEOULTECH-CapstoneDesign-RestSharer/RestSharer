@@ -12,6 +12,7 @@ import Kingfisher
 
 struct MyFollowingView: View {
     @EnvironmentObject var followStore: FollowStore
+    @EnvironmentObject var userStore: UserStore
     @State private var followingUserList: [User] = []
     
     let user: User
@@ -48,7 +49,8 @@ struct MyFollowingView: View {
                     
                     // 언팔로우 버튼
                     Button {
-                        followStore.unfollow(userNickname: following.nickname, myNickname: user.nickname, userEmail: user.email) {
+                        print("Before unfollow - userEmail: \(following.email), myEmail: \(userStore.user.email)")
+                        followStore.unfollow(userNickname: following.nickname, myNickname:userStore.user.nickname, userEmail: following.email, myEmail: userStore.user.email) {
                             if followStore.followingList.contains(following.nickname) {
                                 print("\(following.nickname) 언팔로우 실패")
                             } else {
