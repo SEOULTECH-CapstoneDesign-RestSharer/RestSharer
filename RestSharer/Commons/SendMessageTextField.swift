@@ -40,7 +40,7 @@ struct SendMessageTextField: View {
             .padding(.trailing, 5)
             .zIndex(3)
         }
-        .frame(width: .screenWidth * 0.9, height: 40)
-        .padding(.bottom, 10)
+//        .frame(width: .screenWidth * 0.9, height: 40)
+//        .padding(.bottom, 10)
     }
 }
