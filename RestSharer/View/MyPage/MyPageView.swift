@@ -53,7 +53,7 @@ struct MyPageView: View {
                     NavigationStack {
                         PostNaverMap(currentFeedId: $postCoordinator.currentFeedId, showMarkerDetailView: $postCoordinator.showMarkerDetailView, showMyMarkerDetailView: $postCoordinator.showMyMarkerDetailView, coord: $postCoordinator.coord, tappedLatLng: $postCoordinator.tappedLatLng)
                         .sheet(isPresented: $postCoordinator.showMyMarkerDetailView) {
-                            MapFeedSheetView(feed: userStore.myFeedList.filter { $0.id == postCoordinator.currentFeedId }[0])
+                            MapFeedSheetView(feed: feedStore.feedList.filter { $0.address == postCoordinator.currentFeedId })
                                 .presentationDetents([.height(.screenHeight * 0.55)])
                         }
                     .navigationBarBackButtonHidden(true)

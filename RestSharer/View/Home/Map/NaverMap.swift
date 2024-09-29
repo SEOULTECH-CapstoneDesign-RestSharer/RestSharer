@@ -175,7 +175,7 @@ final class Coordinator: NSObject, ObservableObject,NMFMapViewCameraDelegate, NM
             
             marker.position = NMGLatLng(lat: coord.lat, lng: coord.lng )
             marker.captionRequestedWidth = 100 // 마커 캡션 너비 지정
-            marker.captionText = feedMarker.id
+            marker.captionText = feedMarker.address
             
             marker.captionTextSize = 0.1
             marker.captionMinZoom = 10
@@ -233,7 +233,6 @@ final class Coordinator: NSObject, ObservableObject,NMFMapViewCameraDelegate, NM
         }
     }
     
-
     // MARK: - 카메라 이동
     func moveCameraPosition() {
         let cameraUpdate = NMFCameraUpdate(scrollTo: coord)
