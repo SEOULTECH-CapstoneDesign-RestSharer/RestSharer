@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct ChatRoomListView: View {
+    
+    @EnvironmentObject var chatStore: ChatStore
+    @EnvironmentObject var userStore: UserStore
+
+    var body: some View {
+        NavigationView {
+            List(chatStore.chatRooms, id: \.self) { chatRoom in
+                NavigationLink {
+                    ChatView()
+                } label: {
+                    Text(chatRoom)
+                        .padding()
+                }
             }
         }
-    }
-    var body: some View {
-        // 4. Call up the custom Channel List
-        ChatRoomListViewContainer()
+        .navigationBarTitle("Chat Rooms", displayMode: .inline)
+        
+        .onAppear {
+            chatStore.fetchChatRooms(myEmail: userStore.user.email)
+        }
     }
 }
