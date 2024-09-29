@@ -34,6 +34,9 @@
 		3C017A772C2820EA000CB620 /* OtherHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C017A762C2820EA000CB620 /* OtherHistoryView.swift */; };
 		3C017A792C2820F6000CB620 /* OtherSavedPlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C017A782C2820F6000CB620 /* OtherSavedPlaceView.swift */; };
 		3C017A7B2C282101000CB620 /* OtherSavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C017A7A2C282101000CB620 /* OtherSavedView.swift */; };
+		3C418F992CA98F5E001E17E7 /* ChatStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C418F982CA98F5E001E17E7 /* ChatStore.swift */; };
+		3C418F9B2CA98FBB001E17E7 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C418F9A2CA98FBB001E17E7 /* ChatView.swift */; };
+		3C418F9D2CA9AA4B001E17E7 /* SendMessageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C418F9C2CA9AA4B001E17E7 /* SendMessageTextField.swift */; };
 		3C482F762BE084780057D46D /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 3C482F752BE084780057D46D /* FirebaseAppCheck */; };
 		3C53463D2BFC73600097511B /* MapFeedCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5346362BFC73600097511B /* MapFeedCellView.swift */; };
 		3C53463E2BFC73600097511B /* MapFeedSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5346372BFC73600097511B /* MapFeedSheetView.swift */; };
@@ -47,7 +50,6 @@
 		3C53464C2BFC84520097511B /* LocationSearchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C53464B2BFC84520097511B /* LocationSearchStore.swift */; };
 		3C5346532BFC84D10097511B /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5346522BFC84D10097511B /* Search.swift */; };
 		3C5547992C6362BF000986D2 /* ChatRoomListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5547982C6362BF000986D2 /* ChatRoomListView.swift */; };
-		3C55479B2C6362E6000986D2 /* ChatRoomListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C55479A2C6362E6000986D2 /* ChatRoomListViewController.swift */; };
 		3C770F592BDFD83B003FE3BB /* RestSharerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C770F582BDFD83B003FE3BB /* RestSharerApp.swift */; };
 		3C770F5B2BDFD83B003FE3BB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C770F5A2BDFD83B003FE3BB /* ContentView.swift */; };
 		3C770F5D2BDFD83D003FE3BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C770F5C2BDFD83D003FE3BB /* Assets.xcassets */; };
@@ -152,6 +154,9 @@
 		3C017A762C2820EA000CB620 /* OtherHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherHistoryView.swift; sourceTree = "<group>"; };
 		3C017A782C2820F6000CB620 /* OtherSavedPlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherSavedPlaceView.swift; sourceTree = "<group>"; };
 		3C017A7A2C282101000CB620 /* OtherSavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherSavedView.swift; sourceTree = "<group>"; };
+		3C418F982CA98F5E001E17E7 /* ChatStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatStore.swift; sourceTree = "<group>"; };
+		3C418F9A2CA98FBB001E17E7 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		3C418F9C2CA9AA4B001E17E7 /* SendMessageTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageTextField.swift; sourceTree = "<group>"; };
 		3C5346362BFC73600097511B /* MapFeedCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFeedCellView.swift; sourceTree = "<group>"; };
 		3C5346372BFC73600097511B /* MapFeedSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFeedSheetView.swift; sourceTree = "<group>"; };
 		3C5346382BFC73600097511B /* LocationDetailMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailMap.swift; sourceTree = "<group>"; };
@@ -163,7 +168,6 @@
 		3C53464B2BFC84520097511B /* LocationSearchStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchStore.swift; sourceTree = "<group>"; };
 		3C5346522BFC84D10097511B /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		3C5547982C6362BF000986D2 /* ChatRoomListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListView.swift; sourceTree = "<group>"; };
-		3C55479A2C6362E6000986D2 /* ChatRoomListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomListViewController.swift; sourceTree = "<group>"; };
 		3C770F552BDFD83B003FE3BB /* RestSharer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestSharer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C770F582BDFD83B003FE3BB /* RestSharerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestSharerApp.swift; sourceTree = "<group>"; };
 		3C770F5A2BDFD83B003FE3BB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -351,7 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				3C5547982C6362BF000986D2 /* ChatRoomListView.swift */,
-				3C55479A2C6362E6000986D2 /* ChatRoomListViewController.swift */,
+				3C418F9A2CA98FBB001E17E7 /* ChatView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -408,6 +412,7 @@
 				CCCB09332C282CAA006BAE56 /* ToastMessageView.swift */,
 				3C770F672BDFDA31003FE3BB /* Resource */,
 				3C770FC42BE0144D003FE3BB /* Path.swift */,
+				3C418F9C2CA9AA4B001E17E7 /* SendMessageTextField.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -473,6 +478,7 @@
 				3CB45CE42C0580F000029934 /* PostStore.swift */,
 				3C017A3F2C280AFE000CB620 /* SearchStore.swift */,
 				3C017A412C280B5A000CB620 /* FollowStore.swift */,
+				3C418F982CA98F5E001E17E7 /* ChatStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -706,9 +712,11 @@
 				3C017A6B2C281E98000CB620 /* MyFollowingView.swift in Sources */,
 				3C770F7D2BDFDD2D003FE3BB /* CGFloat+.swift in Sources */,
 				3CB45CF72C05875C00029934 /* SearchBarTextField.swift in Sources */,
+				3C418F9B2CA98FBB001E17E7 /* ChatView.swift in Sources */,
 				CCCB09342C282CAA006BAE56 /* ToastMessageView.swift in Sources */,
 				3C5346432BFC73600097511B /* MapMainView.swift in Sources */,
 				CCB315CF2BEE01A500039745 /* Color+.swift in Sources */,
+				3C418F992CA98F5E001E17E7 /* ChatStore.swift in Sources */,
 				3C017A6F2C281E98000CB620 /* ShopInfoCardView.swift in Sources */,
 				3CB45CDF2C057E4B00029934 /* CatecoryView.swift in Sources */,
 				CC39421F2C609F1F00189D55 /* FeedUpdateView.swift in Sources */,
@@ -719,6 +727,7 @@
 				3CB45CE22C057E4B00029934 /* PictureView.swift in Sources */,
 				CCB315D92BEE13DD00039745 /* FeedMainView.swift in Sources */,
 				3CB45CDE2C057E4B00029934 /* LocationView.swift in Sources */,
+				3C418F9D2CA9AA4B001E17E7 /* SendMessageTextField.swift in Sources */,
 				3C770F912BE010D8003FE3BB /* AuthStore.swift in Sources */,
 				3CB45CE32C057E4B00029934 /* UploadView.swift in Sources */,
 				CC39421D2C609F0700189D55 /* FeedListView.swift in Sources */,
@@ -757,7 +766,6 @@
 				3C017A3E2C280AD4000CB620 /* SearchUserCellView.swift in Sources */,
 				3C017A722C281E99000CB620 /* MyPageFeedView.swift in Sources */,
 				3C017A6C2C281E98000CB620 /* MyHistoryView.swift in Sources */,
-				3C55479B2C6362E6000986D2 /* ChatRoomListViewController.swift in Sources */,
 				3C017A712C281E98000CB620 /* UserInfoModifyView.swift in Sources */,
 				3C017A462C280CEF000CB620 /* OtherProfileView.swift in Sources */,
 				3C017A482C280D27000CB620 /* OtherInfoView.swift in Sources */,
@@ -911,7 +919,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RestSharer/Preview Content\"";
-				DEVELOPMENT_TEAM = Z4TN39ZQUZ;
+				DEVELOPMENT_TEAM = MAZQ6JDBT4;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -949,7 +957,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RestSharer/Preview Content\"";
-				DEVELOPMENT_TEAM = Z4TN39ZQUZ;
+				DEVELOPMENT_TEAM = MAZQ6JDBT4;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
