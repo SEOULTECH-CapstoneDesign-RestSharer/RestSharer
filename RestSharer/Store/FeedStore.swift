@@ -182,4 +182,24 @@ final class FeedStore: ObservableObject {
             }
         }
     }
+    
+    func formatCoordinates(_ input: String, _ index: Int) -> String? {
+        if input.count < 7 {
+            return nil // 최소 7자리 이상의 문자열이어야 합니다.
+        }
+        
+        // 문자열을 index를 사용하여 처리합니다.
+        let index = input.index(input.startIndex, offsetBy: index)
+        
+        // Substring을 사용하여 3번째와 4번째 문자 앞에 점을 추가합니다.
+        var output = input
+        output.insert(".", at: index)
+        
+        // 마지막 문자가 '0'인 경우 제거
+        if output.last == "0" {
+            output.removeLast()
+        }
+        
+        return output
+    }
 }
