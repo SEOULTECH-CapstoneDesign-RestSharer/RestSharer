@@ -62,7 +62,7 @@ struct FeedCellView: View {
                             .font(.pretendardRegular12)
                             .foregroundColor(.primary.opacity(0.8))
                     }
-                    Spacer()
+                    
                     //MARK:  조건부로 FeedUpdateView 표시
 //                    HStack {
 //                        if feed.writerNickname == userStore.user.nickname {
@@ -117,129 +117,102 @@ struct FeedCellView: View {
                             .scaledToFill()
                             .frame(width: .screenWidth, height: .screenWidth)
                             .clipped()
-                            .padding(.bottom, 10)
                             .tag(Int(feed.images.firstIndex(of: image) ?? 0))
                     }
                 }
                 .tabViewStyle(PageTabViewStyle())
                 .frame(width: .screenWidth, height: .screenWidth)
+                .cornerRadius(15)
+                .padding(.horizontal, 5)
             }
-            .padding(.bottom, 10)
             
             //MARK: 회색 장소 박스
-            HStack {
+            VStack {
                 HStack {
-                    Button {
-                        if (userStore.user.bookmark.contains("\(feed.id)")) {
-                            userStore.deletePlace(feed)
-                            userStore.user.bookmark.removeAll { $0 == "\(feed.id)" }
-                            userStore.updateUser(user: userStore.user)
-                            userStore.clickSavedCancelPlaceToast = true
-                            isChangePlaceColor.toggle()
-                        } else {
-                            userStore.savePlace(feed) //장소 저장 로직(사용가능)
-                            userStore.user.bookmark.append("\(feed.id)")
-                            userStore.updateUser(user: userStore.user)
-                            userStore.clickSavedPlaceToast = true
-                            isChangePlaceColor.toggle()
-                        }
-                    } label: {
-                        Image(systemName: userStore.user.bookmark.contains("\(feed.id)") ? "pin.fill": "pin")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 15)
-                            .padding(.horizontal, 10)
-                            .foregroundColor(isChangePlaceColor ? .privateColor : .white)
-                            .foregroundColor(userStore.user.bookmark.contains("\(feed.id)") ? .privateColor : .primary)
-                    }
-                    .padding(.leading, 5)
-                    //MARK: 회색 박스 안 주소와 가게명
-                    Button {
-                        isShowingLocation = true
-                        
-                        lat = locationSearchStore.formatCoordinates(feed.mapy, 2) ?? ""
-                        lng = locationSearchStore.formatCoordinates(feed.mapx, 3) ?? ""
-                        
-                        detailCoordinator.coord = NMGLatLng(lat: Double(lat) ?? 0, lng: Double(lng) ?? 0)
-                        postCoordinator.newMarkerTitle = feed.title
-                        searchResult.title = feed.title
-                        
-                        print("피드 장소 선택 시 좌표: \(postCoordinator.coord)")
-                    } label: {
-                        VStack(alignment: .leading, spacing: 5) {
-                            Text("\(feed.title)")
-                                .font(.pretendardMedium16)
-                                .foregroundColor(.primary)
-                            Text("\(feed.roadAddress)")
-                                .font(.pretendardRegular12)
-                                .foregroundColor(.primary)
-                                .multilineTextAlignment(.leading)
-                        }
-                        .padding(.leading, 10)
-                    }
-                }
-                .padding(.horizontal, 10)
-//                            .frame(width: .screenWidth * 0.7, height: 80)
-//                            .background(Color.darkGraySubColor)
-                
-                .sheet(isPresented: $isShowingLocation) {
-                    LocationDetailView(searchResult: $searchResult)
-                        .presentationDetents([.height(.screenHeight * 0.6), .large])
-                }
-                
-                Spacer()
-                
-                HStack {
-                    if feed.writerNickname != userStore.user.nickname {
-                        Divider()
-                        
+                    HStack {
                         Button {
-                            if(userStore.user.myFeed.contains("\(feed.id)")) {
-                                userStore.deleteSavedFeed(feed)
-                                userStore.user.myFeed.removeAll { $0 == "\(feed.id)" }
+                            if (userStore.user.bookmark.contains("\(feed.id)")) {
+                                userStore.deletePlace(feed)
+                                userStore.user.bookmark.removeAll { $0 == "\(feed.id)" }
                                 userStore.updateUser(user: userStore.user)
-                                userStore.clickSavedCancelFeedToast = true
+                                userStore.clickSavedCancelPlaceToast = true
+                                isChangePlaceColor.toggle()
                             } else {
-                                userStore.saveFeed(feed) //장소 저장 로직(사용가능)
-                                userStore.user.myFeed.append("\(feed.id)")
+                                userStore.savePlace(feed) //장소 저장 로직(사용가능)
+                                userStore.user.bookmark.append("\(feed.id)")
                                 userStore.updateUser(user: userStore.user)
-                                userStore.clickSavedFeedToast = true
+                                userStore.clickSavedPlaceToast = true
+                                isChangePlaceColor.toggle()
                             }
                         } label: {
-                            if colorScheme == ColorScheme.dark {
-                                Image(userStore.user.myFeed.contains("\(feed.id)") ? "bookmark_fill" : "bookmark_dark")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 20)
-                                    .padding(.trailing, 5)
-                            } else {
-                                Image(userStore.user.myFeed.contains( "\(feed.id)" ) ? "bookmark_fill" : "bookmark_light")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 20)
-                                    .padding(.trailing, 5)
-                            }
-                        }
-                        
-                        Button {
-                            withAnimation {
-                                isShowingMessageTextField.toggle()
-                            }
-                        } label: {
-                            Image(systemName: isShowingMessageTextField ? "paperplane.fill" : "paperplane")
+                            Image(systemName: userStore.user.bookmark.contains("\(feed.id)") ? "pin.fill": "pin")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 20)
-                                .foregroundColor(isShowingMessageTextField ? .privateColor : .white)
+                                .frame(width: 15)
+                                .padding(.horizontal, 10)
+                                .foregroundColor(isChangePlaceColor ? .privateColor : .white)
+                                .foregroundColor(userStore.user.bookmark.contains("\(feed.id)") ? .privateColor : .primary)
+                        }
+                        .padding(.leading, 20)
+                        
+                        //MARK: 회색 박스 안 주소와 가게명
+                        Button {
+                            isShowingLocation = true
+                            
+                            lat = locationSearchStore.formatCoordinates(feed.mapy, 2) ?? ""
+                            lng = locationSearchStore.formatCoordinates(feed.mapx, 3) ?? ""
+                            
+                            detailCoordinator.coord = NMGLatLng(lat: Double(lat) ?? 0, lng: Double(lng) ?? 0)
+                            postCoordinator.newMarkerTitle = feed.title
+                            searchResult.title = feed.title
+                            
+                            print("피드 장소 선택 시 좌표: \(postCoordinator.coord)")
+                        } label: {
+                            VStack(alignment: .leading, spacing: 5) {
+                                Text("\(feed.title)")
+                                    .font(.pretendardMedium16)
+                                    .foregroundColor(.primary)
+                                Text("\(feed.roadAddress)")
+                                    .font(.pretendardRegular12)
+                                    .foregroundColor(.primary)
+                                    .multilineTextAlignment(.leading)
+                            }
+                            .padding(.leading, 10)
                         }
                     }
+                    
+                    .sheet(isPresented: $isShowingLocation) {
+                        LocationDetailView(searchResult: $searchResult)
+                            .presentationDetents([.height(.screenHeight * 0.6), .large])
+                    }
+                    
+                    Spacer()
+                    
+                    HStack {
+                        if feed.writerNickname != userStore.user.nickname {
+                            Button {
+                                withAnimation {
+                                    isShowingMessageTextField.toggle()
+                                }
+                            } label: {
+                                Image(systemName: isShowingMessageTextField ? "paperplane.fill" : "paperplane")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 20)
+                                    .foregroundColor(isShowingMessageTextField ? .privateColor : .white)
+                            }
+                            .padding(.trailing, 10)
+                        }
+                    }
+                    .font(.pretendardMedium24)
+                    .foregroundColor(.primary)
+                    .padding(.trailing)
                 }
-                .font(.pretendardMedium24)
-                .foregroundColor(.primary)
-                .padding(.trailing)
+                .padding(.vertical, 20)
+                .background(Color.darkGraySubColor)
+                .cornerRadius(15)
             }
-            .padding(.vertical, 20)
-            .background(Color.darkGraySubColor)
+            .padding(.horizontal, 5)
             
             VStack(alignment: .center) {
                 //MARK: 회색 박스 안 주소와 가게명 끝
@@ -257,9 +230,9 @@ struct FeedCellView: View {
                             message = ""
                         }
                     }
-                    .padding(.horizontal, 20)
                 }
             }
+            .padding(.horizontal, 5)
             
             VStack(alignment: .leading) {
                 Text("\(feed.contents)")
@@ -281,7 +254,6 @@ struct FeedCellView: View {
             //        .padding(.horizontal, 10)
             
             Divider()
-                .padding(.vertical, 10)
         }
     }
 }

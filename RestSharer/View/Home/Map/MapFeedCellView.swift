@@ -65,6 +65,7 @@ struct MapFeedCellView: View {
                         .resizable()
                         .scaledToFill()
                         .frame(width: .screenWidth * 0.45, height: .screenWidth * 0.45)
+                        .cornerRadius(15)
                         .tag(Int(feed.images.firstIndex(of: image) ?? 0))
                     }
                 }
