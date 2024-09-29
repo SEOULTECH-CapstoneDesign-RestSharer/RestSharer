@@ -20,7 +20,7 @@ struct FeedCellView: View {
     @EnvironmentObject var userDataStore: UserStore
     @EnvironmentObject private var userStore: UserStore
     @EnvironmentObject private var feedStore: FeedStore
-//    @EnvironmentObject var chatRoomStore: ChatRoomStore
+    @EnvironmentObject var chatStore: ChatStore
     
     @ObservedObject var postCoordinator: PostCoordinator = PostCoordinator.shared
     @StateObject private var locationSearchStore = LocationSearchStore.shared
@@ -241,22 +241,25 @@ struct FeedCellView: View {
             .padding(.vertical, 20)
             .background(Color.darkGraySubColor)
             
-//            VStack(alignment: .center) {
-//                //MARK: 회색 박스 안 주소와 가게명 끝
-//                if isShowingMessageTextField {
-//                    SendMessageTextField(text: $message, placeholder: "메시지를 입력하세요") {
-//                        if message != "" {
-//                            let chatRoom = chatRoomStore.findChatRoom(user: userStore.user, firstNickname: userStore.user.nickname,firstUserProfileImage:userStore.user.profileImageURL, secondNickname: feed.writerNickname,secondUserProfileImage:feed.writerProfileImage) ?? ChatRoom(firstUserNickname: "ii", firstUserProfileImage: "", secondUserNickname: "boogie", secondUserProfileImage: "")
-//                            chatRoomStore.sendMessage(myNickName: userStore.user.nickname, otherUserNickname: userStore.user.nickname == chatRoom.firstUserNickname ? chatRoom.secondUserNickname : chatRoom.firstUserNickname, message: Message(sender: userStore.user.nickname, content: message, timestamp: Date().timeIntervalSince1970))
-//                            withAnimation {
-//                                isShowingMessageTextField.toggle()
-//                            }
-//                            message = ""
-//                        }
-//                    }
-//                    .padding(.horizontal, 20)
-//                }
-//            }
+            VStack(alignment: .center) {
+                //MARK: 회색 박스 안 주소와 가게명 끝
+                if isShowingMessageTextField {
+                    SendMessageTextField(text: $message, placeholder: "메시지를 입력하세요") {
+                        if message != "" {
+                            chatStore.myEmail = userStore.user.email
+                            chatStore.myNickname = userStore.user.nickname
+                            chatStore.otherEmail = "cartman2540@gmail.com"
+                            chatStore.otherNickname = "new"
+                            chatStore.sendMessage(text: message, senderNickname: userStore.user.nickname)
+                            withAnimation {
+                                isShowingMessageTextField.toggle()
+                            }
+                            message = ""
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                }
+            }
             
             VStack(alignment: .leading) {
                 Text("\(feed.contents)")

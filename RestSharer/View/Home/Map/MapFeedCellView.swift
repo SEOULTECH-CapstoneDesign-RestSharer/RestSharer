@@ -15,7 +15,7 @@ struct MapFeedCellView: View {
     
     @EnvironmentObject private var userStore: UserStore
     @EnvironmentObject private var feedStore: FeedStore
-//    @EnvironmentObject private var chatRoomStore: ChatRoomStore
+    @EnvironmentObject private var chatStore: ChatStore
     
     @State private var currentPicture = 0
     @State private var isChatRoomActive: Bool = false
@@ -153,14 +153,17 @@ struct MapFeedCellView: View {
             }
             .padding(.leading, 20)
             
-//            if isShowingMessageTextField {
-//                SendMessageTextField(text: $message, placeholder: "메시지를 입력하세요") {
-//                    let chatRoom = chatRoomStore.findChatRoom(user: userStore.user, firstNickname: userStore.user.nickname,firstUserProfileImage:userStore.user.profileImageURL, secondNickname: feed.writerNickname,secondUserProfileImage:feed.writerProfileImage) ?? ChatRoom(firstUserNickname: "ii", firstUserProfileImage: "", secondUserNickname: "boogie", secondUserProfileImage: "")
-//                    chatRoomStore.sendMessage(myNickName: userStore.user.nickname, otherUserNickname: userStore.user.nickname == chatRoom.firstUserNickname ? chatRoom.secondUserNickname : chatRoom.firstUserNickname, message: Message(sender: userStore.user.nickname, content: message, timestamp: Date().timeIntervalSince1970))
-//                    message = ""
-//                }
-//                .padding(.horizontal, 20)
-//            }
+            if isShowingMessageTextField {
+                SendMessageTextField(text: $message, placeholder: "메시지를 입력하세요") {
+                    chatStore.myEmail = userStore.user.email
+                    chatStore.myNickname = userStore.user.nickname
+                    chatStore.otherEmail = "cartman2540@gmail.com"
+                    chatStore.otherNickname = "new"
+                    chatStore.sendMessage(text: message, senderNickname: userStore.user.nickname)
+                    message = ""
+                }
+                .padding(.horizontal, 20)
+            }
             
             Divider()
                 .padding(.vertical, 10)
