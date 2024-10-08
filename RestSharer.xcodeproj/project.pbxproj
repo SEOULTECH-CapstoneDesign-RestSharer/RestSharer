@@ -93,6 +93,7 @@
 		3C770FC52BE0144D003FE3BB /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C770FC42BE0144D003FE3BB /* Path.swift */; };
 		3C770FCA2BE07B07003FE3BB /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C770FC92BE07B07003FE3BB /* LaunchView.swift */; };
 		3C770FCC2BE07BAF003FE3BB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C770FCB2BE07BAF003FE3BB /* LoginView.swift */; };
+		3C94B6972CB3A4890002F767 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C94B6962CB3A4890002F767 /* SignUpView.swift */; };
 		3CB45CDD2C057E4B00029934 /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB45CD62C057E4A00029934 /* LocationSearchView.swift */; };
 		3CB45CDE2C057E4B00029934 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB45CD72C057E4A00029934 /* LocationView.swift */; };
 		3CB45CDF2C057E4B00029934 /* CatecoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB45CD82C057E4B00029934 /* CatecoryView.swift */; };
@@ -188,6 +189,7 @@
 		3C770FC42BE0144D003FE3BB /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
 		3C770FC92BE07B07003FE3BB /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		3C770FCB2BE07BAF003FE3BB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		3C94B6962CB3A4890002F767 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		3CB45CD62C057E4A00029934 /* LocationSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
 		3CB45CD72C057E4A00029934 /* LocationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		3CB45CD82C057E4B00029934 /* CatecoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatecoryView.swift; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 				3C770FCB2BE07BAF003FE3BB /* LoginView.swift */,
 				3C770F5A2BDFD83B003FE3BB /* ContentView.swift */,
 				CCB315CC2BEE016300039745 /* MainTabView.swift */,
+				3C94B6962CB3A4890002F767 /* SignUpView.swift */,
 				CCB315D32BEE135900039745 /* Home */,
 				3C5547972C636298000986D2 /* Chat */,
 				3C017A342C280A39000CB620 /* Search */,
@@ -742,6 +745,7 @@
 				3C5346532BFC84D10097511B /* Search.swift in Sources */,
 				3C770F5B2BDFD83B003FE3BB /* ContentView.swift in Sources */,
 				3C017A4A2C280D52000CB620 /* FollowButton.swift in Sources */,
+				3C94B6972CB3A4890002F767 /* SignUpView.swift in Sources */,
 				3C770F592BDFD83B003FE3BB /* RestSharerApp.swift in Sources */,
 				3C017A772C2820EA000CB620 /* OtherHistoryView.swift in Sources */,
 				3C5547992C6362BF000986D2 /* ChatRoomListView.swift in Sources */,
