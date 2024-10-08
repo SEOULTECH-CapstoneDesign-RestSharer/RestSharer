@@ -110,9 +110,9 @@ struct MyPageFeedView: View {
                                                         ]
                                                     )
                                                 }
-//                                                .fullScreenCover(isPresented: $isFeedUpdateViewPresented) {
-//                                                    FeedUpdateView(root:$root, selection: $selection, isFeedUpdateViewPresented: $isFeedUpdateViewPresented, searchResult: $searchResult, feed:feedListFeed)
-//                                                }
+                                                .fullScreenCover(isPresented: $isFeedUpdateViewPresented) {
+                                                    FeedUpdateView(root:$root, selection: $selection, isFeedUpdateViewPresented: $isFeedUpdateViewPresented, searchResult: $searchResult, feed:feedListFeed)
+                                                }
                                             }
                                         }
                                     }

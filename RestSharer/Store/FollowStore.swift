@@ -85,6 +85,7 @@ final class FollowStore: ObservableObject {
         FollowStore.followingID(userNickname: userNickname).setData(["following": FieldValue.arrayUnion([userNickname])]) { (err) in
             if err == nil {
                 self.followingList.append(userNickname)
+                print("Following list after follow: \(self.followingList)") // 팔로우 후 followingList 출력
                 completion()
             }
         }
@@ -160,14 +161,14 @@ final class FollowStore: ObservableObject {
         }
     
     func fetchFollowerFollowingList(_ myEmail: String) {
-        userCollection.document(myEmail)
-            .collection("follower")
+        userCollection.document(myEmail).collection("following")
             .addSnapshotListener { querySnapshot, error in
                 if let error = error {
-                    print("Error fetching user: \(error.localizedDescription)")
+                    print("Error fetching following list: \(error.localizedDescription)")
                 } else {
                     if let documents = querySnapshot?.documents {
-                        self.followerList = documents.compactMap { $0.documentID } // documentID를 사용하여 배열 생성
+                        // 문서 ID를 사용하여 팔로잉 리스트를 생성
+                        self.followingList = documents.map { $0.documentID }
                     }
                 }
             }

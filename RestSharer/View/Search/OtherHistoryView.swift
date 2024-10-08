@@ -57,7 +57,7 @@ struct OtherHistoryView: View {
                                         .clipShape(Rectangle())
                                 }
                                 .sheet(isPresented: $isMyPageFeedSheet) {
-//                                    MyPageFeedView(isMyPageFeedSheet: $isMyPageFeedSheet, root:$root, selection:$selection, feed: feedStore.selctedFeed, feedList: userStore.otherFeedList, isMyFeedList: false)
+                                    MyPageFeedView(isMyPageFeedSheet: $isMyPageFeedSheet, root:$root, selection:$selection, feed: feedStore.selctedFeed, feedList: userStore.otherFeedList, isMyFeedList: false)
 //                                        .presentationDetents([.height(.screenHeight)])
                                 }
                             }
