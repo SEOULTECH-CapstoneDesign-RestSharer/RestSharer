@@ -12,7 +12,7 @@ struct MapFeedSheetView: View {
     
     @State private var isChangePlaceColor: Bool = false
     
-    let feed: MyFeed
+    let feed: [MyFeed]
     
     var body: some View {
         ScrollView {
@@ -43,10 +43,10 @@ struct MapFeedSheetView: View {
 //                .padding(.leading, 15)
                 
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("\(feed.title)")
+                    Text("\(feed[0].title)")
                         .font(.pretendardMedium16)
                         .foregroundColor(.primary)
-                    Text("\(feed.roadAddress)")
+                    Text("\(feed[0].roadAddress)")
                         .font(.pretendardRegular12)
                         .foregroundColor(.primary)
                 }
@@ -56,10 +56,11 @@ struct MapFeedSheetView: View {
             .padding(.horizontal, 20)
             .frame(width: UIScreen.main.bounds.width * 0.9, height: 80)
             .background(Color.darkGraySubColor)
+            .cornerRadius(15)
             
-//            ForEach(feed) { feed in
+            ForEach(feed) { feed in
                 MapFeedCellView(feed: feed)
-//            }
+            }
         }
         .padding(.top, 20)
         

@@ -61,7 +61,7 @@ struct MainHomeView: View {
                         Spacer()
                         
                         NavigationLink {
-                            ChatRoomListViewContainer()
+                            ChatRoomListView()
                         } label: {
                             Image(systemName: "paperplane")
                                 .resizable()

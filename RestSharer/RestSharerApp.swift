@@ -22,7 +22,7 @@ struct RestSharerApp: App {
 //    @StateObject private var shopStore = ShopStore()
 //    @StateObject private var holidayManager = HolidayManager()
     @StateObject private var followStore = FollowStore()
-//    @StateObject private var chatRoomStore = ChatRoomStore()
+    @StateObject private var chatStore = ChatStore()
     @StateObject private var searchStore = SearchStore()
 //    @StateObject private var calendarData = CalendarData()
     
@@ -39,7 +39,7 @@ struct RestSharerApp: App {
                 .environmentObject(AuthStore())
                 .environmentObject(userStore)
                 .environmentObject(feedStore)
-//                .environmentObject(chatRoomStore)
+                .environmentObject(chatStore)
                 .environmentObject(searchStore)
 //                .environmentObject(reservationStore)
 //                .environmentObject(shopStore)

@@ -53,7 +53,7 @@ struct MapMainView: View {
         }
         
         .sheet(isPresented: $coordinator.showMarkerDetailView) {
-            MapFeedSheetView(feed: feedStore.feedList.filter { $0.id == coordinator.currentFeedId }[0])
+            MapFeedSheetView(feed: feedStore.feedList.filter { $0.address == coordinator.currentFeedId })
                 .presentationDetents([.height(.screenHeight * 0.5)])
         }
         
