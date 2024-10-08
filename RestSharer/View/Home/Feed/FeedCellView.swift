@@ -21,6 +21,8 @@ struct FeedCellView: View {
     @EnvironmentObject private var userStore: UserStore
     @EnvironmentObject private var feedStore: FeedStore
     @EnvironmentObject var chatStore: ChatStore
+    @EnvironmentObject private var followStore: FollowStore
+//    @EnvironmentObject var chatRoomStore: ChatRoomStore
     
     @ObservedObject var postCoordinator: PostCoordinator = PostCoordinator.shared
     @StateObject private var locationSearchStore = LocationSearchStore.shared
@@ -39,6 +41,10 @@ struct FeedCellView: View {
     @State private var searchResult: SearchResult = SearchResult(title: "", category: "", address: "", roadAddress: "", mapx: "", mapy: "")
     @Binding var root: Bool
     @Binding var selection: Int
+    
+    var isFollowing: Bool{
+        return followStore.followingList.contains(feed.writerNickname)
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -62,7 +68,18 @@ struct FeedCellView: View {
                             .font(.pretendardRegular12)
                             .foregroundColor(.primary.opacity(0.8))
                     }
+                    Spacer()
                     
+                    if isFollowing{
+                        Text("Following")
+                            .font(.pretendardRegular12)
+                            .foregroundColor(.green)
+                    }
+                    else{
+                        Text("Not Following")
+                            .font(.pretendardRegular12)
+                            .foregroundColor(.green)
+                    }
                     //MARK:  조건부로 FeedUpdateView 표시
 //                    HStack {
 //                        if feed.writerNickname == userStore.user.nickname {
