@@ -60,21 +60,21 @@ struct MyHistoryView: View {
                     }
                 }
             }
-            if (isReservation == true) {
-                ScrollView {
+//            if (isReservation == true) {
+//                ScrollView {
 //                    if reservationStore.reservationList.isEmpty {
-                        Text("예약내역이 존재하지 않습니다.")
-                            .font(.pretendardBold24)
-                            .foregroundColor(.primary)
-                            .padding(.top, .screenHeight * 0.2)
+//                        Text("예약내역이 존재하지 않습니다.")
+//                            .font(.pretendardBold24)
+//                            .foregroundColor(.primary)
+//                            .padding(.top, .screenHeight * 0.2)
 //                    } else {
 //                        MyReservation(isShowingMyReservation: .constant(true))
 //                    }
-                }
+//                }
 //                .onAppear {
 //                    reservationStore.fetchReservation()
 //                }
-            }
+//            }
             Spacer()
         }
     }
