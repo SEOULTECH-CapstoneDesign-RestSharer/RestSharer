@@ -118,18 +118,6 @@ struct SignUpView: View {
         } // 가장 큰 VStack
         .padding(.horizontal, 12)
         
-        .onAppear {
-            if let email = authStore.currentUser?.email {
-                userStore.fetchCurrentUser(userEmail: email)
-                
-                userStore.fetchMyInfo(userEmail: email, completion: { result in
-                    if result {
-                        
-                    }
-                })
-            }
-        }
-        
     } // body
     func ischeckNickname() {
         if isValidNickname(nickName) {

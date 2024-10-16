@@ -66,59 +66,38 @@ struct MainTabView: View {
         if nicknameIsEmpty {
             SignUpView()
         } else {
-        if #available(iOS 16.0, *) {
-            NavigationStack {
-                TabView(selection: selectionBinding) {
-                    MainHomeView(root: $rootSection1, selection: $selection, showLocation: $showLocation).tabItem {
-                        Label("홈", systemImage: "house.fill")
-                    }
-                    .padding(.bottom, 5)
-                    .tag(1)
-                    SearchView(root: $rootSection2, selection: $selection).tabItem {
-                        Label("검색", systemImage: "magnifyingglass")
-                    }
-                    .padding(.bottom, 5)
-                    .tag(2)
-                    UploadView(root: $rootSection3, selection: $selection, isImagePickerPresented: .constant(true), showLocation: $showLocation, searchResult: $searchResult).tabItem {
-                        Label("작성", systemImage: "plus")
-                    }
-                    .padding(.bottom, 5)
-                    .tag(3)
-                    //                    ShopListView(root: $rootSection4, selection: $selection).tabItem {
-                    //                        Label("예약", systemImage: "calendar.badge.clock")
-                    //                    }
-                    .padding(.bottom, 5)
-                    .tag(4)
-                    MyPageView(root: $rootSection5, selection: $selection).tabItem {
-                        Label("마이페이지", systemImage: "person.fill")
-                    }
-                    .padding(.bottom, 5)
-                    .tag(5)
-                }
-                .tint(.privateColor)
-            }
-            .onAppear {
-                
-                if let email = authStore.currentUser?.email {
-                    userStore.fetchCurrentUser(userEmail: email)
-                    
-                    userStore.fetchMyInfo(userEmail: email, completion: { result in
-                        if result {
-                            
+            if #available(iOS 16.0, *) {
+                NavigationStack {
+                    TabView(selection: selectionBinding) {
+                        MainHomeView(root: $rootSection1, selection: $selection, showLocation: $showLocation).tabItem {
+                            Label("홈", systemImage: "house.fill")
                         }
-                    })
+                        .padding(.bottom, 5)
+                        .tag(1)
+                        SearchView(root: $rootSection2, selection: $selection).tabItem {
+                            Label("검색", systemImage: "magnifyingglass")
+                        }
+                        .padding(.bottom, 5)
+                        .tag(2)
+                        UploadView(root: $rootSection3, selection: $selection, isImagePickerPresented: .constant(true), showLocation: $showLocation, searchResult: $searchResult).tabItem {
+                            Label("작성", systemImage: "plus")
+                        }
+                        .padding(.bottom, 5)
+                        .tag(3)
+                        //                    ShopListView(root: $rootSection4, selection: $selection).tabItem {
+                        //                        Label("예약", systemImage: "calendar.badge.clock")
+                        //                    }
+                        .padding(.bottom, 5)
+                        .tag(4)
+                        MyPageView(root: $rootSection5, selection: $selection).tabItem {
+                            Label("마이페이지", systemImage: "person.fill")
+                        }
+                        .padding(.bottom, 5)
+                        .tag(5)
+                    }
+                    .tint(.privateColor)
                 }
-                
-                //                print("onAppear: \(userStore.user)")
-                //                chatRoomStore.subscribeToChatRoomChanges(user: userStore.user)
-                //                print("chatList:\(chatRoomStore.chatRoomList)")
             }
-        } else {
-            // Fallback on earlier versions
-        }
-//            .onChange(of: chatRoomStore.chatRoomList){ newValue in
-//                print("onChange:\(newValue)")
-//            }
         }
     }
 }
