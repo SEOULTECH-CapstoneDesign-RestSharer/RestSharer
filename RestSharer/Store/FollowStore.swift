@@ -172,17 +172,18 @@ final class FollowStore: ObservableObject {
                     }
                 }
             }
-        
+
         userCollection.document(myEmail)
-            .collection("following")
+            .collection("follower")
             .addSnapshotListener { querySnapshot, error in
                 if let error = error {
                     print("Error fetching user: \(error.localizedDescription)")
                 } else {
                     if let documents = querySnapshot?.documents {
-                        self.followingList = documents.compactMap { $0.documentID } // documentID를 사용하여 배열 생성
+                        self.followerList = documents.map { $0.documentID } // documentID를 사용하여 배열 생성
                     }
                 }
             }
     }
+
 }

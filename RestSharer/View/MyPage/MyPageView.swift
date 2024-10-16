@@ -169,7 +169,9 @@ struct MyPageView: View {
                
         }
         .onAppear{
-            followStore.fetchFollowerFollowingList(userStore.user.email)
+            if userStore.user.email != "" {
+                followStore.fetchFollowerFollowingList(userStore.user.email)
+            }
             postCoordinator.checkIfLocationServicesIsEnabled()
             PostCoordinator.shared.myFeedList = userStore.myFeedList
             postCoordinator.makeOnlyMyFeedMarkers()

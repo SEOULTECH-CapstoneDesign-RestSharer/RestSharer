@@ -183,8 +183,17 @@ final class UserStore: ObservableObject {
     }
     
     func deleteUser(userEmail: String) {
+        deleteCollection("MyFeed")
+        deleteCollection("MyReservation")
+        deleteCollection("SavedFeed")
+        deleteCollection("SavedPlace")
+        deleteCollection("follower")
+        deleteCollection("following")
+        
         userCollection
             .document(user.email).delete()
+        
+        user = User()
     }
     
     func saveFeed(_ feed: MyFeed) {
@@ -333,18 +342,6 @@ final class UserStore: ObservableObject {
                     }
                 }
             }
-    }
-    
-    func deleteUser() {
-        deleteCollection("MyFeed")
-        deleteCollection("MyReservation")
-        deleteCollection("SavedFeed")
-        deleteCollection("SavedPlace")
-        deleteCollection("follower")
-        deleteCollection("following")
-            
-        userCollection.document(user.email)
-            .delete()
     }
 }
 

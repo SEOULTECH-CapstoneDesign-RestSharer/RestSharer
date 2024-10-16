@@ -113,18 +113,11 @@ struct SignUpView: View {
             .buttonStyle(.borderedProminent)
             .disabled(checkNickname == false || phoneNumber.count < phoneNumberMaximumCount)
             .padding()
-//            Button{
-//                print("로그아웃")
-//                authStore.signOutGoogle()
-//            } label: {
-//                HStack {
-//                    Text("로그아웃")
-//                    Image(systemName: "chevron.right")
-//                }
-//            }
+            
             Spacer()
         } // 가장 큰 VStack
         .padding(.horizontal, 12)
+        
     } // body
     func ischeckNickname() {
         if isValidNickname(nickName) {
