@@ -160,30 +160,48 @@ final class FollowStore: ObservableObject {
             }
         }
     
-    func fetchFollowerFollowingList(_ myEmail: String) {
-        userCollection.document(myEmail).collection("following")
-            .addSnapshotListener { querySnapshot, error in
-                if let error = error {
-                    print("Error fetching following list: \(error.localizedDescription)")
-                } else {
-                    if let documents = querySnapshot?.documents {
-                        // 문서 ID를 사용하여 팔로잉 리스트를 생성
-                        self.followingList = documents.map { $0.documentID }
-                    }
-                }
-            }
+    func fetchFollowerFollowingList(_ myEmail: String) async {
+        do {
+            // 팔로잉 리스트 가져오기
+            let followingSnapshot = try await userCollection.document(myEmail).collection("following").getDocuments()
+            self.followingList = followingSnapshot.documents.map { $0.documentID }
+            print("Following list: \(self.followingList)")
 
-        userCollection.document(myEmail)
-            .collection("follower")
-            .addSnapshotListener { querySnapshot, error in
-                if let error = error {
-                    print("Error fetching user: \(error.localizedDescription)")
-                } else {
-                    if let documents = querySnapshot?.documents {
-                        self.followerList = documents.map { $0.documentID } // documentID를 사용하여 배열 생성
-                    }
-                }
-            }
+            // 팔로워 리스트 가져오기
+            let followerSnapshot = try await userCollection.document(myEmail).collection("follower").getDocuments()
+            self.followerList = followerSnapshot.documents.map { $0.documentID }
+            print("Follower list: \(self.followerList)")
+            
+        } catch {
+            print("Error fetching follower/following lists: \(error.localizedDescription)")
+        }
     }
+    
+//    func fetchFollowerFollowingList(_ myEmail: String) async {
+//        userCollection.document(myEmail).collection("following")
+//            .addSnapshotListener { querySnapshot, error in
+//                if let error = error {
+//                    print("Error fetching following list: \(error.localizedDescription)")
+//                } else {
+//                    if let documents = querySnapshot?.documents {
+//                        // 문서 ID를 사용하여 팔로잉 리스트를 생성
+//                        self.followingList = documents.map { $0.documentID }
+//                        print("fetchFollowerFollowingList: \(self.followingList)")
+//                    }
+//                }
+//            }
+//
+//        userCollection.document(myEmail)
+//            .collection("follower")
+//            .addSnapshotListener { querySnapshot, error in
+//                if let error = error {
+//                    print("Error fetching user: \(error.localizedDescription)")
+//                } else {
+//                    if let documents = querySnapshot?.documents {
+//                        self.followerList = documents.map { $0.documentID } // documentID를 사용하여 배열 생성
+//                    }
+//                }
+//            }
+//    }
 
 }

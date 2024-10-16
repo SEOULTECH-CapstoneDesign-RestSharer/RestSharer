@@ -36,9 +36,11 @@ struct FeedListView: View {
                 }
                 .navigationBarTitle("팔로워의 리뷰", displayMode: .inline)
                 .onAppear {
-                    followStore.fetchFollowerFollowingList(userStore.user.email)
-                    print("팔로잉 리스트: \(followStore.followingList)")
-                    print("피드 리스트: \(feedStore.feedList)")
+                    Task {
+                        await followStore.fetchFollowerFollowingList(userStore.user.email)
+                        print("팔로잉 리스트: \(followStore.followingList)")
+                        print("피드 리스트: \(feedStore.feedList)")
+                    }
                 }
             }
         }
