@@ -15,6 +15,7 @@ struct MainTabView: View {
     }
 //    @EnvironmentObject var followStore: FollowStore
 //    @EnvironmentObject var searchStore: SearchStore
+    @EnvironmentObject var authStore: AuthStore
     @EnvironmentObject var userStore: UserStore
 //    @EnvironmentObject var shopStore: ShopStore
 //    @EnvironmentObject var reservationStore: ReservationStore
@@ -56,15 +57,15 @@ struct MainTabView: View {
         }
     )}
     
-//    var nicknameIsEmpty: Bool {
-//        return userStore.user.nickname.isEmpty
-//    }
+    var nicknameIsEmpty: Bool {
+        return userStore.user.nickname.isEmpty
+    }
     
     
     var body: some View {
-//        if nicknameIsEmpty {
-//            SignUpView()
-//        } else {
+        if nicknameIsEmpty {
+            SignUpView()
+        } else {
         if #available(iOS 16.0, *) {
             NavigationStack {
                 TabView(selection: selectionBinding) {
@@ -97,6 +98,17 @@ struct MainTabView: View {
                 .tint(.privateColor)
             }
             .onAppear {
+                
+                if let email = authStore.currentUser?.email {
+                    userStore.fetchCurrentUser(userEmail: email)
+                    
+                    userStore.fetchMyInfo(userEmail: email, completion: { result in
+                        if result {
+                            
+                        }
+                    })
+                }
+                
                 //                print("onAppear: \(userStore.user)")
                 //                chatRoomStore.subscribeToChatRoomChanges(user: userStore.user)
                 //                print("chatList:\(chatRoomStore.chatRoomList)")
@@ -107,14 +119,6 @@ struct MainTabView: View {
 //            .onChange(of: chatRoomStore.chatRoomList){ newValue in
 //                print("onChange:\(newValue)")
 //            }
-//        }
-    }
-}
-
-struct MainTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainTabView()
-            .environmentObject(UserStore())
-//            .environmentObject(ShopStore())
+        }
     }
 }
