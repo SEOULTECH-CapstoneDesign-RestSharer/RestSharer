@@ -9,8 +9,8 @@ import SwiftUI
 
 enum Field {
     case nickName
-    
 }
+
 struct SignUpView: View {
     
     @EnvironmentObject var authStore: AuthStore
@@ -25,6 +25,8 @@ struct SignUpView: View {
     @State private var checkNickname: Bool = false /// 닉네임 중복 확인 Bool 값
     @State private var isNicknameValid: Bool = true
     
+    @State private var agreeToPrivacyPolicy: Bool = false  // 개인정보 처리방침 동의 상태
+
     @FocusState private var focusField: Field?
     
     private let phoneNumberMaximumCount: Int = 11  /// 휴대폰 번호 최대 글자수
@@ -84,6 +86,7 @@ struct SignUpView: View {
                         .font(.pretendardMedium16)
                         .foregroundStyle(checkNicknameColor)
                 }
+                
                 //MARK: 전화번호
                 Text("전화번호")
                     .font(.pretendardBold14)
@@ -100,32 +103,37 @@ struct SignUpView: View {
                             phoneNumber = String(newValue.prefix(phoneNumberMaximumCount))
                         }
                     }
-            } // leading VStack
-            Button {
-                print("userStore.user.nickname: \(userStore.user.nickname)")
-                print("userStore.user.phoneNumber: \(userStore.user.phoneNumber)")
-                    userStore.user.nickname = nickName
-                    userStore.user.phoneNumber = phoneNumber
-                    userStore.updateUser(user: userStore.user)
-                } label: {
-                    Text("정보입력 완료하기")
+
+                // MARK: 개인정보 수집 약관 동의
+                HStack {
+                    Image(systemName: agreeToPrivacyPolicy ? "checkmark.square" : "square")
+                        .onTapGesture {
+                            agreeToPrivacyPolicy.toggle()
+                        }
+                    Text("개인정보 처리방침에 동의합니다.")
                 }
+                .padding(.top, 10)
+            }
+            .padding(.bottom, 20)
+            
+            // 정보 입력 완료 버튼
+            Button {
+                userStore.user.nickname = nickName
+                userStore.user.phoneNumber = phoneNumber
+                userStore.updateUser(user: userStore.user)
+            } label: {
+                Text("정보입력 완료하기")
+            }
             .buttonStyle(.borderedProminent)
-            .disabled(checkNickname == false || phoneNumber.count < phoneNumberMaximumCount)
+            .disabled(!checkNickname || phoneNumber.count < phoneNumberMaximumCount || !agreeToPrivacyPolicy)
             .padding()
-//            Button{
-//                print("로그아웃")
-//                authStore.signOutGoogle()
-//            } label: {
-//                HStack {
-//                    Text("로그아웃")
-//                    Image(systemName: "chevron.right")
-//                }
-//            }
+            
             Spacer()
-        } // 가장 큰 VStack
+        }
         .padding(.horizontal, 12)
-    } // body
+    }
+    
+    // MARK: 닉네임 유효성 체크 함수
     func ischeckNickname() {
         if isValidNickname(nickName) {
             cautionNickname = ""
@@ -138,9 +146,9 @@ struct SignUpView: View {
             checkNicknameColor = .red
         }
     }
+    
     func isValidNickname(_ nickName: String) -> Bool {
         let nicknameExpression = "^[a-zA-Z0-9]+$"
-
         let nickNamePredicate = NSPredicate(format:"SELF MATCHES %@", nicknameExpression)
         return nickNamePredicate.evaluate(with: nickName)
     }

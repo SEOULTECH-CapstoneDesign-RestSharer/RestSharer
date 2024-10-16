@@ -15,6 +15,7 @@ struct MainTabView: View {
     }
 //    @EnvironmentObject var followStore: FollowStore
 //    @EnvironmentObject var searchStore: SearchStore
+    @EnvironmentObject var authStore: AuthStore
     @EnvironmentObject var userStore: UserStore
 //    @EnvironmentObject var shopStore: ShopStore
 //    @EnvironmentObject var reservationStore: ReservationStore
@@ -56,65 +57,47 @@ struct MainTabView: View {
         }
     )}
     
-//    var nicknameIsEmpty: Bool {
-//        return userStore.user.nickname.isEmpty
-//    }
+    var nicknameIsEmpty: Bool {
+        return userStore.user.nickname.isEmpty
+    }
     
     
     var body: some View {
-//        if nicknameIsEmpty {
-//            SignUpView()
-//        } else {
-        if #available(iOS 16.0, *) {
-            NavigationStack {
-                TabView(selection: selectionBinding) {
-                    MainHomeView(root: $rootSection1, selection: $selection, showLocation: $showLocation).tabItem {
-                        Label("홈", systemImage: "house.fill")
-                    }
-                    .padding(.bottom, 5)
-                    .tag(1)
-                    SearchView(root: $rootSection2, selection: $selection).tabItem {
-                        Label("검색", systemImage: "magnifyingglass")
-                    }
-                    .padding(.bottom, 5)
-                    .tag(2)
-                    UploadView(root: $rootSection3, selection: $selection, isImagePickerPresented: .constant(true), showLocation: $showLocation, searchResult: $searchResult).tabItem {
-                        Label("작성", systemImage: "plus")
-                    }
-                    .padding(.bottom, 5)
-                    .tag(3)
-                    //                    ShopListView(root: $rootSection4, selection: $selection).tabItem {
-                    //                        Label("예약", systemImage: "calendar.badge.clock")
-                    //                    }
-                    .padding(.bottom, 5)
-                    .tag(4)
-                    MyPageView(root: $rootSection5, selection: $selection).tabItem {
-                        Label("마이페이지", systemImage: "person.fill")
-                    }
-                    .padding(.bottom, 5)
-                    .tag(5)
-                }
-                .tint(.privateColor)
-            }
-            .onAppear {
-                //                print("onAppear: \(userStore.user)")
-                //                chatRoomStore.subscribeToChatRoomChanges(user: userStore.user)
-                //                print("chatList:\(chatRoomStore.chatRoomList)")
-            }
+        if nicknameIsEmpty {
+            SignUpView()
         } else {
-            // Fallback on earlier versions
+            if #available(iOS 16.0, *) {
+                NavigationStack {
+                    TabView(selection: selectionBinding) {
+                        MainHomeView(root: $rootSection1, selection: $selection, showLocation: $showLocation).tabItem {
+                            Label("홈", systemImage: "house.fill")
+                        }
+                        .padding(.bottom, 5)
+                        .tag(1)
+                        SearchView(root: $rootSection2, selection: $selection).tabItem {
+                            Label("검색", systemImage: "magnifyingglass")
+                        }
+                        .padding(.bottom, 5)
+                        .tag(2)
+                        UploadView(root: $rootSection3, selection: $selection, isImagePickerPresented: .constant(true), showLocation: $showLocation, searchResult: $searchResult).tabItem {
+                            Label("작성", systemImage: "plus")
+                        }
+                        .padding(.bottom, 5)
+                        .tag(3)
+                        //                    ShopListView(root: $rootSection4, selection: $selection).tabItem {
+                        //                        Label("예약", systemImage: "calendar.badge.clock")
+                        //                    }
+                        .padding(.bottom, 5)
+                        .tag(4)
+                        MyPageView(root: $rootSection5, selection: $selection).tabItem {
+                            Label("마이페이지", systemImage: "person.fill")
+                        }
+                        .padding(.bottom, 5)
+                        .tag(5)
+                    }
+                    .tint(.privateColor)
+                }
+            }
         }
-//            .onChange(of: chatRoomStore.chatRoomList){ newValue in
-//                print("onChange:\(newValue)")
-//            }
-//        }
-    }
-}
-
-struct MainTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainTabView()
-            .environmentObject(UserStore())
-//            .environmentObject(ShopStore())
     }
 }
