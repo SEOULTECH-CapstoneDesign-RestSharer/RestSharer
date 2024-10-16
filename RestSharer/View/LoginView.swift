@@ -14,6 +14,8 @@ struct LoginView: View {
     @EnvironmentObject var authStore: AuthStore
     @EnvironmentObject var userStore: UserStore
     
+    @State private var showPrivacyPolicy: Bool = false
+    
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             Spacer()
@@ -57,8 +59,7 @@ struct LoginView: View {
                 .background(Color(uiColor: UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.00)))
                 .cornerRadius(12)
             }
-            
-            Spacer()
+                        Spacer()
         }
         .onDisappear {
             if let email = authStore.currentUser?.email {
