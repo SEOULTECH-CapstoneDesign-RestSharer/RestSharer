@@ -29,6 +29,9 @@ struct LaunchView: View {
                 }
                 .edgesIgnoringSafeArea(.all)
                 .onAppear {
+//                    authStore.signOut()
+//                    self.isActive = false
+                    
                     if let email = authStore.currentUser?.email {
                         userStore.fetchCurrentUser(userEmail: email)
                         

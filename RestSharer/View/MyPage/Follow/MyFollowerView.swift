@@ -70,7 +70,9 @@ struct MyFollowerView: View {
             }
         }
         .refreshable {
-            followStore.fetchFollowerFollowingList(user.email)
+            Task {
+                await followStore.fetchFollowerFollowingList(user.email)
+            }
 //            followerUserList = []
 //            searchFollowerUser(searchName: user.follower)
         }

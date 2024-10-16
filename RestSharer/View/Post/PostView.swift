@@ -380,6 +380,7 @@ struct PostView: View {
         //        let selectCategory = chipsViewModel.chipArray.filter { $0.isSelected }.map { $0.titleKey }
         
         var feed = MyFeed(writerNickname: userStore.user.nickname,
+                          writerEmail: userStore.user.email,
                           writerName: userStore.user.name,
                           writerProfileImage: userStore.user.profileImageURL,
                           images: images,
@@ -436,6 +437,7 @@ struct PostView: View {
         //        let selectCategory = chipsViewModel.chipArray.filter { $0.isSelected }.map { $0.titleKey }
         
         var feed = MyFeed(writerNickname: userStore.user.nickname,
+                          writerEmail: userStore.user.email,
                           writerName: userStore.user.name,
                           writerProfileImage: userStore.user.profileImageURL,
                           images: images,

@@ -325,7 +325,7 @@ struct FeedUpdateView: View {
                     //                        creatMarkerFeed()
                     //                    }
                     //MARK: 업데이트 피드 함수를
-                    let newFeed = MyFeed(id: feed.id, writerNickname: feed.writerNickname, writerName: feed.writerName, writerProfileImage: feed.writerProfileImage, images: images, contents: text, createdAt: feed.createdAt, title: searchResult.title, category: myselectedCategory, address: searchResult.address, roadAddress: searchResult.roadAddress, mapx: searchResult.mapx, mapy: searchResult.mapy)
+                    let newFeed = MyFeed(id: feed.id, writerNickname: feed.writerNickname, writerEmail: feed.writerEmail, writerName: feed.writerName, writerProfileImage: feed.writerProfileImage, images: images, contents: text, createdAt: feed.createdAt, title: searchResult.title, category: myselectedCategory, address: searchResult.address, roadAddress: searchResult.roadAddress, mapx: searchResult.mapx, mapy: searchResult.mapy)
      
                     updateFeed(inputFeed: newFeed, feedId: feed.id)
                     searchResult.title = ""
@@ -423,6 +423,7 @@ struct FeedUpdateView: View {
                 feedCollection.document(feedId).updateData([
 
                                 "writerNickname": userStore.user.nickname,
+                                "writerEmail": userStore.user.email,
                                 "writerName": userStore.user.id,
                                 "writerProfileImage": userStore.user.profileImageURL,
                                 "images": feedCopy.images,
@@ -445,6 +446,7 @@ struct FeedUpdateView: View {
                             }
                 userCollection.document(userStore.user.email).collection("MyFeed").document(feedId).updateData([
                     "writerNickname": userStore.user.nickname,
+                    "writerEmail": userStore.user.email,
                     "writerName": userStore.user.id,
                     "writerProfileImage": userStore.user.profileImageURL,
                     "images": feedCopy.images,

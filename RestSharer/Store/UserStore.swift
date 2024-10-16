@@ -267,6 +267,7 @@ final class UserStore: ObservableObject {
             .collection("SavedPlace")
             .document("\(feed.id)")
             .setData(["writerNickname": "",
+                      "writerEmail": "",
                       "writerName": "",
                       "writerProfileImage": "",
                       "images": feed.images,
@@ -309,6 +310,7 @@ final class UserStore: ObservableObject {
     private func makeFeedData(from feed: MyFeed) -> [String: Any] {
         return [
             "writerNickname": feed.writerNickname,
+            "writerEmail": feed.writerEmail,
             "writerName": feed.writerName,
             "writerProfileImage": feed.writerProfileImage,
             "images": feed.images,

@@ -16,18 +16,21 @@ struct MapMainView: View {
     @StateObject var coordinator: Coordinator = Coordinator.shared
     
     @EnvironmentObject var authStore: AuthStore
-//    @EnvironmentObject var shopStore: ShopStore
+    @EnvironmentObject var userStore: UserStore
     @EnvironmentObject var feedStore: FeedStore
+    @EnvironmentObject var followStore: FollowStore
     
     @Binding var root: Bool
     @Binding var selection: Int
     
     @State private var coord: NMGLatLng = NMGLatLng(lat: 0.0, lng: 0.0)
     
+    @State private var filteredFeeds: [MyFeed] = []
+    
     var body: some View {
         ZStack {
             VStack {
-                if feedStore.feedList.isEmpty {
+                if filteredFeeds.isEmpty {
                     Text("검색 탭으로 이동해 원하는 유저를 팔로우하세요!")
                         .font(.pretendardRegular14)
                         .foregroundColor(.white)
@@ -45,15 +48,31 @@ struct MapMainView: View {
                 }
             }
         }
+        .refreshable {
+            await feedStore.fetchFeeds()
+        }
+        
         .onAppear {
-            coordinator.checkIfLocationServicesIsEnabled()
-            Coordinator.shared.feedList = feedStore.feedList
-            coordinator.makeMarkers()
-            print("feedStore.feedList: \(feedStore.feedList)")
+            // 팔로잉 목록을 가져오는 비동기 작업
+            Task {
+                await followStore.fetchFollowerFollowingList(userStore.user.email)
+                
+                // fetchFollowerFollowingList가 완료된 후에 실행될 코드
+                filteredFeeds = feedStore.feedList.filter { feed in
+                    followStore.followingList.contains(feed.writerNickname)
+                }
+                print("Filtered Feeds after update: \(filteredFeeds)")
+
+                coordinator.checkIfLocationServicesIsEnabled()
+                Coordinator.shared.feedList = filteredFeeds
+                coordinator.makeMarkers()
+                
+                print("Following list after fetch in MapMainView: \(followStore.followingList)")
+            }
         }
         
         .sheet(isPresented: $coordinator.showMarkerDetailView) {
-            MapFeedSheetView(feed: feedStore.feedList.filter { $0.address == coordinator.currentFeedId })
+            MapFeedSheetView(feed: filteredFeeds.filter { $0.address == coordinator.currentFeedId })
                 .presentationDetents([.height(.screenHeight * 0.5)])
         }
         
@@ -72,6 +91,18 @@ struct MapMainView: View {
 //                .backgroundColor(.clear)
 //        }
     }
+    
+    // 팔로잉한 작성자의 피드만 필터링하는 함수
+//    var filteredFeeds: [MyFeed] {
+//        let followingList = followStore.followingList // followStore에서 팔로잉 리스트 가져옴
+//        print("Following list in filteredFeeds: \(followingList)")
+//
+//        return feedStore.feedList.filter { feed in
+//            let isFollowing = followingList.contains(feed.writerNickname)
+//            print("Is following \(feed.writerNickname): \(isFollowing)")
+//            return isFollowing
+//        }
+//    }
 }
 
 //struct MapMainView_Previews: PreviewProvider {

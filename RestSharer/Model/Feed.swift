@@ -14,6 +14,7 @@ struct Feed: Identifiable, Codable, Hashable {
     var id: String = UUID().uuidString
     
     var writerNickname: String
+    var writerEmail: String
     var writerName: String
     var writerProfileImage: String
     var images: [String]

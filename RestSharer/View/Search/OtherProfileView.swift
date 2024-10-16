@@ -150,7 +150,9 @@ struct OtherProfileView: View {
                     print("userStore.otherFeedList \(userStore.otherFeedList)")
                 }
             }
-            followStore.fetchFollowerFollowingList(user.email)
+            Task {
+                await followStore.fetchFollowerFollowingList(user.email)
+            }
         }
     }
 }
