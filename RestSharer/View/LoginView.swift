@@ -12,6 +12,7 @@ import FirebaseAuth
 struct LoginView: View {
     
     @EnvironmentObject var authStore: AuthStore
+    @EnvironmentObject var userStore: UserStore
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
@@ -58,6 +59,17 @@ struct LoginView: View {
             }
             
             Spacer()
+        }
+        .onDisappear {
+            if let email = authStore.currentUser?.email {
+                userStore.fetchCurrentUser(userEmail: email)
+                
+                userStore.fetchMyInfo(userEmail: email, completion: { result in
+                    if result {
+                        
+                    }
+                })
+            }
         }
     }
 }
