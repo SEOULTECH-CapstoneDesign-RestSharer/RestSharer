@@ -70,16 +70,16 @@ struct FeedCellView: View {
                     }
                     Spacer()
                     
-                    if isFollowing{
-                        Text("Following")
-                            .font(.pretendardRegular12)
-                            .foregroundColor(.green)
-                    }
-                    else{
-                        Text("Not Following")
-                            .font(.pretendardRegular12)
-                            .foregroundColor(.green)
-                    }
+//                    if isFollowing{
+//                        Text("Following")
+//                            .font(.pretendardRegular12)
+//                            .foregroundColor(.green)
+//                    }
+//                    else{
+//                        Text("Not Following")
+//                            .font(.pretendardRegular12)
+//                            .foregroundColor(.green)
+//                    }
                     //MARK:  조건부로 FeedUpdateView 표시
 //                    HStack {
 //                        if feed.writerNickname == userStore.user.nickname {

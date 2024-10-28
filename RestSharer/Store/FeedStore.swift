@@ -73,6 +73,7 @@ final class FeedStore: ObservableObject {
         feedRef.document(feed.id).collection("Feed")
             .document(feed.id)
             .setData(["writerNickname": feed.writerNickname,
+                      "writerEmail": feed.writerEmail,
                       "writerName": feed.writerName,
                       "writerProfileImage": feed.writerProfileImage,
                       "images": feed.images,
@@ -93,6 +94,7 @@ final class FeedStore: ObservableObject {
     private func makeFeedData(from feed: MyFeed) -> [String: Any] {
         return [
             "writerNickname": feed.writerNickname,
+            "writerEmail": feed.writerEmail,
             "writerName": feed.writerName,
             "writerProfileImage": feed.writerProfileImage,
             "images": feed.images,

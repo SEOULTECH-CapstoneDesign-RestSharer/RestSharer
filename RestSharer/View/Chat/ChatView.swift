@@ -46,7 +46,7 @@ struct ChatView: View {
                     chatStore.myEmail = userStore.user.email
                     chatStore.myNickname = userStore.user.nickname
                     chatStore.otherEmail = "cartman2540@gmail.com"
-                    chatStore.otherNickname = "new"
+                    chatStore.otherNickname = "new" //피드에는 닉네임밖에 없어서 닉네임을 가져와야함 또는 이메일을 피드 구조체에 이메일을 추가해야함
                     chatStore.sendMessage(text: messageText, senderNickname: userStore.user.nickname)
                     messageText = ""
                 } label: {

@@ -13,6 +13,7 @@ struct MyFeed: Identifiable, Codable, Hashable {
     var id: String = UUID().uuidString
 
     var writerNickname: String
+    var writerEmail: String
     var writerName: String
     var writerProfileImage: String
     var images: [String]
@@ -75,6 +76,7 @@ extension MyFeed {
     init?(documentData: [String: Any]) {
         guard
             let writerNickname = documentData["writerNickname"] as? String,
+            let writerEmail = documentData["writerEmail"] as? String,
             let writerName = documentData["writerName"] as? String,
             let writerProfileImage = documentData["writerProfileImage"] as? String,
             let images = documentData["images"] as? [String],
@@ -91,6 +93,7 @@ extension MyFeed {
         }
         
         self.writerNickname = writerNickname
+        self.writerEmail = writerEmail
         self.writerName = writerName
         self.writerProfileImage = writerProfileImage
         self.images = images
@@ -106,6 +109,7 @@ extension MyFeed {
     
     init() {
         self.writerNickname = ""
+        self.writerEmail = ""
         self.writerName = ""
         self.writerProfileImage = ""
         self.images = []
