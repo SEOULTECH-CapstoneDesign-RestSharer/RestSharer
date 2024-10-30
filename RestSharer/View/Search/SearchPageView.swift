@@ -13,12 +13,12 @@ struct SearchPageView: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack {
-                VStack(alignment: .leading) {
+                HStack {
                     Text("최근 검색어")
                         .font(.pretendardMedium24)
                         .padding()
                     
-                    Divider()
+                    Spacer()
                 }
                     if !searchStore.recentSearchResult.isEmpty {
                         let array = Array(searchStore.recentSearchResult.prefix(5))
@@ -34,15 +34,16 @@ struct SearchPageView: View {
             }
             
             Spacer()
-            Divider()
+            
             VStack {
-                VStack(alignment: .leading) {
+                HStack {
                     Text("찾은 사용자")
                         .font(.pretendardMedium24)
                         .padding()
                     
-                    Divider()
+                    Spacer()
                 }
+                
                 VStack(alignment: .leading) {
                     if !searchStore.searchUserLists.isEmpty {
                         let array = Array(searchStore.searchUserLists.prefix(4))
@@ -82,10 +83,6 @@ struct SearchPageView: View {
                 }
                 .padding(.horizontal, 15)
                 .padding(.bottom, 8)
-                Divider()
-                    .frame(width: .screenWidth * 0.75)
-                    .background(Color.primary)
-                    .opacity(0.3)
             }
             
         }
