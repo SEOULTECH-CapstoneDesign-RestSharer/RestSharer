@@ -24,18 +24,8 @@ struct MyPageView: View {
     var body: some View {
         NavigationStack {
             HStack {
-                if colorScheme == .dark {
-                    Image("private_dark")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: .screenWidth * 0.35)
-                } else {
-                    Image("private_light")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: .screenWidth * 0.35)
-                }
                 Spacer()
+                
                 NavigationLink {
                     SettingView()
                 } label: {
@@ -45,9 +35,11 @@ struct MyPageView: View {
                         .foregroundColor(.primary)
                 }
             }
+            
             UserInfoView(followerList: followStore.followerList, followingList: followStore.followingList)
                 .padding(.top,-20.0)
                 .padding(.bottom, 20)
+            
             HStack {
                 NavigationLink {
                     NavigationStack {
@@ -70,24 +62,9 @@ struct MyPageView: View {
                     .foregroundColor(.primary)
                 }
                 .frame(width: .screenWidth*0.5)
-                
-                Divider()
-                    .background(Color.primary)
-                    .frame(height: .screenHeight*0.02)
-//                NavigationLink {
-////                    MyReservation(isShowingMyReservation: .constant(true))
-//                } label: {
-//                    HStack {
-//                        Image(systemName: "calendar.badge.clock")
-//                        Text("예약내역")
-//                            .font(.pretendardRegular14)
-//                    }
-//                    .foregroundColor(.primary)
-//                }
-//                .frame(width: .screenWidth*0.5)
             }
+            
             HStack {
-                Spacer()
                 Button {
                     viewNumber = 0
                 }label: {
@@ -104,65 +81,31 @@ struct MyPageView: View {
                     .modifier(YellowBottomBorder(showBorder: viewNumber == 0))
                 }
                 
-//                Button {
-//                    viewNumber = 1
-//                }label: {
-//                    HStack {
-//                        Spacer()
-//                        if viewNumber == 1 {
-//                            Image("bookmark_fill")
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(width: 15)
-//                        } else {
-//                            if colorScheme == ColorScheme.dark {
-//                                Image ("bookmark_dark")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(width: 15)
-//                            } else {
-//                                Image ("bookmark_light")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(width: 15)
-//                            }
-//                        }
-//                        Text("저장한 피드")
-//                        Spacer()
-//                    }
-//                    .font(.pretendardRegular12)
-//                    .foregroundColor(viewNumber == 1 ? .privateColor : .primary)
-//                    .padding([.trailing,.leading], 0)
-//                    .padding(.bottom, 15)
-//                    .modifier(YellowBottomBorder(showBorder: viewNumber == 1))
-//                }
-//                
                 Button {
-                    viewNumber = 2
+                    viewNumber = 1
                 }label: {
                     HStack {
                         Spacer()
-                        viewNumber == 2 ? Image(systemName: "pin.fill") : Image (systemName: "pin")
+                        viewNumber == 1 ? Image(systemName: "pin.fill") : Image (systemName: "pin")
                         Text("저장한 장소")
                         Spacer()
                     }
                     .font(.pretendardRegular12)
-                    .foregroundColor(viewNumber == 2 ? .privateColor : .primary)
+                    .foregroundColor(viewNumber == 1 ? .privateColor : .primary)
                     .padding(.bottom, 15)
                     .padding([.trailing,.leading], 0)
-                    .modifier(YellowBottomBorder(showBorder: viewNumber == 2))
+                    .modifier(YellowBottomBorder(showBorder: viewNumber == 1))
                 }
-                Spacer()
             }
             .padding(.top, 20)
+            
             Divider()
                 .background(Color.white)
                 .padding(.top, -9)
             
             TabView(selection: $viewNumber) {
                 MyHistoryView(root:$root, selection:$selection).tag(0)
-                MySavedView(root:$root, selection:$selection).tag(1)
-                MySavedPlaceView().tag(2)
+                MySavedPlaceView().tag(1)
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             Spacer()
