@@ -50,16 +50,23 @@ struct MyPageView: View {
                         }
                     .navigationBarBackButtonHidden(true)
                     .navigationBarTitleDisplayMode(.inline)
-                    .navigationTitle("내 마커")
+                    .navigationTitle("나만의 맛집 지도")
                     .backButtonArrow()
                     }
                 } label: {
                     HStack {
                         Image(systemName: "map")
-                        Text("내 마커")
-                            .font(.pretendardRegular14)
+                        Text("나만의 맛집 지도")
+                            .font(.pretendardSemiBold16)
                     }
-                    .foregroundColor(.primary)
+                    .foregroundColor(.white)
+                    .frame(width: .screenWidth * 0.9, height: 50)
+                    .background(Color.privateColor)
+                    .cornerRadius(7)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 7)
+                            .stroke(Color.privateColor, lineWidth: 2)
+                    )
                 }
                 .frame(width: .screenWidth*0.5)
             }
@@ -72,6 +79,7 @@ struct MyPageView: View {
                         Spacer()
                         viewNumber == 0 ? Image( systemName: "location.fill") : Image (systemName: "location")
                         Text("내 피드")
+                            .font(.pretendardMedium16)
                         Spacer()
                     }
                     .font(.pretendardRegular12)
@@ -88,6 +96,7 @@ struct MyPageView: View {
                         Spacer()
                         viewNumber == 1 ? Image(systemName: "pin.fill") : Image (systemName: "pin")
                         Text("저장한 장소")
+                            .font(.pretendardMedium16)
                         Spacer()
                     }
                     .font(.pretendardRegular12)
@@ -99,17 +108,14 @@ struct MyPageView: View {
             }
             .padding(.top, 20)
             
-            Divider()
-                .background(Color.white)
-                .padding(.top, -9)
-            
             TabView(selection: $viewNumber) {
                 MyHistoryView(root:$root, selection:$selection).tag(0)
                 MySavedPlaceView().tag(1)
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .padding(.top, -8)
+            
             Spacer()
-               
         }
         .onAppear{
             Task {
