@@ -8,18 +8,19 @@
 import SwiftUI
 
 struct MyPageView: View {
+    
+    @ObservedObject var postCoordinator: PostCoordinator = PostCoordinator.shared
+    
     @EnvironmentObject private var userStore: UserStore
     @EnvironmentObject private var feedStore: FeedStore
     @EnvironmentObject private var followStore: FollowStore
-    
-    @Environment(\.colorScheme) var colorScheme
-    
-    @ObservedObject var postCoordinator: PostCoordinator = PostCoordinator.shared
     
     @Binding var root: Bool
     @Binding var selection: Int
     /// 각 버튼을 누르면 해당 화면을 보여주는 bool값
     @State var viewNumber: Int = 0
+    
+    @State private var filteredFeeds: [MyFeed] = []
     
     var body: some View {
         NavigationStack {
@@ -47,6 +48,9 @@ struct MyPageView: View {
                         .sheet(isPresented: $postCoordinator.showMyMarkerDetailView) {
                             MapFeedSheetView(feed: feedStore.feedList.filter { $0.address == postCoordinator.currentFeedId })
                                 .presentationDetents([.height(.screenHeight * 0.55)])
+                        }
+                        .onAppear {
+                            print("PostNaverMap")
                         }
                     .navigationBarBackButtonHidden(true)
                     .navigationBarTitleDisplayMode(.inline)
@@ -123,7 +127,7 @@ struct MyPageView: View {
                     await followStore.fetchFollowerFollowingList(userStore.user.email)
                 }
                 postCoordinator.checkIfLocationServicesIsEnabled()
-                PostCoordinator.shared.myFeedList = userStore.myFeedList
+                PostCoordinator.shared.myFeedList = userStore.myFeedAndSavedList
                 postCoordinator.makeOnlyMyFeedMarkers()
             }
         }
