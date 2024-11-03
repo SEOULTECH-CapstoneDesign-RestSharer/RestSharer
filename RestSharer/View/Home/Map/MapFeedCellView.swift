@@ -50,7 +50,32 @@ struct MapFeedCellView: View {
                         .font(.pretendardRegular12)
                         .foregroundColor(.primary.opacity(0.8))
                 }
+                
                 Spacer()
+                
+                if feed.writerNickname != userStore.user.nickname {
+                    Button {
+                        if (userStore.user.bookmark.contains("\(feed.id)")) {
+                            userStore.deletePlace(feed)
+                            userStore.user.bookmark.removeAll { $0 == "\(feed.id)" }
+                            userStore.updateUser(user: userStore.user)
+                            userStore.clickSavedCancelPlaceToast = true
+                            isChangePlaceColor.toggle()
+                        } else {
+                            userStore.savePlace(feed) //장소 저장 로직(사용가능)
+                            userStore.user.bookmark.append("\(feed.id)")
+                            userStore.updateUser(user: userStore.user)
+                            userStore.clickSavedPlaceToast = true
+                            isChangePlaceColor.toggle()
+                        }
+                    } label: {
+                        Image(userStore.user.bookmark.contains("\(feed.id)") ? "pin_fill": "pin")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 30)
+                            .padding(.horizontal, 20)
+                    }
+                }
             }
             .padding(.top, 15)
             .padding(.leading, 20)
@@ -78,77 +103,50 @@ struct MapFeedCellView: View {
                         .font(.pretendardRegular16)
                         .foregroundColor(.primary)
                     
-                    Spacer()
-                    if feed.writerNickname != userStore.user.nickname {
-                        HStack {
-                            Spacer()
-                            Button {
-                                if (userStore.user.bookmark.contains("\(feed.id)")) {
-                                    userStore.deletePlace(feed)
-                                    userStore.user.bookmark.removeAll { $0 == "\(feed.id)" }
-                                    userStore.updateUser(user: userStore.user)
-                                    userStore.clickSavedCancelPlaceToast = true
-                                    isChangePlaceColor.toggle()
-                                } else {
-                                    userStore.savePlace(feed) //장소 저장 로직(사용가능)
-                                    userStore.user.bookmark.append("\(feed.id)")
-                                    userStore.updateUser(user: userStore.user)
-                                    userStore.clickSavedPlaceToast = true
-                                    isChangePlaceColor.toggle()
-                                }
-                            } label: {
-                                Image(systemName: userStore.user.bookmark.contains("\(feed.id)") ? "pin.fill": "pin")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 15)
-                                    .padding(.horizontal, 10)
-                                    .foregroundColor(isChangePlaceColor ? .privateColor : .white)
-                                    .foregroundColor(userStore.user.bookmark.contains("\(feed.id)") ? .privateColor : .primary)
-                            }
-                            Button {
-                                if(userStore.user.myFeed.contains("\(feed.id)")) {
-                                    userStore.deleteSavedFeed(feed)
-                                    userStore.user.myFeed.removeAll { $0 == "\(feed.id)" }
-                                    userStore.updateUser(user: userStore.user)
-                                    userStore.clickSavedCancelFeedToast = true
-                                } else {
-                                    userStore.saveFeed(feed) //장소 저장 로직(사용가능)
-                                    userStore.user.myFeed.append("\(feed.id)")
-                                    userStore.updateUser(user: userStore.user)
-                                    userStore.clickSavedFeedToast = true
-                                }
-                            } label: {
-                                if colorScheme == ColorScheme.dark {
-                                    Image(userStore.user.myFeed.contains("\(feed.id)") ? "bookmark_fill" : "bookmark_dark")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 20)
-                                        .padding(.trailing, 5)
-                                } else {
-                                    Image(userStore.user.myFeed.contains( "\(feed.id)" ) ? "bookmark_fill" : "bookmark_light")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 20)
-                                        .padding(.trailing, 5)
-                                }
-                            }
-                            
-                            Button {
-                                withAnimation {
-                                    isShowingMessageTextField.toggle()
-                                }
-                            } label: {
-                                Image(systemName: isShowingMessageTextField ? "paperplane.fill" : "paperplane")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 20)
-                                    .foregroundColor(isShowingMessageTextField ? .privateColor : .white)
-                            }
-                        }
-                        .font(.pretendardMedium24)
-                        .foregroundColor(.primary)
-                        .padding(.trailing, 10)
-                    }
+//                    Spacer()
+//                    if feed.writerNickname != userStore.user.nickname {
+//                        HStack {
+//                            Spacer()
+//                            Button {
+//                                if (userStore.user.bookmark.contains("\(feed.id)")) {
+//                                    userStore.deletePlace(feed)
+//                                    userStore.user.bookmark.removeAll { $0 == "\(feed.id)" }
+//                                    userStore.updateUser(user: userStore.user)
+//                                    userStore.clickSavedCancelPlaceToast = true
+//                                    isChangePlaceColor.toggle()
+//                                } else {
+//                                    userStore.savePlace(feed) //장소 저장 로직(사용가능)
+//                                    userStore.user.bookmark.append("\(feed.id)")
+//                                    userStore.updateUser(user: userStore.user)
+//                                    userStore.clickSavedPlaceToast = true
+//                                    isChangePlaceColor.toggle()
+//                                }
+//                            } label: {
+//                                Image(userStore.user.bookmark.contains("\(feed.id)") ? "pin_fill": "pin")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .frame(width: 15)
+//                                    .padding(.horizontal, 10)
+//                                    .foregroundColor(isChangePlaceColor ? .privateColor : .black)
+//                                    .foregroundColor(userStore.user.bookmark.contains("\(feed.id)") ? .privateColor : .primary)
+//                            }
+//                            
+//                            Button {
+//                                withAnimation {
+//                                    isShowingMessageTextField.toggle()
+//                                }
+//                            } label: {
+//                                Image(systemName: isShowingMessageTextField ? "paperplane.fill" : "paperplane")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .frame(width: 20)
+//                                    .foregroundColor(isShowingMessageTextField ? .privateColor : .white)
+//                            }
+//                        }
+//                        .font(.pretendardMedium24)
+//                        .foregroundColor(.primary)
+//                        .padding(.trailing, 10)
+//                    }
                 }
                 Spacer()
             }
@@ -165,9 +163,8 @@ struct MapFeedCellView: View {
                 }
                 .padding(.horizontal, 20)
             }
-            
-            Divider()
-                .padding(.vertical, 10)
+//            Divider()
+//                .padding(.vertical, 10)
         }
     }
 }
