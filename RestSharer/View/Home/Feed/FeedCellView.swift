@@ -238,8 +238,8 @@ struct FeedCellView: View {
                         if message != "" {
                             chatStore.myEmail = userStore.user.email
                             chatStore.myNickname = userStore.user.nickname
-                            chatStore.otherEmail = "cartman2540@gmail.com"
-                            chatStore.otherNickname = "new"
+                            chatStore.otherEmail = feed.writerEmail
+                            chatStore.otherNickname = feed.writerNickname
                             chatStore.sendMessage(text: message, senderNickname: userStore.user.nickname)
                             withAnimation {
                                 isShowingMessageTextField.toggle()
