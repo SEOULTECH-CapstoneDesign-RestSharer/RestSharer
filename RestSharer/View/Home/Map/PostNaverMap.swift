@@ -41,7 +41,7 @@ final class PostCoordinator: NSObject, ObservableObject,NMFMapViewCameraDelegate
     
     let view = NMFNaverMapView(frame: .zero)
     
-//    var locationSearchStore = LocationSearchStore.shared
+    var locationSearchStore = LocationSearchStore.shared
     var feedStore: FeedStore = FeedStore()
 //    var shopStore: ShopStore = ShopStore()
     var userStore: UserStore = UserStore()
@@ -205,15 +205,18 @@ final class PostCoordinator: NSObject, ObservableObject,NMFMapViewCameraDelegate
     
     func makeOnlyMyFeedMarkers() {
         
+        print("makeMarkers")
+        print("feedList: \(myFeedList)")
+        
         removeAllMarkers()
         
         var tempMarkers: [NMFMarker] = []
         
         for feedMarker in myFeedList {
             let marker = NMFMarker()
-//            let lat = locationSearchStore.formatCoordinates(feedMarker.mapy, 2) ?? ""
-//            let lng = locationSearchStore.formatCoordinates(feedMarker.mapx, 3) ?? ""
-//            coord = NMGLatLng(lat: Double(lat) ?? 0, lng: Double(lng) ?? 0)
+            let lat = locationSearchStore.formatCoordinates(feedMarker.mapy, 2) ?? ""
+            let lng = locationSearchStore.formatCoordinates(feedMarker.mapx, 3) ?? ""
+            coord = NMGLatLng(lat: Double(lat) ?? 0, lng: Double(lng) ?? 0)
             
             marker.position = NMGLatLng(lat: coord.lat, lng: coord.lng )
             marker.captionRequestedWidth = 100 // 마커 캡션 너비 지정

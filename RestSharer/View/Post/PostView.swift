@@ -104,9 +104,10 @@ struct PostView: View {
                     
                     //MARK: 내용
                     TextMaster(text: $text, isFocused: $isTextMasterFocused, maxLine: minLine, fontSize: fontSize, placeholder: textPlaceHolder)
-                    
                         .padding(.trailing, 10)
+                    
                     Divider()
+                    
                     //MARK: 장소
                     VStack {
                         Button {
@@ -129,9 +130,9 @@ struct PostView: View {
                     HStack {
                         VStack(alignment: .leading) {
                             if searchResult.title.isEmpty && postCoordinator.newMarkerTitle.isEmpty {
-                                Text("장소를 선택해주세요.")
+                                Text("이곳을 눌러 장소를 검색해주세요")
                                     .font(.pretendardRegular16)
-                                    .foregroundColor(Color.privateColor)
+                                    .foregroundColor(.secondary)
                                     .padding(.bottom, 5)
                                     .onTapGesture {
                                         showLocation = true
@@ -240,7 +241,7 @@ struct PostView: View {
                             } else {
                                 Text("최소 1장의 사진이 필요합니다!")
                                     .font(.pretendardRegular12)
-                                    .foregroundStyle(.red)
+                                    .foregroundColor(.secondary)
                             }
                         }
                     }

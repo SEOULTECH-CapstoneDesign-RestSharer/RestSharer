@@ -59,7 +59,7 @@ struct MapMainView: View {
                 
                 // fetchFollowerFollowingList가 완료된 후에 실행될 코드
                 filteredFeeds = feedStore.feedList.filter { feed in
-                    followStore.followingList.contains(feed.writerNickname)
+                    followStore.followingList.contains(feed.writerNickname) || feed.writerNickname == userStore.user.nickname
                 }
                 print("Filtered Feeds after update: \(filteredFeeds)")
 

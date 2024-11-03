@@ -95,7 +95,7 @@ struct ShopInfoCardView: View {
                         .resizable()
                         .frame(width: 25, height: 25)
                         .foregroundColor(Color(.private))
-                        .padding(.trailing,7)
+                        .padding(.trailing, 15)
                 }.disabled(isOtherUser)
             }
             Divider()

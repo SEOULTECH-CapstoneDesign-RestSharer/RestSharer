@@ -60,16 +60,16 @@ struct MainHomeView: View {
                         
                         Spacer()
                         
-                        NavigationLink {
-                            ChatRoomListView()
-                        } label: {
-                            Image(systemName: "paperplane")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 22)
-                                .padding(.bottom, 10)
-                                .padding(.trailing, 10)
-                        }
+//                        NavigationLink {
+//                            ChatRoomListView()
+//                        } label: {
+//                            Image(systemName: "paperplane")
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(width: 22)
+//                                .padding(.bottom, 10)
+//                                .padding(.trailing, 10)
+//                        }
                     }
                     .frame(height: 50)
                 }
