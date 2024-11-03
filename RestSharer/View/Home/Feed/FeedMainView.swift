@@ -90,7 +90,7 @@ struct FeedMainView: View {
         print("Following list in filteredFeeds: \(followingList)")
 
         return feedStore.feedList.filter { feed in
-            let isFollowing = followingList.contains(feed.writerNickname)
+            let isFollowing = followingList.contains(feed.writerNickname) || feed.writerNickname == userStore.user.nickname
             print("Is following \(feed.writerNickname): \(isFollowing)")
             return isFollowing
         }

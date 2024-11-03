@@ -147,31 +147,6 @@ struct FeedCellView: View {
             VStack {
                 HStack {
                     HStack {
-                        Button {
-                            if (userStore.user.bookmark.contains("\(feed.id)")) {
-                                userStore.deletePlace(feed)
-                                userStore.user.bookmark.removeAll { $0 == "\(feed.id)" }
-                                userStore.updateUser(user: userStore.user)
-                                userStore.clickSavedCancelPlaceToast = true
-                                isChangePlaceColor.toggle()
-                            } else {
-                                userStore.savePlace(feed) //장소 저장 로직(사용가능)
-                                userStore.user.bookmark.append("\(feed.id)")
-                                userStore.updateUser(user: userStore.user)
-                                userStore.clickSavedPlaceToast = true
-                                isChangePlaceColor.toggle()
-                            }
-                        } label: {
-                            Image(systemName: userStore.user.bookmark.contains("\(feed.id)") ? "pin.fill": "pin")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 15)
-                                .padding(.horizontal, 10)
-                                .foregroundColor(isChangePlaceColor ? .privateColor : .white)
-                                .foregroundColor(userStore.user.bookmark.contains("\(feed.id)") ? .privateColor : .primary)
-                        }
-                        .padding(.leading, 20)
-                        
                         //MARK: 회색 박스 안 주소와 가게명
                         Button {
                             isShowingLocation = true
@@ -194,8 +169,8 @@ struct FeedCellView: View {
                                     .foregroundColor(.primary)
                                     .multilineTextAlignment(.leading)
                             }
-                            .padding(.leading, 10)
                         }
+                        .padding(.leading, 20)
                     }
                     
                     .sheet(isPresented: $isShowingLocation) {
@@ -208,17 +183,42 @@ struct FeedCellView: View {
                     HStack {
                         if feed.writerNickname != userStore.user.nickname {
                             Button {
-                                withAnimation {
-                                    isShowingMessageTextField.toggle()
+                                if (userStore.user.bookmark.contains("\(feed.id)")) {
+                                    userStore.deletePlace(feed)
+                                    userStore.user.bookmark.removeAll { $0 == "\(feed.id)" }
+                                    userStore.updateUser(user: userStore.user)
+                                    userStore.clickSavedCancelPlaceToast = true
+                                    isChangePlaceColor.toggle()
+                                } else {
+                                    userStore.savePlace(feed) //장소 저장 로직(사용가능)
+                                    userStore.user.bookmark.append("\(feed.id)")
+                                    userStore.updateUser(user: userStore.user)
+                                    userStore.clickSavedPlaceToast = true
+                                    isChangePlaceColor.toggle()
                                 }
                             } label: {
-                                Image(systemName: isShowingMessageTextField ? "paperplane.fill" : "paperplane")
+                                Image(userStore.user.bookmark.contains("\(feed.id)") ? "pin_fill": "pin")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 20)
-                                    .foregroundColor(isShowingMessageTextField ? .privateColor : .white)
+                                    .frame(width: 25)
+                                    .padding(.horizontal, 10)
+                                    .foregroundColor(isChangePlaceColor ? .privateColor : .white)
+                                    .foregroundColor(userStore.user.bookmark.contains("\(feed.id)") ? .privateColor : .primary)
                             }
                             .padding(.trailing, 10)
+                            
+//                            Button {
+//                                withAnimation {
+//                                    isShowingMessageTextField.toggle()
+//                                }
+//                            } label: {
+//                                Image(systemName: isShowingMessageTextField ? "paperplane.fill" : "paperplane")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .frame(width: 20)
+//                                    .foregroundColor(isShowingMessageTextField ? .privateColor : .white)
+//                            }
+//                            .padding(.trailing, 10)
                         }
                     }
                     .font(.pretendardMedium24)
@@ -238,8 +238,8 @@ struct FeedCellView: View {
                         if message != "" {
                             chatStore.myEmail = userStore.user.email
                             chatStore.myNickname = userStore.user.nickname
-                            chatStore.otherEmail = "cartman2540@gmail.com"
-                            chatStore.otherNickname = "new"
+                            chatStore.otherEmail = feed.writerEmail
+                            chatStore.otherNickname = feed.writerNickname
                             chatStore.sendMessage(text: message, senderNickname: userStore.user.nickname)
                             withAnimation {
                                 isShowingMessageTextField.toggle()
@@ -257,7 +257,7 @@ struct FeedCellView: View {
                     .foregroundStyle(Color.primary)
                     .multilineTextAlignment(.leading)
                     .padding(.top, 10)
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, 20)
             }
             
             //        VStack(alignment: .leading) {
