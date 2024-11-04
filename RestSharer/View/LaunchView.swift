@@ -25,7 +25,10 @@ struct LaunchView: View {
         } else {
             if isloading {
                 ZStack {
-                    Text("RestSharer")
+                    Image("Splash_image")
+                        .resizable()
+                        .frame(width: .screenWidth)
+                        .aspectRatio(contentMode: .fit)
                 }
                 .edgesIgnoringSafeArea(.all)
                 .onAppear {
