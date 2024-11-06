@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WebKit
 
 enum Field {
     case nickName
@@ -18,7 +19,7 @@ struct SignUpView: View {
     @State private var checkNicknameColor: Color = Color.red
 
     @State private var nickName: String = ""
-    @State private var phoneNumber: String = ""
+    @State private var phoneNumber: String = "01012345678"
     @State private var cautionNickname: String = ""
     
     @State private var isHiddenCheckButton: Bool = false
@@ -26,6 +27,7 @@ struct SignUpView: View {
     @State private var isNicknameValid: Bool = true
     
     @State private var agreeToPrivacyPolicy: Bool = false  // 개인정보 처리방침 동의 상태
+    @State private var showPrivacyPolicySheet = false
 
     @FocusState private var focusField: Field?
     
@@ -88,21 +90,21 @@ struct SignUpView: View {
                 }
                 
                 //MARK: 전화번호
-                Text("전화번호")
-                    .font(.pretendardBold14)
-                    .foregroundStyle(.primary)
-                TextField("ex) 01098765432 (-)없이", text: $phoneNumber)
-                    .disableAutocorrection(true) // 자동수정 비활성화
-                    .frame(width: .screenWidth*0.90, height: .screenHeight*0.05)
-                    .padding(.leading, 5)
-                    .background(Color.lightGrayColor)
-                    .cornerRadius(7)
-                    .keyboardType(.numberPad)
-                    .onChange(of: phoneNumber) { newValue in
-                        if newValue.count > phoneNumberMaximumCount {
-                            phoneNumber = String(newValue.prefix(phoneNumberMaximumCount))
-                        }
-                    }
+//                Text("전화번호")
+//                    .font(.pretendardBold14)
+//                    .foregroundStyle(.primary)
+//                TextField("ex) 01012345678 (-)없이", text: $phoneNumber)
+//                    .disableAutocorrection(true) // 자동수정 비활성화
+//                    .frame(width: .screenWidth*0.90, height: .screenHeight*0.05)
+//                    .padding(.leading, 5)
+//                    .background(Color.lightGrayColor)
+//                    .cornerRadius(7)
+//                    .keyboardType(.numberPad)
+//                    .onChange(of: phoneNumber) { newValue in
+//                        if newValue.count > phoneNumberMaximumCount {
+//                            phoneNumber = String(newValue.prefix(phoneNumberMaximumCount))
+//                        }
+//                    }
 
                 // MARK: 개인정보 수집 약관 동의
                 HStack {
@@ -111,6 +113,10 @@ struct SignUpView: View {
                             agreeToPrivacyPolicy.toggle()
                         }
                     Text("개인정보 처리방침에 동의합니다.")
+                        .onTapGesture {
+                            // 웹사이트를 시트 형식으로 열기 위한 상태 업데이트
+                            showPrivacyPolicySheet = true
+                        }
                 }
                 .padding(.top, 10)
             }
@@ -131,6 +137,15 @@ struct SignUpView: View {
             Spacer()
         }
         .padding(.horizontal, 12)
+        
+        // 웹사이트를 시트 형식으로 열기
+        .sheet(isPresented: $showPrivacyPolicySheet) {
+            if let url = URL(string: "https://fluorescent-potassium-a57.notion.site/RestSharer-1339e588c65d809e8f9aecbd7a3c0877?pvs=4") {
+                WebView(url: url)
+            } else {
+                Text("유효하지 않은 URL입니다.")
+            }
+        }
     }
     
     // MARK: 닉네임 유효성 체크 함수
@@ -159,5 +174,18 @@ struct SignUpView_Previews: PreviewProvider {
         SignUpView()
             .environmentObject(UserStore())
             .environmentObject(AuthStore())
+    }
+}
+
+struct WebView: UIViewRepresentable {
+    let url: URL
+
+    func makeUIView(context: Context) -> WKWebView {
+        return WKWebView()
+    }
+
+    func updateUIView(_ uiView: WKWebView, context: Context) {
+        let request = URLRequest(url: url)
+        uiView.load(request)
     }
 }
