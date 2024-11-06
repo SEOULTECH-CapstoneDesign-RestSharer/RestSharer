@@ -33,6 +33,7 @@ struct FeedCellView: View {
     @State private var isFeedUpdateViewPresented: Bool = false
     @State private var isActionSheetPresented = false // 액션 시트 표시 여부를 관리하는 상태 변수
     @State private var isShowingLocation: Bool = false
+    @State private var isShowingReportForm: Bool = false
     @State private var isChangePlaceColor: Bool = false
     @State private var isExpanded: Bool = false //글 더보기
     @State private var isTruncated: Bool = false//글 더보기
@@ -70,55 +71,21 @@ struct FeedCellView: View {
                     }
                     Spacer()
                     
-//                    if isFollowing{
-//                        Text("Following")
-//                            .font(.pretendardRegular12)
-//                            .foregroundColor(.green)
-//                    }
-//                    else{
-//                        Text("Not Following")
-//                            .font(.pretendardRegular12)
-//                            .foregroundColor(.green)
-//                    }
-                    //MARK:  조건부로 FeedUpdateView 표시
-//                    HStack {
-//                        if feed.writerNickname == userStore.user.nickname {
-//                            Button(action: {
-//                                // 수정 및 삭제 옵션을 표시하는 액션 시트 표시
-//                                isActionSheetPresented.toggle()
-//                            }) {
-//                                Image(systemName: "ellipsis")
-//                                    .resizable()
-//                                    .aspectRatio(contentMode: .fit)
-//                                    .frame(width: 15)
-//                                    .foregroundColor(.primary)
-//                                    .padding(.top, 5)
-//                            }
-//                            .actionSheet(isPresented: $isActionSheetPresented) {
-//                                ActionSheet(
-//                                    title: Text("선택하세요"),
-//                                    buttons: [
-//                                        .default(Text("수정")) {
-//                                            //MARK: FeedCellView에서 수정하는 곳
-//                                            isFeedUpdateViewPresented = true
-//                                        },
-//                                        .destructive(Text("삭제")) {
-//                                            print("삭제")
-//                                            userStore.deleteMyFeed(feed)
-//                                            feedStore.deleteFeed(feedId: feed.id)
-//                                            userStore.updateUser(user: userStore.user)
-//                                            feedStore.deleteToast = true
-//                                        },
-//                                        //.cancel() // 취소 버튼
-//                                        .cancel(Text("취소"))
-//                                    ]
-//                                )
-//                            }
-//                            .fullScreenCover(isPresented: $isFeedUpdateViewPresented) {
-//                                FeedUpdateView(root:$root, selection: $selection, isFeedUpdateViewPresented: $isFeedUpdateViewPresented, searchResult: $searchResult, feed:feed)
-//                            }
-//                        }
-//                    }
+                    // 신고하기 버튼
+                    Button(action: {
+                        isShowingReportForm.toggle()
+                    }) {
+                        Image(systemName: "ellipsis")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 15)
+                            .foregroundColor(.primary)
+                            .padding(.top, 5)
+                    }
+                    .padding(.trailing, 10)
+                    .sheet(isPresented: $isShowingReportForm) {
+                        WebView(url: URL(string: "https://forms.gle/We82DBUqiDvt1QXD9")!)
+                    }
                 }
                 //MARK:  사진과 닉네임 사이 간격 조정 20->10
                 .padding(.leading, 20)

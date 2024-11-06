@@ -20,123 +20,108 @@ struct OtherProfileView: View {
     @State var viewNumber: Int = 0
     @State var selection: Int = 1
     @State private var root: Bool = false
+    @State private var isShowingReportForm: Bool = false
+    
     let user:User
+    
     var body: some View {
         NavigationStack {
-            OtherInfoView(followerList: followStore.followerList, followingList: followStore.followingList, user: user)
-                .padding(.top,-20.0)
-                .padding(.bottom, 20)
-            HStack {
-                NavigationLink {
-                    PostNaverMap(currentFeedId: $postCoordinator.currentFeedId, showMarkerDetailView: $postCoordinator.showMarkerDetailView, showMyMarkerDetailView: $postCoordinator.showMyMarkerDetailView, coord: $postCoordinator.coord, tappedLatLng: $postCoordinator.tappedLatLng)
-                    .sheet(isPresented: $postCoordinator.showMyMarkerDetailView) {
-                        MapFeedSheetView(feed: feedStore.feedList.filter { $0.address == postCoordinator.currentFeedId })
-                            .presentationDetents([.height(.screenHeight * 0.55)])
+            VStack {
+                OtherInfoView(followerList: followStore.followerList, followingList: followStore.followingList, user: user)
+                    .padding(.top,-20.0)
+                    .padding(.bottom, 20)
+                HStack {
+                    NavigationLink {
+                        PostNaverMap(currentFeedId: $postCoordinator.currentFeedId, showMarkerDetailView: $postCoordinator.showMarkerDetailView, showMyMarkerDetailView: $postCoordinator.showMyMarkerDetailView, coord: $postCoordinator.coord, tappedLatLng: $postCoordinator.tappedLatLng)
+                            .sheet(isPresented: $postCoordinator.showMyMarkerDetailView) {
+                                MapFeedSheetView(feed: feedStore.feedList.filter { $0.address == postCoordinator.currentFeedId })
+                                    .presentationDetents([.height(.screenHeight * 0.55)])
+                            }
+                            .navigationBarBackButtonHidden(true)
+                            .navigationBarTitleDisplayMode(.inline)
+                            .navigationTitle("\(user.nickname)님의 마커")
+                            .backButtonArrow()
+                    } label: {
+                        HStack {
+                            Image(systemName: "map")
+                                .foregroundStyle(Color.privateColor)
+                            Text("\(user.nickname)님의 마커 보기")
+                                .font(.pretendardRegular14)
+                        }
+                        .padding()
+                        .frame(width: .screenWidth*0.9)
+                        .foregroundColor(.primary)
                     }
-                    .navigationBarBackButtonHidden(true)
-                    .navigationBarTitleDisplayMode(.inline)
-                    .navigationTitle("\(user.nickname)님의 마커")
-                    .backButtonArrow()
-                } label: {
-                    HStack {
-                        Image(systemName: "map")
-                            .foregroundStyle(Color.privateColor)
-                        Text("\(user.nickname)님의 마커 보기")
-                            .font(.pretendardRegular14)
-                    }
-                    .padding()
                     .frame(width: .screenWidth*0.9)
-                    .foregroundColor(.primary)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.privateColor,lineWidth: 2)
+                            .opacity(0.4)
+                    )
                 }
-                .frame(width: .screenWidth*0.9)
-                .overlay(
-                     RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.privateColor,lineWidth: 2)
-                        .opacity(0.4)
-                   )
-
-            }
-            HStack {
-                Button {
-
-                    viewNumber = 0
-                }label: {
-                    HStack {
-                        Spacer()
-                        viewNumber == 0 ? Image( systemName: "location.fill") : Image (systemName: "location")
-                        Text("피드")
-                        Spacer()
+                
+                HStack {
+                    Button {
+                        viewNumber = 0
+                    }label: {
+                        HStack {
+                            Spacer()
+                            viewNumber == 0 ? Image( systemName: "location.fill") : Image (systemName: "location")
+                            Text("피드")
+                            Spacer()
+                        }
+                        .font(.pretendardRegular12)
+                        .foregroundColor(viewNumber == 0 ? .privateColor : .primary)
+                        //                    .frame(width: .screenWidth*0.3)
+                        .padding(.bottom, 15)
+                        .padding([.trailing,.leading], 0)
+                        .modifier(YellowBottomBorder(showBorder: viewNumber == 0))
                     }
-                    .font(.pretendardRegular12)
-                    .foregroundColor(viewNumber == 0 ? .privateColor : .primary)
-//                    .frame(width: .screenWidth*0.3)
-                    .padding(.bottom, 15)
-                    .padding([.trailing,.leading], 0)
-                    .modifier(YellowBottomBorder(showBorder: viewNumber == 0))
-                }
-//                Spacer()
-//                Button {
-//                    viewNumber = 1
-//                }label: {
-//                    HStack {
-//                        if viewNumber == 1 {
-//                            Image("bookmark_fill")
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(width: 15)
-//                        } else {
-//                            if colorScheme == ColorScheme.dark {
-//                                Image ("bookmark_dark")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(width: 15)
-//                            } else {
-//                                Image ("bookmark_light")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(width: 15)
-//                            }
-//                        }
-//                        Text("저장한 피드")
-//                    }
-//                    .font(.pretendardRegular12)
-//                    .foregroundColor(viewNumber == 1 ? .privateColor : .primary)
-//                    .frame(width: .screenWidth*0.3)
-//                    .padding(.bottom, 15)
-//                    .modifier(YellowBottomBorder(showBorder: viewNumber == 1))
-//                }
-//                Spacer()
-                Button {
-                    viewNumber = 2
-                }label: {
-                    HStack {
-                        Spacer()
-                        viewNumber == 2 ? Image(systemName: "pin.fill") : Image (systemName: "pin")
-                        Text("저장한 장소")
-                        Spacer()
+                    
+                    Button {
+                        viewNumber = 2
+                    }label: {
+                        HStack {
+                            Spacer()
+                            viewNumber == 2 ? Image(systemName: "pin.fill") : Image (systemName: "pin")
+                            Text("저장한 장소")
+                            Spacer()
+                        }
+                        .font(.pretendardRegular12)
+                        .foregroundColor(viewNumber == 2 ? .privateColor : .primary)
+                        //                    .frame(width: .screenWidth*0.3)
+                        .padding(.bottom, 15)
+                        .padding([.trailing,.leading], 0)
+                        .modifier(YellowBottomBorder(showBorder: viewNumber == 2))
                     }
-                    .font(.pretendardRegular12)
-                    .foregroundColor(viewNumber == 2 ? .privateColor : .primary)
-//                    .frame(width: .screenWidth*0.3)
-                    .padding(.bottom, 15)
-                    .padding([.trailing,.leading], 0)
-                    .modifier(YellowBottomBorder(showBorder: viewNumber == 2))
+                    
+                    Spacer()
                 }
+                .padding(.top, 20)
+                Divider()
+                    .background(Color.white)
+                    .padding(.top, -9)
+                
+                TabView(selection: $viewNumber) {
+                    OtherHistoryView(root:$root, selection:$selection, user:user).tag(0)
+                    OtherSavedPlaceView(user: user).tag(2)
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 Spacer()
+                
             }
-            .padding(.top, 20)
-            Divider()
-                .background(Color.white)
-                .padding(.top, -9)
-            
-            TabView(selection: $viewNumber) {
-                OtherHistoryView(root:$root, selection:$selection, user:user).tag(0)
-                OtherSavedView(root:$root, selection:$selection, user: user).tag(1)
-                OtherSavedPlaceView(user: user).tag(2)
+            .navigationBarItems(trailing: Button(action: {
+                isShowingReportForm.toggle()
+            }) {
+                Image(systemName: "ellipsis")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 15)
+                    .foregroundColor(.primary)
             }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            Spacer()
-               
+            .sheet(isPresented: $isShowingReportForm) {
+                WebView(url: URL(string: "https://forms.gle/We82DBUqiDvt1QXD9")!)
+            })
         }
         .navigationBarBackButtonHidden(true)
         .navigationTitle("\(user.nickname)")
