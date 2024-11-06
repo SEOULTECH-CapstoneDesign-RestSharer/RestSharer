@@ -21,7 +21,10 @@ struct LoginView: View {
             Spacer()
             
             VStack(alignment: .center, spacing: 10) {
-                Text("RestSharer")
+                Image("RestSharer")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: .screenWidth * 0.6)
                 
                 HStack {
                     ZStack {
@@ -32,7 +35,6 @@ struct LoginView: View {
                             .font(.pretendardBold14)
                             .foregroundStyle(.primary)
                             .padding()
-                            .background(Color.black)
                     }
                 }
                 .padding()
