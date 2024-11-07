@@ -72,19 +72,38 @@ struct FeedCellView: View {
                     Spacer()
                     
                     // 신고하기 버튼
-                    Button(action: {
-                        isShowingReportForm.toggle()
-                    }) {
-                        Image(systemName: "ellipsis")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 15)
-                            .foregroundColor(.primary)
-                            .padding(.top, 5)
-                    }
-                    .padding(.trailing, 10)
-                    .sheet(isPresented: $isShowingReportForm) {
-                        WebView(url: URL(string: "https://forms.gle/We82DBUqiDvt1QXD9")!)
+                    if userStore.user.nickname != feed.writerNickname {
+                        Button {
+                            isShowingReportForm.toggle()
+                        } label: {
+                            Image(systemName: "ellipsis")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 15)
+                                .foregroundColor(.primary)
+                                .padding(.top, 5)
+                                .padding(.trailing, 10)
+                        }
+                        .sheet(isPresented: $isShowingReportForm) {
+                            BlockUserSheet(userStore: userStore, nickname: feed.writerNickname) {
+                                isShowingReportForm.toggle()
+                            }
+                            .presentationDetents([.height(.screenHeight * 0.3), .medium])
+                        }
+                        
+                        
+//                        .actionSheet(isPresented: $isShowingReportForm) {
+//                            ActionSheet(title: Text("차단하기"), message: Text("이 사용자를 차단하시겠습니까?"), buttons: [
+//                                .destructive(Text("차단하기")) {
+//                                    Task {
+//                                        await userStore.blockUser(nickname: feed.writerNickname)
+//                                    }
+//                                    userStore.blockedUsers.append(feed.writerNickname)
+//                                    dismiss()
+//                                },
+//                                .cancel()
+//                            ])
+//                        }
                     }
                 }
                 //MARK:  사진과 닉네임 사이 간격 조정 20->10
@@ -239,5 +258,47 @@ struct FeedCellView: View {
             
             Divider()
         }
+    }
+}
+
+struct BlockUserSheet: View {
+    @ObservedObject var userStore: UserStore
+    var nickname: String
+    var onDismiss: () -> Void
+
+    var body: some View {
+        VStack(spacing: 20) {
+            Text("차단하기")
+            
+            Text("이 사용자를 차단하시겠습니까?")
+
+            Button(role: .destructive, action: {
+                Task {
+                    await userStore.blockUser(nickname: nickname)
+                    
+                    await userStore.fetchBlockedUsers()
+                }
+                onDismiss()
+            }) {
+                Text("차단하기")
+                    .font(.headline)
+                    .foregroundStyle(Color.white)
+                    .padding()
+                    .frame(width: .screenWidth * 0.8, height: 50)
+                    .background(Color.privateColor)
+                    .cornerRadius(10)
+            }
+
+            Button("취소", role: .cancel) {
+                onDismiss()
+            }
+            .frame(width: .screenWidth * 0.8, height: 50)
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.gray)
+            )
+        }
+        .padding()
     }
 }

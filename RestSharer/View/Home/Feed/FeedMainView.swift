@@ -11,7 +11,7 @@ struct FeedMainView: View {
     var body: some View {
         ScrollView {
             // feedList에서 팔로잉한 작성자의 피드만 필터링
-            ForEach(filteredFeeds) { feed in
+            ForEach(filteredFeeds.filter { !userStore.blockedUsers.contains($0.writerNickname) }) { feed in
                 FeedCellView(feed: feed, root: $root, selection: $selection)
                     .padding(.bottom, 15)
             }
@@ -24,6 +24,9 @@ struct FeedMainView: View {
             Task {
                 await followStore.fetchFollowerFollowingList(userStore.user.email)
                 print("Following list after fetch in FeedMainView: \(followStore.followingList)")
+                
+                // 차단 목록 가져오기
+                await userStore.fetchBlockedUsers()
             }
         }
         .popup(isPresented: $userStore.clickSavedFeedToast) {
@@ -85,16 +88,35 @@ struct FeedMainView: View {
     }
     
     // 팔로잉한 작성자의 피드만 필터링하는 함수
+//    var filteredFeeds: [MyFeed] {
+//        let followingList = followStore.followingList // followStore에서 팔로잉 리스트 가져옴
+//        print("Following list in filteredFeeds: \(followingList)")
+//
+//        return feedStore.feedList.filter { feed in
+//            let isFollowing = followingList.contains(feed.writerNickname) || feed.writerNickname == userStore.user.nickname
+//            print("Is following \(feed.writerNickname): \(isFollowing)")
+//            return isFollowing
+//        }
+//    }
+    
+    // 팔로잉한 작성자의 피드만 필터링하고 차단된 사용자는 제외
     var filteredFeeds: [MyFeed] {
-        let followingList = followStore.followingList // followStore에서 팔로잉 리스트 가져옴
-        print("Following list in filteredFeeds: \(followingList)")
-
+        let followingList = followStore.followingList
         return feedStore.feedList.filter { feed in
-            let isFollowing = followingList.contains(feed.writerNickname) || feed.writerNickname == userStore.user.nickname
-            print("Is following \(feed.writerNickname): \(isFollowing)")
-            return isFollowing
+            (followStore.followingList.contains(feed.writerNickname) || feed.writerNickname == userStore.user.nickname) &&
+            !userStore.blockedUsers.contains(feed.writerNickname)
         }
     }
+    
+//    // 팔로잉한 작성자의 피드만 필터링하고 차단된 사용자는 제외
+//    var filteredFeeds: [MyFeed] {
+//        let followingList = followStore.followingList
+//        return feedStore.feedList.filter { feed in
+//            let isFollowing = followingList.contains(feed.writerNickname) || feed.writerNickname == userStore.user.nickname
+//            let isNotBlocked = !userStore.blockedUsers.contains(feed.writerNickname)
+//            return isFollowing && isNotBlocked
+//        }
+//    }
 }
 
 struct FeedMainView_Previews: PreviewProvider {

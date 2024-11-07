@@ -102,51 +102,6 @@ struct MapFeedCellView: View {
                     Text("\(feed.contents)")
                         .font(.pretendardRegular16)
                         .foregroundColor(.primary)
-                    
-//                    Spacer()
-//                    if feed.writerNickname != userStore.user.nickname {
-//                        HStack {
-//                            Spacer()
-//                            Button {
-//                                if (userStore.user.bookmark.contains("\(feed.id)")) {
-//                                    userStore.deletePlace(feed)
-//                                    userStore.user.bookmark.removeAll { $0 == "\(feed.id)" }
-//                                    userStore.updateUser(user: userStore.user)
-//                                    userStore.clickSavedCancelPlaceToast = true
-//                                    isChangePlaceColor.toggle()
-//                                } else {
-//                                    userStore.savePlace(feed) //장소 저장 로직(사용가능)
-//                                    userStore.user.bookmark.append("\(feed.id)")
-//                                    userStore.updateUser(user: userStore.user)
-//                                    userStore.clickSavedPlaceToast = true
-//                                    isChangePlaceColor.toggle()
-//                                }
-//                            } label: {
-//                                Image(userStore.user.bookmark.contains("\(feed.id)") ? "pin_fill": "pin")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(width: 15)
-//                                    .padding(.horizontal, 10)
-//                                    .foregroundColor(isChangePlaceColor ? .privateColor : .black)
-//                                    .foregroundColor(userStore.user.bookmark.contains("\(feed.id)") ? .privateColor : .primary)
-//                            }
-//                            
-//                            Button {
-//                                withAnimation {
-//                                    isShowingMessageTextField.toggle()
-//                                }
-//                            } label: {
-//                                Image(systemName: isShowingMessageTextField ? "paperplane.fill" : "paperplane")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(width: 20)
-//                                    .foregroundColor(isShowingMessageTextField ? .privateColor : .white)
-//                            }
-//                        }
-//                        .font(.pretendardMedium24)
-//                        .foregroundColor(.primary)
-//                        .padding(.trailing, 10)
-//                    }
                 }
                 Spacer()
             }
@@ -163,8 +118,6 @@ struct MapFeedCellView: View {
                 }
                 .padding(.horizontal, 20)
             }
-//            Divider()
-//                .padding(.vertical, 10)
         }
     }
 }

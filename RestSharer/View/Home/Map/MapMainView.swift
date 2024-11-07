@@ -56,10 +56,16 @@ struct MapMainView: View {
             // 팔로잉 목록을 가져오는 비동기 작업
             Task {
                 await followStore.fetchFollowerFollowingList(userStore.user.email)
+                await userStore.fetchBlockedUsers()
                 
                 // fetchFollowerFollowingList가 완료된 후에 실행될 코드
+//                filteredFeeds = feedStore.feedList.filter { feed in
+//                    followStore.followingList.contains(feed.writerNickname) || feed.writerNickname == userStore.user.nickname
+//                }
+                // 팔로잉한 사용자와 본인의 피드만 필터링하고, 차단된 사용자는 제외
                 filteredFeeds = feedStore.feedList.filter { feed in
-                    followStore.followingList.contains(feed.writerNickname) || feed.writerNickname == userStore.user.nickname
+                    (followStore.followingList.contains(feed.writerNickname) || feed.writerNickname == userStore.user.nickname) &&
+                    !userStore.blockedUsers.contains(feed.writerNickname)
                 }
                 print("Filtered Feeds after update: \(filteredFeeds)")
 
