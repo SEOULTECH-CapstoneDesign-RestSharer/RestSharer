@@ -24,6 +24,7 @@ final class UserStore: ObservableObject {
     @Published var otherFeedList: [MyFeed] = []
     @Published var otherSavedFeedList: [MyFeed] = []
     @Published var otherSavedPlaceList: [MyFeed] = []
+    @Published var blockedUsers: [String] = []
     
     @Published var clickSavedFeedToast: Bool = false
     @Published var clickSavedPlaceToast: Bool = false
@@ -375,6 +376,37 @@ final class UserStore: ObservableObject {
                     }
                 }
             }
+    }
+    
+    func blockUser(nickname: String) async {
+        do {
+            let userDocRef = userCollection.document(user.email)
+            let blockedUsersCollectionRef = userDocRef.collection("BlockedUsers")
+            
+            // 차단된 사용자의 닉네임을 blockedUsers 컬렉션에 추가
+            try await blockedUsersCollectionRef.document(nickname).setData([
+                "nickname": nickname,
+                "timestamp": FieldValue.serverTimestamp() // 타임스탬프를 추가할 수 있음
+            ])
+            
+            blockedUsers.append(nickname) // 로컬 데이터 업데이트
+            print("\(nickname)을 차단 목록에 추가했습니다.")
+        } catch {
+            print("Error blocking user: \(error.localizedDescription)")
+        }
+    }
+    
+    // 차단된 사용자 목록 가져오기
+    func fetchBlockedUsers() async {
+        let blockedUsersRef = userCollection.document(user.email).collection("BlockedUsers")
+        
+        do {
+            let snapshot = try await blockedUsersRef.getDocuments()
+            blockedUsers = snapshot.documents.compactMap { $0.documentID }
+            print("차단된 사용자 목록: \(blockedUsers)")
+        } catch {
+            print("Error fetching blocked users: \(error.localizedDescription)")
+        }
     }
 }
 
