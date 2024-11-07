@@ -27,11 +27,19 @@ struct SignUpView: View {
     @State private var isNicknameValid: Bool = true
     
     @State private var agreeToPrivacyPolicy: Bool = false  // 개인정보 처리방침 동의 상태
+    @State private var agreeToServicePolicy: Bool = false  // 서비스 이용약관 동의 상태
     @State private var showPrivacyPolicySheet = false
+    @State private var showServicePolicySheet = false
 
     @FocusState private var focusField: Field?
     
     private let phoneNumberMaximumCount: Int = 11  /// 휴대폰 번호 최대 글자수
+    
+    private var allAgreement: Bool {
+        return agreeToPrivacyPolicy && agreeToServicePolicy && checkNickname ? true : false
+    }
+    
+    
 
     var body: some View {
         VStack {
@@ -112,10 +120,23 @@ struct SignUpView: View {
                         .onTapGesture {
                             agreeToPrivacyPolicy.toggle()
                         }
-                    Text("개인정보 처리방침에 동의합니다.")
+                    Text("(필수)개인정보 처리방침에 동의합니다.")
                         .onTapGesture {
                             // 웹사이트를 시트 형식으로 열기 위한 상태 업데이트
                             showPrivacyPolicySheet = true
+                        }
+                }
+                .padding(.top, 10)
+                
+                HStack {
+                    Image(systemName: agreeToServicePolicy ? "checkmark.square" : "square")
+                        .onTapGesture {
+                            agreeToServicePolicy.toggle()
+                        }
+                    Text("(필수)서비스 이용약관에 동의합니다.")
+                        .onTapGesture {
+                            // 웹사이트를 시트 형식으로 열기 위한 상태 업데이트
+                            showServicePolicySheet = true
                         }
                 }
                 .padding(.top, 10)
@@ -131,7 +152,7 @@ struct SignUpView: View {
                 Text("정보입력 완료하기")
             }
             .buttonStyle(.borderedProminent)
-            .disabled(!checkNickname || phoneNumber.count < phoneNumberMaximumCount || !agreeToPrivacyPolicy)
+            .disabled(!allAgreement)
             .padding()
             
             Spacer()
@@ -141,6 +162,15 @@ struct SignUpView: View {
         // 웹사이트를 시트 형식으로 열기
         .sheet(isPresented: $showPrivacyPolicySheet) {
             if let url = URL(string: "https://fluorescent-potassium-a57.notion.site/RestSharer-1339e588c65d809e8f9aecbd7a3c0877?pvs=4") {
+                WebView(url: url)
+            } else {
+                Text("유효하지 않은 URL입니다.")
+            }
+        }
+        
+        // 웹사이트를 시트 형식으로 열기
+        .sheet(isPresented: $showServicePolicySheet) {
+            if let url = URL(string: "https://fluorescent-potassium-a57.notion.site/RestSharer-1379e588c65d80a08ba0cc8cf29bfd54?pvs=4") {
                 WebView(url: url)
             } else {
                 Text("유효하지 않은 URL입니다.")

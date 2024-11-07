@@ -16,6 +16,9 @@ struct SettingView: View {
     @State private var logoutAlert = false
     @State private var deleteAuth = false
     
+    @State private var showPrivacyPolicySheet = false
+    @State private var showServicePolicySheet = false
+    
     var body: some View {
         NavigationStack {
             List {
@@ -36,6 +39,39 @@ struct SettingView: View {
                     Text("현재버전")
                         .font(.pretendardRegular12)
                         .foregroundColor(.primary)
+                })
+                
+                Section (content: {
+                    Button{
+                        print("서비스 이용약관")
+                        showServicePolicySheet.toggle()
+                    } label: {
+                        HStack {
+                            Text("서비스 이용약관")
+                                .font(.pretendardRegular16)
+                                .foregroundColor(.primary)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                    }
+                    .foregroundColor(.primary)
+                    
+                    Button{
+                        print("개인정보 처리방침")
+                        showPrivacyPolicySheet.toggle()
+                    } label: {
+                        HStack {
+                            Text("개인정보 처리방침")
+                                .font(.pretendardRegular16)
+                                .foregroundColor(.primary)
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                    }
+                    .foregroundColor(.primary)
+                }, header: {
+                    Text("계정관리")
+                        .font(.pretendardRegular12)
                 })
                 
                 Section (content: {
@@ -115,6 +151,23 @@ struct SettingView: View {
                     Text("계정관리")
                         .font(.pretendardRegular12)
                 })
+                // 웹사이트를 시트 형식으로 열기
+                .sheet(isPresented: $showPrivacyPolicySheet) {
+                    if let url = URL(string: "https://fluorescent-potassium-a57.notion.site/RestSharer-1339e588c65d809e8f9aecbd7a3c0877?pvs=4") {
+                        WebView(url: url)
+                    } else {
+                        Text("유효하지 않은 URL입니다.")
+                    }
+                }
+                
+                // 웹사이트를 시트 형식으로 열기
+                .sheet(isPresented: $showServicePolicySheet) {
+                    if let url = URL(string: "https://fluorescent-potassium-a57.notion.site/RestSharer-1379e588c65d80a08ba0cc8cf29bfd54?pvs=4") {
+                        WebView(url: url)
+                    } else {
+                        Text("유효하지 않은 URL입니다.")
+                    }
+                }
             }
             .navigationTitle("설정").font(.pretendardRegular16).foregroundColor(.primary)
             .navigationBarTitleDisplayMode(.inline)
