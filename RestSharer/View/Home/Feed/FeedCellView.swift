@@ -88,7 +88,7 @@ struct FeedCellView: View {
                             BlockUserSheet(userStore: userStore, nickname: feed.writerNickname) {
                                 isShowingReportForm.toggle()
                             }
-                            .presentationDetents([.height(.screenHeight * 0.3), .medium])
+                            .presentationDetents([.height(.screenHeight * 0.5), .medium])
                         }
                         
                         
@@ -287,6 +287,21 @@ struct BlockUserSheet: View {
                     .frame(width: .screenWidth * 0.8, height: 50)
                     .background(Color.privateColor)
                     .cornerRadius(10)
+            }
+            
+            Button(role: .destructive, action: {
+                if let url = URL(string: "https://forms.gle/6oHfyxc5Cmm8gTK26") {
+                    UIApplication.shared.open(url)
+                }
+                onDismiss()
+            }) {
+                Text("신고하기")
+                    .frame(width: .screenWidth * 0.8, height: 50)
+                    .cornerRadius(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray)
+                    )
             }
 
             Button("취소", role: .cancel) {
